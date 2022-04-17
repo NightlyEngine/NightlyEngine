@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.22)
+cmake_minimum_required(VERSION 3.20)
 project(NightlyEngine)
 
 set(CMAKE_CXX_STANDARD 20)
@@ -16,3 +16,9 @@ add_subdirectory(Engine/Source/ThirdParty/glfw)
 # Add Nightly modules
 add_subdirectory(Engine/Source/Runtime)
 add_subdirectory(Engine/Source/Editor)
+
+# Set third party include paths
+target_include_directories(${PROJECT_NAME} PUBLIC "Engine/Source/ThirdParty/glfw/include")
+
+target_include_directories(${PROJECT_NAME} PUBLIC "Engine/Source/Runtime")
+target_include_directories(${PROJECT_NAME} PUBLIC "Engine/Source/Editor")
