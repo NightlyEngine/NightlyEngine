@@ -1,6 +1,0 @@
-#ifndef NIGHTLYENGINE_LIBRARY_H
-#define NIGHTLYENGINE_LIBRARY_H
-
-void hello();
-
-#endif //NIGHTLYENGINE_LIBRARY_H
