@@ -3,4 +3,5 @@ project(NightlyEngine)
 
 set(CMAKE_CXX_STANDARD 20)
 
-add_library(NightlyEngine SHARED Engine/Source/Runtime/Core/library.cpp)
+add_subdirectory(Engine/Source/Runtime)
+add_subdirectory(Engine/Source/Editor)
