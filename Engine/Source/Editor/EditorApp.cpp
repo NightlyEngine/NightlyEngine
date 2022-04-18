@@ -1,40 +1,50 @@
 #include "Runtime/Core/Application.h"
+#include "Runtime/Core/Engine.h"
 
 namespace NightlyEditor
 {
-	class EditorApp : public Nightly::Application
+    class EditorApp : public Nightly::Application
 	{
 	public:
 		EditorApp() = default;
 
 		~EditorApp() override = default;
 
-		void Launch() override
+		void Start() override
 		{
-			OnStart();
+			m_EngineInstance = new Nightly::Engine;
+			m_EngineInstance->Start();
+
+			std::cout << "Hello from Nightly Editor!\n";
+			Update();
 		}
 
 	private:
-		void OnStart() override
+		void Update() override
 		{
-			std::cout << "Hello from Nightly Editor!\n";
+			if (!m_EngineInstance) return;
+
+			m_EngineInstance->Update();
 		}
 
-		void OnUpdate() override
+		void Quit() override
 		{
+			if (m_EngineInstance)
+			{
+				m_EngineInstance->Quit();
+			}
 
+			delete m_EngineInstance;
 		}
 
-		void OnQuit() override
-		{
-
-		}
+	private:
+		Nightly::Engine* m_EngineInstance = nullptr;
 	};
 }
 
 int main(int argc, char** argv)
 {
-	auto app = new NightlyEditor::EditorApp;
-	app->Launch();
-	delete app;
+	auto editor = new NightlyEditor::EditorApp;
+	editor->Start();
+	delete editor;
 }

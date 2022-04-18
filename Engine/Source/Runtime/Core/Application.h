@@ -9,12 +9,9 @@ namespace Nightly
 	public:
 		Application() = default;
 		virtual ~Application() = default;
-
-		virtual void Launch() = 0;
-
-	protected:
-		virtual void OnStart() = 0;
-		virtual void OnUpdate() = 0;
-		virtual void OnQuit() = 0;
+		
+		virtual void Start() = 0;
+		virtual void Update() = 0;
+		virtual void Quit() = 0;
 	};
 }
