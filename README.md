@@ -4,10 +4,8 @@ A modern, lightweight and cross-platform engine that makes game development fun 
 
 ## Current state
 
-The engine is currently in development and is not fully functional.
-<br>The latest version can be found in the `development` branch and stable versions will have their own branches in the
-future.
-<br>If you'd like to try out the engine, you can follow the steps below to build it from source. If you'd like to
+The engine is currently in development and is not fully functional. The latest version can be found in the `development` branch and stable versions will have their own branches in the
+future. If you'd like to try out the engine, you can follow the steps below to build it from source. If you'd like to
 contribute, you're welcome!
 <br>
 <br>Follow me on [Twitter](https://twitter.com/byfutureblur) to stay up to date.
@@ -24,10 +22,8 @@ After that, follow the specific instructions for your OS down below.
 ### Mac
 
 1. Install CMake. If you use [Homebrew](https://brew.sh/index), run this command: `brew install cmake`
-
 2. Install the latest version of [Xcode](https://apps.apple.com/en/app/xcode/id497799835?l=en).
-3. Install [python3](https://www.python.org/downloads/). Again, if you use homebrew, run this
-   command: `brew install python`
+3. Install [python3](https://www.python.org/downloads/). Again, if you use homebrew, run this command: `brew install python`
 4. Open your terminal and navigate to the `Scripts` folder.
 5. Generate your Xcode project files using: `python3 ./GenerateXcode.py`
 6. Launch the editor: `python3 ./LaunchEditor.py`
