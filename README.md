@@ -19,6 +19,8 @@ Follow these steps to build Nightly from source:
 
 After that, follow the specific instructions for your OS down below.
 
+---
+
 ### Mac
 
 1. Install CMake. If you use [Homebrew](https://brew.sh/index), run this command: `brew install cmake`
