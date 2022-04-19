@@ -19,7 +19,7 @@ Follow these steps to build Nightly from source:
 
 After that, follow the specific instructions for your OS down below.
 
----
+
 
 ### Mac
 
@@ -34,7 +34,7 @@ Your project files will be written to `Engine/Build/{Configuration}/Engine/Sourc
 If you get an error message telling you that the `CMAKE_C_COMPILER` or `CMAKE_CXX_COMPILER` could not be found,
 run: `sudo xcode-select --reset`.
 
----
+
 
 ### Linux
 
@@ -49,7 +49,7 @@ run: `sudo xcode-select --reset`.
 Your project files will be written to `Engine/Build/{Configuration}/Engine/Source`. You can now open the project using
 an IDE like CLion.
 
----
+
 
 ### Windows
 
