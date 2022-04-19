@@ -39,13 +39,11 @@ run: `sudo xcode-select --reset`.
 
 ### Linux
 
-1. Install CMake: `sudo apt install cmake`. It is also recommended that you install
-   software-properties-common: `sudo apt install software-properties-common`
-2. Install python3: `sudo apt install python`
-3. Install the ninja generator: `sudo apt install -y ninja-build`
-4. Open your terminal and navigate to the `Scripts` folder.
-5. Generate and build the project: `python3 ./GenerateNinja.py`
-6. Launch the editor: `python3 ./LaunchEditor.py`
+1. Python 3 is required. If not already installed, do it now: `sudo apt install python`
+2. Open your terminal and navigate to the `Scripts` folder: `cd Scripts`
+3. Install all the dependencies: `python3 ./InstallLinuxDependencies.py`
+4. Generate and build the project: `python3 ./GenerateNinja.py`
+5. Launch the editor: `python3 ./LaunchEditor.py`
 
 Your project files will be written to `Engine/Build/{Configuration}/Engine/Source`, while the binaries will be stored in `Engine/Binaries`. You can now open the project using
 an IDE like CLion.
