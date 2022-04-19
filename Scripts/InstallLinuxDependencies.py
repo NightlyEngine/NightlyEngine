@@ -22,6 +22,7 @@ failed_packages = []
 
 # Loop through all packages and install them
 for package in packages:
+	print(colors.BOLD + f"==> Installing {package}..." + colors.ENDC)
 	if os.system("sudo apt install " + package) != 0:
 		print(colors.FAIL + "Failed to install package: " + package + ". Check your internet connection or try again later" + colors.ENDC)
 		failed_packages.append(package)
