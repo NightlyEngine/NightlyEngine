@@ -12,6 +12,7 @@ class colors:
     
 # Set build path
 build_path = "Engine/Build"
+binaries_path = "Engine/Binaries"
     
 # Go up one directory
 os.chdir("..")
@@ -26,11 +27,13 @@ if not os.path.exists(build_path):
 # Delete folder
 try:
     shutil.rmtree(build_path)
+    shutil.rmtree(binaries_path)
 except OSError as e:
-    print(colors.FAIL + "Failed to remove buid folder: %s - %s." % (e.filename, e.strerror) + colors.ENDC)
+    print(colors.FAIL + "Failed to remove folders: %s - %s." % (e.filename, e.strerror) + colors.ENDC)
     exit()
 
-print("Removed build folder.")
+print("Removed " + build_path)
+print("Removed " + binaries_path)
 print(colors.BOLD + colors.OKCYAN + "==> Clean successful." + colors.ENDC)
 print("You can generate your project files using:")
 print("  python3 ./GenerateXcode.py")
