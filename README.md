@@ -15,6 +15,7 @@ contribute, you're welcome!
 Follow these steps to build Nightly from source:
 
 - Clone the repo: `git clone https://github.com/Futureblur/NightlyEngine.git`
+- Go to the engine directory: `cd NightlyEngine`
 - Install all the submodules: `git submodule update --init`
 
 After that, follow the specific instructions for your OS down below.
@@ -30,7 +31,7 @@ After that, follow the specific instructions for your OS down below.
 5. Generate your Xcode project files using: `python3 ./GenerateXcode.py`
 6. Launch the editor: `python3 ./LaunchEditor.py`
 
-Your project files will be written to `Engine/Build/{Configuration}/Engine/Source`.<br>
+Your project files will be written to `Engine/Build/{Configuration}/Engine/Source`, while the binaries will be stored in `Engine/Binaries`.<br>
 If you get an error message telling you that the `CMAKE_C_COMPILER` or `CMAKE_CXX_COMPILER` could not be found,
 run: `sudo xcode-select --reset`.
 
@@ -46,7 +47,7 @@ run: `sudo xcode-select --reset`.
 5. Generate and build the project: `python3 ./GenerateNinja.py`
 6. Launch the editor: `python3 ./LaunchEditor.py`
 
-Your project files will be written to `Engine/Build/{Configuration}/Engine/Source`. You can now open the project using
+Your project files will be written to `Engine/Build/{Configuration}/Engine/Source`, while the binaries will be stored in `Engine/Binaries`. You can now open the project using
 an IDE like CLion.
 
 
@@ -63,7 +64,7 @@ an IDE like CLion.
 5. Generate and build the project: `python3 ./GenerateNinja.py`
 6. Launch the editor: `python3 ./LaunchEditor.py`
 
-Your project files will be written to `Engine/Build/{Configuration}/Engine/Source`. You can now open the project using
+Your project files will be written to `Engine/Build/{Configuration}/Engine/Source`, while the binaries will be stored in `Engine/Binaries`. You can now open the project using
 an IDE like CLion.
 
 ## License
