@@ -8,6 +8,15 @@ set(GLFW_BUILD_DOCS OFF CACHE BOOL "" FORCE)
 set(GLFW_BUILD_TESTS OFF CACHE BOOL "" FORCE)
 set(GLFW_BUILD_EXAMPLES OFF CACHE BOOL "" FORCE)
 
+set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY "${PROJECT_SOURCE_DIR}/Engine/Binaries/${CMAKE_BUILD_TYPE}")
+set(CMAKE_LIBRARY_OUTPUT_DIRECTORY "${PROJECT_SOURCE_DIR}/Engine/Binaries/${CMAKE_BUILD_TYPE}")
+set(CMAKE_RUNTIME_OUTPUT_DIRECTORY "${PROJECT_SOURCE_DIR}/Engine/Binaries/${CMAKE_BUILD_TYPE}")
+
+# Get rid of an additional <CONFIGURATION> directory
+set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY_DEBUG "${PROJECT_SOURCE_DIR}/Engine/Binaries/${CMAKE_BUILD_TYPE}")
+set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY_RELEASE "${PROJECT_SOURCE_DIR}/Engine/Binaries/${CMAKE_BUILD_TYPE}")
+
+# Include the source directory
 include_directories("${PROJECT_SOURCE_DIR}/Engine/Source")
 
 # Add third party dependencies
@@ -20,5 +29,6 @@ add_subdirectory(Engine/Source/Editor)
 # Set third party include paths
 target_include_directories(${PROJECT_NAME} PUBLIC "Engine/Source/ThirdParty/glfw/include")
 
+# Set engine include paths
 target_include_directories(${PROJECT_NAME} PUBLIC "Engine/Source/Runtime")
 target_include_directories(${PROJECT_NAME} PUBLIC "Engine/Source/Editor")
