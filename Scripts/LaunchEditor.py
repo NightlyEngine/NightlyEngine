@@ -20,7 +20,7 @@ binary_path = f"Engine/Binaries/{config}"
 engine_runtime_name = ""
 dylib_name = "libNightlyEngine.dylib"
 dll_name = "NightlyEngine.dll"
-so_name = "NightlyEngine.so"
+so_name = "libNightlyEngine.so"
 
 editor_name = ""
 editor_app_name = "NightlyEditor"
