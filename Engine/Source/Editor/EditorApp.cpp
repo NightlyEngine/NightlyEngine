@@ -3,7 +3,7 @@
 
 namespace NightlyEditor
 {
-    class EditorApp : public Nightly::Application
+	class EditorApp : public Nightly::Application
 	{
 	public:
 		EditorApp() = default;
