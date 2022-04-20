@@ -70,3 +70,6 @@ cmake-build-debug
 # Build folders
 Engine/Build
 Engine/Binaries
+
+# Python
+__pycache__
