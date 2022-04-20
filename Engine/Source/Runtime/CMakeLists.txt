@@ -3,8 +3,6 @@ project(NightlyEngine)
 
 set(CMAKE_CXX_STANDARD 20)
 
-add_compile_definitions(NL_EXPORT)
-
 add_library(NightlyEngine SHARED Core/Application.h Core/Application.cpp Core/Core.h Core/Engine.h)
 
 # Get rid of an additional <CONFIGURATION> directory
