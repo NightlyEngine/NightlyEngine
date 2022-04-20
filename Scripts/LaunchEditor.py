@@ -1,15 +1,7 @@
 from os.path import exists
 import os
 import platform
-
-
-# Set console colors
-class colors:
-    OKCYAN = '\033[96m'
-    FAIL = '\033[91m'
-    ENDC = '\033[0m'
-    BOLD = '\033[1m'
-
+from Utils import log_info, log_fail
 
 # Build configuration
 config = "Debug"
@@ -29,7 +21,7 @@ editor_exe_name = "NightlyEditor.exe"
 # Go up one directory
 os.chdir("..")
 
-print(colors.BOLD + colors.OKCYAN + "==> Checking operating system..." + colors.ENDC)
+log_info("Checking operating system...")
 
 # Check operating system
 os_name = platform.system()
@@ -43,21 +35,19 @@ elif os_name == "Linux":
     engine_runtime_name = so_name
     editor_name = editor_app_name
 else:
-    print(colors.FAIL + "Could not detect operating system!" + colors.ENDC)
+    log_fail("Could not detect operating system!")
     exit()
 
 print("Detected OS: " + os_name)
 
-print(colors.BOLD + colors.OKCYAN + "==> Check complete." + colors.ENDC)
-
-print(colors.BOLD + colors.OKCYAN + "==> Validating..." + colors.ENDC)
+log_info("Check complete.")
+log_info("Validating...")
 
 engine_path = binary_path + "/" + engine_runtime_name
 
 # Check if engine library exists
 if not exists(engine_path):
-    print(colors.FAIL + "Engine runtime library was not found in search paths. Expected it to be in:")
-    print(f"'{engine_path}'" + colors.ENDC)
+    log_fail(f"Engine runtime library was not found in search paths. Expected it to be in: '{engine_path}'")
     exit()
 
 print("Found engine runtime library.")
@@ -66,14 +56,13 @@ editor_path = binary_path + "/" + editor_name
 
 # Check if editor application exists
 if not exists(editor_path):
-    print(colors.FAIL + "Editor was not found in search paths. Expected it to be in:")
-    print(f"'{editor_path}'" + colors.ENDC)
+    log_fail(f"Editor was not found in search paths. Expected it to be in: '{editor_path}'")
     exit()
 
 print("Found editor application.")
 
-print(colors.BOLD + colors.OKCYAN + "==> Validation complete, no errors found." + colors.ENDC)
-print(colors.BOLD + colors.OKCYAN + "==> Launching Nightly Editor..." + colors.ENDC)
+log_info("Validation complete, no errors found.")
+log_info("Launching Nightly Editor...")
 
 # Wish the user a good time
 print("Have fun and remember to stay hydrated!")

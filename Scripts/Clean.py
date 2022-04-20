@@ -1,14 +1,8 @@
 import os
 import sys
 import shutil
+from Utils import log_info, log_fail
 
-# Set console colors
-class colors:
-    OKCYAN = '\033[96m'
-    FAIL = '\033[91m'
-    ENDC = '\033[0m'
-    BOLD = '\033[1m'
-    
     
 # Set build path
 build_path = "Engine/Build"
@@ -16,8 +10,8 @@ binaries_path = "Engine/Binaries"
     
 # Go up one directory
 os.chdir("..")
-    
-print(colors.BOLD + colors.OKCYAN + "==> Clean started..." + colors.ENDC)
+
+log_info("Clean started...")
 
 # Check if build folder exists
 if not os.path.exists(build_path):
@@ -29,12 +23,12 @@ try:
     shutil.rmtree(build_path)
     shutil.rmtree(binaries_path)
 except OSError as e:
-    print(colors.FAIL + "Failed to remove folders: %s - %s." % (e.filename, e.strerror) + colors.ENDC)
+    log_fail("Failed to remove folders: %s - %s." % (e.filename, e.strerror))
     exit()
 
 print("Removed " + build_path)
 print("Removed " + binaries_path)
-print(colors.BOLD + colors.OKCYAN + "==> Clean successful." + colors.ENDC)
+log_info("Clean successful.")
 print("You can generate your project files using:")
 print("  python3 ./GenerateXcode.py")
 print("  python3 ./GenerateNinja.py")

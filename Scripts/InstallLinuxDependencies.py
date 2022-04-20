@@ -1,19 +1,13 @@
 import os
 import sys
+from Utils import log_info, log_fail
 
-# Set console colors
-class colors:
-    OKCYAN = '\033[96m'
-    FAIL = '\033[91m'
-    ENDC = '\033[0m'
-    BOLD = '\033[1m'
-
-print(colors.BOLD + colors.OKCYAN + "==> Installing dependencies for Linux..." + colors.ENDC)
+log_info("Installing dependencies for Linux...")
 print("Updating packages...")
 
 # Update packages
 if os.system("sudo apt update") != 0:
-	print(colors.FAIL + "Failed to update packages! Check your internet connection or try again later." + colors.ENDC)
+	log_fail("Failed to update packages! Check your internet connection or try again later.")
 	exit()
 
 # List of packages to be installed
@@ -22,9 +16,9 @@ failed_packages = []
 
 # Loop through all packages and install them
 for package in packages:
-	print(colors.BOLD + f"==> Installing {package}..." + colors.ENDC)
+	log_info(f"Installing {package}...")
 	if os.system("sudo apt install " + package) != 0:
-		print(colors.FAIL + "Failed to install package: " + package + ". Check your internet connection or try again later." + colors.ENDC)
+		log_fail(f"Failed to install package: {package}. Check your internet connection or try again later.")
 		failed_packages.append(package)
 
 
@@ -34,5 +28,5 @@ if len(failed_packages) != 0:
 	for pkg in failed_packages:
 		print(pkg)
 
-print(colors.BOLD + colors.OKCYAN + "==> Installation finished." + colors.ENDC)
+log_info("Installation finished.")
 print("Generate your project files next: python3 ./GenerateNinja.py")
