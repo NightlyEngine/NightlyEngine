@@ -1,7 +1,6 @@
 from os.path import exists
 import os
-import platform
-from Utils import log_info, log_fail
+from Utils import log_info, log_fail, get_os
 
 # Build configuration
 config = "Debug"
@@ -24,7 +23,7 @@ os.chdir("..")
 log_info("Checking operating system...")
 
 # Check operating system
-os_name = platform.system()
+os_name = get_os()
 if os_name == "Windows":
     engine_runtime_name = dll_name
     editor_name = editor_exe_name
@@ -68,4 +67,7 @@ log_info("Launching Nightly Editor...")
 print("Have fun and remember to stay hydrated!")
 
 # Launch Nightly
-os.system("./" + editor_path)
+if os_name != "Windows":
+    os.system(editor_path)
+else:
+    os.system("./" + editor_path)

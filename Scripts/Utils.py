@@ -1,3 +1,6 @@
+import platform
+
+
 # Set console colors
 class colors:
     OKCYAN = '\033[96m'
@@ -12,3 +15,5 @@ def log_info(msg):
 def log_fail(msg):
     print(colors.FAIL + msg + colors.ENDC)
 
+def get_os():
+    return platform.system()
