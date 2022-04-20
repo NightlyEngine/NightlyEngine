@@ -9,7 +9,7 @@ namespace Nightly
 	public:
 		Application() = default;
 		virtual ~Application() = default;
-		
+
 		virtual void Start() = 0;
 		virtual void Update() = 0;
 		virtual void Quit() = 0;
