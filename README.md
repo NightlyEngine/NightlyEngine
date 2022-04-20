@@ -53,13 +53,12 @@ an IDE like CLion.
 ### Windows
 
 1. Download and install
-   CMake [here](https://github.com/Kitware/CMake/releases/download/v3.23.1/cmake-3.23.1-windows-x86_64.msi). Make sure
-   the full path to `cmake.exe` is added to your PATH.
-2. Download and install python3 [here](https://www.python.org/downloads/).
+   CMake [here](https://github.com/Kitware/CMake/releases/download/v3.23.1/cmake-3.23.1-windows-x86_64.msi). In the installer, select the option to also add CMake into your PATH environment variable.
+2. Download and install python3 [here](https://www.python.org/downloads/) and also add it to your PATH.
 3. Download the latest release of ninja [here](https://github.com/ninja-build/ninja/releases/tag/v1.10.2). Unzip the
    folder into a directory you wish. Add the full path to `ninja.exe` to your PATH.
-4. Download and install the latest version of [Visual Studio](https://visualstudio.microsoft.com/de/downloads/) and make sure you check the option **Desktop development with C++** in the installer. On the right hand side, check the option **C++ Clang tools for Windows** to also install the clang compiler.
-5. Open your terminal and navigate into the `Scripts` folder.
+4. Download and install the latest version of [Visual Studio](https://visualstudio.microsoft.com/de/downloads/) and make sure you select the option **Desktop development with C++** in the installer. On the right hand side, check the box for **C++ Clang tools for Windows** to also install the clang compiler.
+5. Open cmd.exe and navigate into the `Scripts` folder: `cd Scripts`
 6. Generate and build the project: `python ./GenerateNinja.py`
 7. Launch the editor: `python ./LaunchEditor.py`
 
