@@ -58,12 +58,13 @@ an IDE like CLion.
 2. Download and install python3 [here](https://www.python.org/downloads/).
 3. Download the latest release of ninja [here](https://github.com/ninja-build/ninja/releases/tag/v1.10.2). Unzip the
    folder into a directory you wish. Add the full path to `ninja.exe` to your PATH.
-4. Open your terminal and navigate into the `Scripts` folder.
-5. Generate and build the project: `python3 ./GenerateNinja.py`
-6. Launch the editor: `python3 ./LaunchEditor.py`
+4. Download and install the latest version of [Visual Studio](https://visualstudio.microsoft.com/de/downloads/) and make sure you check the option **Desktop development with C++** in the installer. On the right hand side, check the option **C++ Clang tools for Windows** to also install the clang compiler.
+5. Open your terminal and navigate into the `Scripts` folder.
+6. Generate and build the project: `python ./GenerateNinja.py`
+7. Launch the editor: `python ./LaunchEditor.py`
 
 Your project files will be written to `Engine/Build/{Configuration}/Engine/Source`, while the binaries will be stored in `Engine/Binaries`. You can now open the project using
-an IDE like CLion.
+an IDE like Visual Studio or CLion.
 
 ## License
 
