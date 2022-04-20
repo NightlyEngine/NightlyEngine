@@ -26,6 +26,9 @@ add_subdirectory(Engine/Source/ThirdParty/glfw)
 add_subdirectory(Engine/Source/Runtime)
 add_subdirectory(Engine/Source/Editor)
 
+# Add preprocessor definitions
+target_compile_definitions(${PROJECT_NAME} PRIVATE NL_EXPORT_DLL)
+
 # Set third party include paths
 target_include_directories(${PROJECT_NAME} PUBLIC "Engine/Source/ThirdParty/glfw/include")
 
