@@ -38,6 +38,7 @@ namespace Nightly
 		auto min = std::to_string(localTime->tm_min);
 		auto sec = std::to_string(localTime->tm_sec);
 
+		// Append 0 if the number is in 0-9 range
 		if (hour.length() == 1) hour = "0" + hour;
 		if (min.length() == 1) min = "0" + min;
 		if (sec.length() == 1) sec = "0" + sec;
@@ -45,8 +46,29 @@ namespace Nightly
 		std::stringstream timeStream;
 		timeStream << hour << ":" << min << ":" << sec;
 
-		std::cout << timeStream.str() << " " << LogSeverityToStr(severity) << " @" << LogSourceToStr(source) << ": " << message.str()
-		          << std::endl;
+		// Get color based on severity
+		std::string color = GetSeverityColor(severity);
+
+		std::cout << color << timeStream.str() << " " << LogSeverityToStr(severity) << " @" << LogSourceToStr(source) << ": "
+		          << message.str() << ConsoleColor::Clear() << std::endl;
+	}
+
+	std::string Log::GetSeverityColor(const LogSeverity& severity)
+	{
+		switch (severity)
+		{
+			case LogSeverity::INFO:
+				return "";
+
+			case LogSeverity::WARNING:
+				return ConsoleColor::Yellow();
+
+			case LogSeverity::ERROR:
+				return ConsoleColor::Red();
+
+			case LogSeverity::FATAL:
+				return ConsoleColor::FatalRed();
+		}
 	}
 
 	std::string Log::LogSeverityToStr(const LogSeverity& severity)
