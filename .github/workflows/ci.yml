@@ -25,6 +25,8 @@ jobs:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v3
 
+      - run: git submodule update --init
+
       - uses: seanmiddleditch/gha-setup-ninja@master
       - run: |
           mkdir build
