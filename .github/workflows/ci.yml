@@ -27,8 +27,8 @@ jobs:
 
       - uses: seanmiddleditch/gha-setup-ninja@master
       - run: |
-          mkdir Engine/Build
-          cd Engine/Build
+          mkdir build
+          cd build
           cmake -G Ninja ..
           
-      - run: cmake --build Engine/Build
+      - run: cmake --build build
