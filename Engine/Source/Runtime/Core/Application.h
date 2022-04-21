@@ -24,7 +24,7 @@ namespace Nightly
 		// Quits the application and deletes heap allocated variables.
 		virtual void Quit() = 0;
 
-	private:
+	protected:
 		bool m_IsRunning;
 	};
 }
