@@ -39,8 +39,36 @@ namespace Nightly
 		static void Fatal(const std::stringstream& message, const LogSource& source = LogSource::PLAYER);
 
 	private:
+		// Contains colors that can be used when printing messages to the console.
+		// TODO: Windows support
+		struct ConsoleColor
+		{
+			static std::string Clear()
+			{
+				return "\033[0m";
+			}
+
+			static std::string Yellow()
+			{
+				return "\033[33m";
+			}
+
+			static std::string Red()
+			{
+				return "\033[31m";
+			}
+
+			static std::string FatalRed()
+			{
+				return "\033[1m\033[31m";
+			}
+		};
+
 		// Logs to the standard output using a custom template.
 		static void LogIntern(const LogSeverity& severity, const LogSource& source, const std::stringstream& message);
+
+		// Returns a console color based on the severity.
+		static std::string GetSeverityColor(const LogSeverity& severity);
 
 		// Converts LogSeverity enum into string.
 		static std::string LogSeverityToStr(const LogSeverity& severity);
@@ -49,7 +77,7 @@ namespace Nightly
 		static std::string LogSourceToStr(const LogSource& source);
 	};
 
-	// Base macro for logging.
+	// Base macro for logging messages to the console.
 	#define NL_LOG(message, source, severity)               \
             {                                               \
                 std::stringstream _logStringStream;         \
@@ -60,13 +88,25 @@ namespace Nightly
 	// Macro for logging an info message to the console with the source being PLAYER.
 	#define NL_INFO(message) NL_LOG(message, LogSource::PLAYER, Info)
 
+	// Same as NL_INFO, but with the option to specify a source.
+	#define NL_CORE_INFO(message, source) NL_LOG(message, source, Info)
+
 	// Macro for logging a warning message to the console with the source being PLAYER.
 	#define NL_WARN(message) NL_LOG(message, LogSource::PLAYER, Warn)
+
+	// Same as NL_WARN, but with the option to specify a source.
+	#define NL_CORE_WARN(message, source) NL_LOG(message, source, Warn)
 
 	// Macro for logging an error message to the console with the source being PLAYER.
 	#define NL_ERROR(message) NL_LOG(message, LogSource::PLAYER, Error)
 
+	// Same as NL_ERROR, but with the option to specify a source.
+	#define NL_CORE_ERROR(message, source) NL_LOG(message, source, Error)
+
 	// Macro for logging a fatal error message to the console with the source being PLAYER.
 	#define NL_FATAL(message) NL_LOG(message, LogSource::PLAYER, Fatal)
+
+	// Same as NL_FATAL, but with the option to specify a source.
+	#define NL_CORE_FATAL(message, source) NL_LOG(message, source, Fatal)
 }
 
