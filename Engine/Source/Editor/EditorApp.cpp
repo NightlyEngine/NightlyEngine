@@ -15,10 +15,21 @@ namespace NightlyEditor
 
 		void Start() override
 		{
+			if (m_IsRunning)
+			{
+				NL_CORE_ERROR("Nightly Editor is already running. Multiple instances of the application are not allowed!",
+				              LogSource::EDITOR);
+
+				return;
+			}
+
+			m_IsRunning = true;
+
 			m_EngineInstance = new Engine;
 			m_EngineInstance->Start();
 
-			std::cout << "Hello from Nightly Editor!\n";
+			NL_CORE_INFO("Initializing Nightly Editor...", LogSource::EDITOR);
+
 			Update();
 		}
 
