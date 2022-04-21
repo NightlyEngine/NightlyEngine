@@ -11,10 +11,7 @@ namespace Nightly
 		Engine() = default;
 		~Engine() override = default;
 
-		void Start() override
-		{
-			std::cout << "Hello from Nightly Engine! \n";
-		}
+		void Start() override;
 
 		void Update() override
 		{
