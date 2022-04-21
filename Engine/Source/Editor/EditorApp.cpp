@@ -1,9 +1,12 @@
 #include "Runtime/Core/Application.h"
 #include "Runtime/Core/Engine.h"
+#include "Core/Log.h"
+
+using namespace Nightly;
 
 namespace NightlyEditor
 {
-	class EditorApp : public Nightly::Application
+	class EditorApp : public Application
 	{
 	public:
 		EditorApp() = default;
@@ -12,7 +15,7 @@ namespace NightlyEditor
 
 		void Start() override
 		{
-			m_EngineInstance = new Nightly::Engine;
+			m_EngineInstance = new Engine;
 			m_EngineInstance->Start();
 
 			std::cout << "Hello from Nightly Editor!\n";
@@ -38,7 +41,7 @@ namespace NightlyEditor
 		}
 
 	private:
-		Nightly::Engine* m_EngineInstance = nullptr;
+		Engine* m_EngineInstance = nullptr;
 	};
 }
 
