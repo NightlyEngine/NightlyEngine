@@ -4,6 +4,7 @@
 
 namespace Nightly
 {
+	// The entire engine runtime application.
 	class NL_API Engine : public Application
 	{
 	public:
