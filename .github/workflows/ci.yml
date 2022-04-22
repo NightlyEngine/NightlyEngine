@@ -41,4 +41,48 @@ jobs:
       - name: Build CMake
         run: cmake --build Engine/Build
       
+  build-on-macos:
+    runs-on: macos-latest
+
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - uses: actions/checkout@v3
       
+      - name: Install submodules
+        run: git submodule update --init
+      
+      # Use ninja generator
+      - uses: seanmiddleditch/gha-setup-ninja@master
+      
+      - name: Generate ninja files
+        run: |
+            mkdir Engine/Build
+            cd Engine/Build
+            cmake -G Ninja ../..
+        
+      - name: Build CMake
+        run: cmake --build Engine/Build
+        
+  build-on-windows:
+    runs-on: windows-latest
+
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - uses: actions/checkout@v3
+      
+      - name: Install submodules
+        run: git submodule update --init
+      
+      # Use ninja generator
+      - uses: seanmiddleditch/gha-setup-ninja@master
+      
+      - name: Generate ninja files
+        run: |
+            mkdir Engine/Build
+            cd Engine/Build
+            cmake -G Ninja ../..
+        
+      - name: Build CMake
+        run: cmake --build Engine/Build
