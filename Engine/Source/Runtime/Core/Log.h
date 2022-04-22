@@ -40,28 +40,12 @@ namespace Nightly
 
 	private:
 		// Contains colors that can be used when printing messages to the console.
-		// TODO: Windows support
-		struct ConsoleColor
+		struct ConsoleColors
 		{
-			static std::string Clear()
-			{
-				return "\033[0m";
-			}
-
-			static std::string Yellow()
-			{
-				return "\033[33m";
-			}
-
-			static std::string Red()
-			{
-				return "\033[31m";
-			}
-
-			static std::string FatalRed()
-			{
-				return "\033[1m\033[31m";
-			}
+			static constexpr const char* Clear = "\033[0m";
+			static constexpr const char* Yellow = "\033[33m";
+			static constexpr const char* Red = "\033[31m";
+			static constexpr const char* FatalRed = "\033[1m\033[31m";
 		};
 
 		// Logs to the standard output using a custom template.
