@@ -2,7 +2,6 @@
 
 #ifdef NL_PLATFORM_WINDOWS
 #include <windows.h>
-#endif
 
 namespace Nightly
 {
@@ -21,27 +20,26 @@ namespace Nightly
 				break;
 
 			case LogSeverity::ERROR:
-			case LogSeverity::FATAL:
-			{
 				color = WinConsoleColors::Red;
 				break;
-			}
+
+			case LogSeverity::FATAL:
+				color = WinConsoleColors::Red;
+				break;
 
 			default:
 				break;
 		}
 
-#ifdef NL_PLATFORM_WINDOWS
 		HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
 		SetConsoleTextAttribute(hConsole, color);
-#endif
 	}
 
 	void WindowsPlatform::ClearConsoleColor()
 	{
-#ifdef NL_PLATFORM_WINDOWS
 		HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
 		SetConsoleTextAttribute(hConsole, WinConsoleColors::White);
-#endif
 	}
+
 }
+#endif

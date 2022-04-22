@@ -1,5 +1,7 @@
 #pragma once
 
+#ifdef NL_PLATFORM_WINDOWS
+
 #include "Core/Log.h"
 
 namespace Nightly
@@ -24,3 +26,5 @@ namespace Nightly
 		};
 	};
 }
+
+#endif
