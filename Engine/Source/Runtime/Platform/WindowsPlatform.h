@@ -9,7 +9,7 @@
 namespace Nightly
 {
 	// This class allows direct communication with the native WinAPI.
-	class WindowsPlatform
+	class NL_API WindowsPlatform
 	{
 	public:
 		// Sets the console color based on the message severity.
