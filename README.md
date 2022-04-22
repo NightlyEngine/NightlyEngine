@@ -42,7 +42,7 @@ There is no splash screen.
 
 There is no catch. Nightly Engine is open source, meaning that I can't restrict the usage by requiring some sort of
 payment. If you would like to support the development process in any way, you can do so by sponsoring this project on
-GitHub or following me on [Twitter](https://twitter.com/byfutureblur). Your help is greatly appreciated!
+GitHub or following me on [Twitter](https://twitter.com/byfutureblur). Also, feel free to ⭐️ this repo! Your help is greatly appreciated.
 
 ## Building from source
 
