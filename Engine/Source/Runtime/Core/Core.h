@@ -1,19 +1,17 @@
 #pragma once
 
-#ifdef NL_EXPORT_DLL    // NL_EXPORT_DLL
+#include "Platform/PlatformDetection.h"
 
-#ifdef _WIN32       	// _WIN32
+#if defined(NL_EXPORT_DLL)
+
+#if defined(NL_PLATFORM_WINDOWS)
 #define NL_API __declspec(dllexport)
-#elif __APPLE__ || __linux__
+#elif defined(NL_PLATFORM_OSX) || defined(NL_PLATFORM_LINUX)
 #define NL_API __attribute__((visibility("default")))
-#endif              	// _WIN32
-
-#else               	// NL_EXPORT_DLL NOT DEFINED
-
-#ifdef _WIN32           // _WIN32
-#define NL_API 
-#elif __APPLE__ || __linux__
+#else
 #define NL_API
-#endif                  // _WIN32
+#endif
 
-#endif                  // NL_EXPORT_DLL
+#else
+#define NL_API
+#endif
