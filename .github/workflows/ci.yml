@@ -1,0 +1,88 @@
+# This is a basic workflow to help you get started with Actions
+
+name: CI
+
+# Controls when the workflow will run
+on:
+  # Triggers the workflow on push or pull request events but only for the development branch
+  push:
+    branches: [ development ]
+  pull_request:
+    branches: [ development ]
+
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+jobs:
+  build-on-linux:
+    runs-on: ubuntu-latest
+
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - uses: actions/checkout@v3
+      
+      - name: Install submodules
+        run: git submodule update --init
+      
+      - name: Install deps
+        run: sudo apt-get install libx11-dev libxrandr-dev libxinerama-dev libxcursor-dev libxi-dev
+      
+      # Use ninja generator
+      - uses: seanmiddleditch/gha-setup-ninja@master
+      
+      - name: Generate ninja files
+        run: |
+            mkdir Engine/Build
+            cd Engine/Build
+            cmake -G Ninja ../..
+        
+      - name: Build CMake
+        run: cmake --build Engine/Build
+      
+  build-on-macos:
+    runs-on: macos-latest
+
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - uses: actions/checkout@v3
+      
+      - name: Install submodules
+        run: git submodule update --init
+      
+      # Use ninja generator
+      - uses: seanmiddleditch/gha-setup-ninja@master
+      
+      - name: Generate ninja files
+        run: |
+            mkdir Engine/Build
+            cd Engine/Build
+            cmake -G Ninja ../..
+        
+      - name: Build CMake
+        run: cmake --build Engine/Build
+        
+  build-on-windows:
+    runs-on: windows-latest
+
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - uses: actions/checkout@v3
+      
+      - name: Install submodules
+        run: git submodule update --init
+      
+      # Use ninja generator
+      - uses: seanmiddleditch/gha-setup-ninja@master
+      
+      - name: Generate ninja files
+        run: |
+            mkdir Engine/Build
+            cd Engine/Build
+            cmake -G Ninja ../..
+        
+      - name: Build CMake
+        run: cmake --build Engine/Build
