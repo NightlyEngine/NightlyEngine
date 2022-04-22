@@ -1,5 +1,7 @@
 #pragma once
 
+#include "PlatformDetection.h"
+
 #ifdef NL_PLATFORM_WINDOWS
 
 #include "Core/Log.h"
