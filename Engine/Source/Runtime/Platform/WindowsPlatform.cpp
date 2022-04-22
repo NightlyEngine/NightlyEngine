@@ -3,6 +3,8 @@
 #ifdef NL_PLATFORM_WINDOWS
 #include <windows.h>
 
+#undef ERROR
+
 namespace Nightly
 {
 	void WindowsPlatform::SetConsoleColor(const LogSeverity& severity)
@@ -20,9 +22,6 @@ namespace Nightly
 				break;
 
 			case LogSeverity::ERROR:
-				color = WinConsoleColors::Red;
-				break;
-
 			case LogSeverity::FATAL:
 				color = WinConsoleColors::Red;
 				break;
