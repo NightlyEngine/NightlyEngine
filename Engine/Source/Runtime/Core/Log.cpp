@@ -3,7 +3,7 @@
 #include <chrono>
 #include <ctime>
 
-#ifndef NL_PLATFORM_WINDOWS
+#ifdef NL_PLATFORM_WINDOWS
 
 #include "Platform/WindowsPlatform.h"
 
@@ -85,6 +85,9 @@ namespace Nightly
 
 			case LogSeverity::FATAL:
 				return ConsoleColors::FatalRed;
+
+			default:
+				return "";
 		}
 	}
 
