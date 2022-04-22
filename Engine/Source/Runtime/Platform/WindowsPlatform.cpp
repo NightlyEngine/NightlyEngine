@@ -22,8 +22,10 @@ namespace Nightly
 
 			case LogSeverity::ERROR:
 			case LogSeverity::FATAL:
+			{
 				color = WinConsoleColors::Red;
 				break;
+			}
 
 			default:
 				break;
