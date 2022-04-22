@@ -1,7 +1,6 @@
 #include "Log.h"
 
-#include <chrono>
-#include <ctime>
+#include "EngineTime.h"
 
 #ifdef NL_PLATFORM_WINDOWS
 
@@ -33,25 +32,7 @@ namespace Nightly
 
 	void Log::LogIntern(const LogSeverity& severity, const LogSource& source, const std::stringstream& message)
 	{
-		// TODO: Move time related stuff into separate class
-		time_t currentTime;
-		struct tm* localTime;
-
-		time(&currentTime);
-		localTime = localtime(&currentTime);
-
-		auto hour = std::to_string(localTime->tm_hour);
-		auto min = std::to_string(localTime->tm_min);
-		auto sec = std::to_string(localTime->tm_sec);
-
-		// Append 0 if the number is in 0-9 range
-		if (hour.length() == 1) hour = "0" + hour;
-		if (min.length() == 1) min = "0" + min;
-		if (sec.length() == 1) sec = "0" + sec;
-
-		std::stringstream timeStream;
-		timeStream << hour << ":" << min << ":" << sec;
-
+		std::string currentTime = EngineTime::GetTimeString(true);
 		std::string color, clearColor;
 
 #ifdef NL_PLATFORM_WINDOWS
@@ -61,7 +42,7 @@ namespace Nightly
 		clearColor = ConsoleColors::Clear;
 #endif
 
-		std::cout << color << timeStream.str() << " " << LogSeverityToStr(severity) << " @" << LogSourceToStr(source) << ": "
+		std::cout << color << currentTime << " " << LogSeverityToStr(severity) << " @" << LogSourceToStr(source) << ": "
 		          << message.str() << clearColor << std::endl;
 
 		// Clear color after logging on Windows
