@@ -3,6 +3,12 @@
 #include <chrono>
 #include <ctime>
 
+#ifndef NL_PLATFORM_WINDOWS
+
+#include "Platform/WindowsPlatform.h"
+
+#endif
+
 namespace Nightly
 {
 	void Log::Info(const std::stringstream& message, const LogSource& source)
@@ -46,11 +52,22 @@ namespace Nightly
 		std::stringstream timeStream;
 		timeStream << hour << ":" << min << ":" << sec;
 
-		// Get color based on severity
-		std::string color = GetSeverityColor(severity);
+		std::string color, clearColor;
+
+#ifdef NL_PLATFORM_WINDOWS
+		WindowsPlatform::SetConsoleColor(severity);
+#else
+		color = GetSeverityColor(severity);
+		clearColor = ConsoleColors::Clear;
+#endif
 
 		std::cout << color << timeStream.str() << " " << LogSeverityToStr(severity) << " @" << LogSourceToStr(source) << ": "
-		          << message.str() << ConsoleColor::Clear() << std::endl;
+		          << message.str() << clearColor << std::endl;
+
+		// Clear color after logging on Windows
+		#ifdef NL_PLATFORM_WINDOWS
+		WindowsPlatform::ClearConsoleColor();
+		#endif
 	}
 
 	std::string Log::GetSeverityColor(const LogSeverity& severity)
@@ -58,16 +75,16 @@ namespace Nightly
 		switch (severity)
 		{
 			case LogSeverity::INFO:
-				return "";
+				return ConsoleColors::Clear;
 
 			case LogSeverity::WARNING:
-				return ConsoleColor::Yellow();
+				return ConsoleColors::Yellow;
 
 			case LogSeverity::ERROR:
-				return ConsoleColor::Red();
+				return ConsoleColors::Red;
 
 			case LogSeverity::FATAL:
-				return ConsoleColor::FatalRed();
+				return ConsoleColors::FatalRed;
 		}
 	}
 
