@@ -18,4 +18,5 @@ target_precompile_headers(NightlyEngine PUBLIC
         <memory>
         )
 
+target_link_libraries(NightlyEngine glad)
 target_link_libraries(NightlyEngine glfw)

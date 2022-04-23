@@ -21,6 +21,7 @@ include_directories("${PROJECT_SOURCE_DIR}/Engine/Source")
 
 # Add third party dependencies
 add_subdirectory(Engine/Source/ThirdParty/glfw)
+add_subdirectory(Engine/Source/ThirdParty/glad)
 
 # Add Nightly modules
 add_subdirectory(Engine/Source/Runtime)
@@ -31,6 +32,7 @@ target_compile_definitions(${PROJECT_NAME} PRIVATE NL_EXPORT_DLL)
 
 # Set third party include paths
 target_include_directories(${PROJECT_NAME} PUBLIC "Engine/Source/ThirdParty/glfw/include")
+target_include_directories(${PROJECT_NAME} PUBLIC "Engine/Source/ThirdParty/glad/include")
 
 # Set engine include paths
 target_include_directories(${PROJECT_NAME} PUBLIC "Engine/Source/Runtime")
