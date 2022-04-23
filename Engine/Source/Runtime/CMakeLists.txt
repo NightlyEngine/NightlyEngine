@@ -15,6 +15,7 @@ target_precompile_headers(NightlyEngine PUBLIC
         <string>
         <vector>
         <sstream>
+        <memory>
         )
 
 target_link_libraries(NightlyEngine glfw)
