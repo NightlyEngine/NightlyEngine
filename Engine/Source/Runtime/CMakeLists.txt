@@ -3,7 +3,7 @@ project(NightlyEngine)
 
 set(CMAKE_CXX_STANDARD 20)
 
-add_library(NightlyEngine SHARED Core/Application.h Core/Core.h Core/Engine.h Core/Log.h Core/Log.cpp Core/Engine.cpp Platform/PlatformDetection.h Platform/WindowsPlatform.h Platform/WindowsPlatform.cpp Core/EngineTime.h Core/EngineTime.cpp)
+add_library(NightlyEngine SHARED Core/Application.h Core/Core.h Core/Engine.h Core/Log.h Core/Log.cpp Core/Engine.cpp Platform/PlatformDetection.h Platform/WindowsPlatform.h Platform/WindowsPlatform.cpp Core/EngineTime.h Core/EngineTime.cpp Core/EngineAPI.h)
 
 # Get rid of an additional <CONFIGURATION> directory
 set_target_properties(NightlyEngine PROPERTIES
