@@ -2,6 +2,7 @@
 
 #include "Platform/PlatformDetection.h"
 
+// Export or import library
 #if defined(NL_EXPORT_DLL)
 
 #if defined(NL_PLATFORM_WINDOWS)
@@ -14,4 +15,14 @@
 
 #else
 #define NL_API
+#endif
+
+// Assert
+#ifdef NDEBUG
+
+#include "Log.h"
+
+#define NL_ASSERT(condition, message, source) NL_CORE_FATAL(message, LogSource::source)
+#else
+#define NL_ASSERT(condition, message, source) assert(condition && message)
 #endif
