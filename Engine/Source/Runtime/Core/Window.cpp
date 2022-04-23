@@ -29,7 +29,7 @@ namespace Nightly
 		m_Window = glfwCreateWindow(props.width, props.height, props.title.c_str(), nullptr, nullptr);
 		NL_ASSERT(m_Window, "Failed to create window!", ENGINE);
 
-		glfwMakeContextCurrent(m_Window);
+		MakeContextCurrent();
 
 		// Initialize the OpenGL API with GLAD
 		NL_ASSERT(gladLoadGLLoader((GLADloadproc) glfwGetProcAddress), "Failed to initialize OpenGL loader!", ENGINE);
@@ -37,6 +37,11 @@ namespace Nightly
 		m_IsRunning = true;
 	}
 
+
+	void Window::MakeContextCurrent()
+	{
+		glfwMakeContextCurrent(m_Window);
+	}
 
 	void Window::SwapBuffers()
 	{
