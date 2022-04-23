@@ -22,7 +22,13 @@ namespace Nightly
 			Initialize(props);
 		}
 
+		// Closes the window.
 		void Destroy();
+
+		// Makes the OpenGL context of this window current on the calling thread.
+		void MakeContextCurrent();
+
+		// Swaps the front and back buffers of this window.
 		void SwapBuffers();
 
 		// Returns true after the window has been created.
