@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Core.h"
+#include "EngineAPI.h"
 
 namespace Nightly
 {
@@ -8,10 +8,7 @@ namespace Nightly
 	class NL_API Application
 	{
 	public:
-		Application() : m_IsRunning(false)
-		{
-		}
-
+		Application() = default;
 		virtual ~Application() = default;
 
 		// Launches the application and initializes necessary variables.
@@ -25,6 +22,6 @@ namespace Nightly
 		virtual void Quit() = 0;
 
 	protected:
-		bool m_IsRunning;
+		bool m_IsRunning = false;
 	};
 }
