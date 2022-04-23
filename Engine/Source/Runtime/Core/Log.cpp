@@ -32,7 +32,7 @@ namespace Nightly
 
 	void Log::LogIntern(const LogSeverity& severity, const LogSource& source, const std::stringstream& message)
 	{
-		std::string currentTime = EngineTime::GetTimeString(true);
+		std::string currentTime = EngineTime::GetTimeString();
 		std::string color, clearColor;
 
 #ifdef NL_PLATFORM_WINDOWS
