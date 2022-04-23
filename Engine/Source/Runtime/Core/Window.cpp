@@ -1,5 +1,8 @@
 #include "Window.h"
 
+#define GLFW_INCLUDE_NONE
+
+#include <glad/glad.h>
 #include <GLFW/glfw3.h>
 
 #include "Core.h"
@@ -16,14 +19,20 @@ namespace Nightly
 		glfwSetErrorCallback(GlfwErrorCallback);
 
 		// Set window hints
+		glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 4);
+		glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 1);
 		glfwWindowHint(GLFW_CLIENT_API, GLFW_OPENGL_API);
-		//glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
+		glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
+		glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE);
 
 		// Create window
 		m_Window = glfwCreateWindow(props.width, props.height, props.title.c_str(), nullptr, nullptr);
 		NL_ASSERT(m_Window, "Failed to create window!", ENGINE);
 
 		glfwMakeContextCurrent(m_Window);
+
+		// Initialize the OpenGL API with GLAD
+		NL_ASSERT(gladLoadGLLoader((GLADloadproc) glfwGetProcAddress), "Failed to initialize OpenGL loader!", ENGINE);
 
 		m_IsRunning = true;
 	}
