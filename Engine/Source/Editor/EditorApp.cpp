@@ -25,12 +25,13 @@ namespace NightlyEditor
 
 			m_IsRunning = true;
 
-			m_EngineInstance = new Engine;
+			m_EngineInstance = std::make_unique<Engine>();
 			m_EngineInstance->Start();
 
 			NL_CORE_INFO("Initializing Nightly Editor...", LogSource::EDITOR);
 
 			Update();
+			Quit();
 		}
 
 	private:
@@ -47,18 +48,17 @@ namespace NightlyEditor
 			{
 				m_EngineInstance->Quit();
 			}
-
-			delete m_EngineInstance;
 		}
 
 	private:
-		Engine* m_EngineInstance = nullptr;
+		std::unique_ptr<Engine> m_EngineInstance;
 	};
 }
 
+using namespace NightlyEditor;
+
 int main(int argc, char** argv)
 {
-	auto editor = new NightlyEditor::EditorApp;
+	std::unique_ptr<EditorApp> editor = std::make_unique<EditorApp>();
 	editor->Start();
-	delete editor;
 }
