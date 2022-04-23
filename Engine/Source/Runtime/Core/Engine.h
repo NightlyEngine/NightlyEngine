@@ -17,8 +17,6 @@ namespace Nightly
 		{
 		}
 
-		void Quit() override
-		{
-		}
+		void Quit() override;
 	};
 }

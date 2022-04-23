@@ -19,4 +19,9 @@ namespace Nightly
 
 		NL_CORE_INFO("Initializing Nightly Engine...", LogSource::ENGINE);
 	}
+
+	void Engine::Quit()
+	{
+		NL_CORE_INFO("Quitting Nightly Engine...", LogSource::ENGINE);
+	}
 }
