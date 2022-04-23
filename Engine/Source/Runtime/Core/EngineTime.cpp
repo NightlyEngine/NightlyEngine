@@ -2,29 +2,17 @@
 
 #include <chrono>
 #include <ctime>
+#include <iomanip>
 
 namespace Nightly
 {
-	std::string EngineTime::GetTimeString(bool addLeadingZero)
+	std::string EngineTime::GetTimeString()
 	{
-		time_t currentTime;
-		struct tm* localTime;
+		auto now = std::chrono::system_clock::now();
+		long in_time_t = std::chrono::system_clock::to_time_t(now);
 
-		time(&currentTime);
-		localTime = localtime(&currentTime);
-
-		auto hour = std::to_string(localTime->tm_hour);
-		auto min = std::to_string(localTime->tm_min);
-		auto sec = std::to_string(localTime->tm_sec);
-
-		// Add leading zeros
-		if (addLeadingZero)
-		{
-			if (hour.length() == 1) hour = "0" + hour;
-			if (min.length() == 1) min = "0" + min;
-			if (sec.length() == 1) sec = "0" + sec;
-		}
-
-		return hour + ":" + min + ":" + sec;
+		std::stringstream ss;
+		ss << std::put_time(std::localtime(&in_time_t), "%X");
+		return ss.str();
 	}
 }
