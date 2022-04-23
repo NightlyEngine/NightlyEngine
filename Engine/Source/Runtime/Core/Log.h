@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Core.h"
+#include "EngineAPI.h"
 
 namespace Nightly
 {
