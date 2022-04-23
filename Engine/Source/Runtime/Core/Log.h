@@ -62,12 +62,12 @@ namespace Nightly
 	};
 
 	// Base macro for logging messages to the console.
-	#define NL_LOG(message, source, severity)               \
-            {                                               \
-                std::stringstream _logStringStream;         \
-                _logStringStream << message;                \
-                Log::severity(_logStringStream, source);    \
-            }
+	#define NL_LOG(message, source, severity)                   \
+            do {                                                \
+                std::stringstream _logStringStream;             \
+                _logStringStream << message;                    \
+                Log::severity(_logStringStream, source);        \
+            } while(0)
 
 	// Macro for logging an info message to the console with the source being PLAYER.
 	#define NL_INFO(message) NL_LOG(message, LogSource::PLAYER, Info)
