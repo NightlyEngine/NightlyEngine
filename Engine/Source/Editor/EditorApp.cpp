@@ -82,6 +82,9 @@ using namespace NightlyEditor;
 
 int main(int argc, char** argv)
 {
-	std::unique_ptr<EditorApp> editor = std::make_unique<EditorApp>();
+	std::cout << "\n\n" << "Nightly Engine Copyright (C) 2022 Futureblur\n"
+	          << "Welcome to Nightly Engine! Enjoy your time and happy coding :)\n\n";
+
+	auto editor = std::make_unique<EditorApp>();
 	editor->Start();
 }
