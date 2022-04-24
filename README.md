@@ -5,7 +5,7 @@ A modern, lightweight and cross-platform engine that makes game development fun 
 
 ## Current state
 
-The engine is currently in development and is not fully functional. The latest version can be found in the `development`
+The engine is currently in the pre-alpha stage and thus not fully functional. The latest version can be found in the `development`
 branch and stable versions will have their own branches in the future. If you'd like to try out the engine, you can
 follow the steps below to [build it from source](#building-from-source). If you'd like to contribute, you're welcome!
 <br>
