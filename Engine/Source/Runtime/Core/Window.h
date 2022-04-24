@@ -14,7 +14,7 @@ namespace Nightly
 		int height;
 	};
 
-	class NL_API Window
+	// Opaque window object.
 	{
 	public:
 		explicit Window(const WindowProps& props)
