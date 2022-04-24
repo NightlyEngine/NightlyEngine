@@ -1,5 +1,5 @@
 <div align="center">
-![Banner](/Resources/Branding/Banner.png)
+[![Banner](Resources/Branding/Banner.png)]
 A modern, lightweight and cross-platform engine that makes game development fun again.
 </div>
    
