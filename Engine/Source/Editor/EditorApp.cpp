@@ -16,14 +16,7 @@ namespace NightlyEditor
 
 		void Start() override
 		{
-			if (m_IsRunning)
-			{
-				NL_CORE_ERROR("Nightly Editor is already running. Multiple instances of the application are not allowed!",
-				              LogSource::EDITOR);
-
-				return;
-			}
-
+			NL_ASSERT(!m_IsRunning, "Nightly Editor is already running. Multiple instances of the application are not allowed!", EDITOR);
 			m_IsRunning = true;
 
 			// Create engine app
