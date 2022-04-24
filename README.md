@@ -1,5 +1,5 @@
 <div align="center">
-![Banner](https://raw.githubusercontent.com/NightlyEngine/NightlyEngine/c9b0a541f8f45c9acf200f2993e9b7a5470abcbf/Resources/Branding/Banner.png)
+![Banner](Resources/Branding/Banner.png)
 A modern, lightweight and cross-platform engine that makes game development fun again.
 </div>
    
