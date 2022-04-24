@@ -7,16 +7,14 @@
 
 #include "Core.h"
 #include "Log.h"
+#include "WindowManager.h"
 
 namespace Nightly
 {
 	void Window::Initialize(const WindowProps& props)
 	{
-		// Initialize GLFW before using it
-		NL_ASSERT(glfwInit(), "Failed to initialize GLFW!", ENGINE);
-
-		// Register error callback
-		glfwSetErrorCallback(GlfwErrorCallback);
+		// Only continue if WindowManager has already been initialized
+		NL_ASSERT(WindowManager::IsInitialized(), "Initialize WindowManager first before creating the first window!", ENGINE);
 
 		// Set window hints
 		glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 4);

@@ -2,8 +2,20 @@
 
 #include <GLFW/glfw3.h>
 
+#include "Core.h"
+#include "Log.h"
+
 namespace Nightly
 {
+	void WindowManager::Initialize()
+	{
+		NL_ASSERT(glfwInit(), "Failed to initialize GLFW!", ENGINE);
+		m_IsInitialized = true;
+
+		// Register error callback
+		glfwSetErrorCallback(GlfwErrorCallback);
+	}
+
 	std::unique_ptr<Window> WindowManager::Create(const WindowProps& props)
 	{
 		return std::make_unique<Window>(props);
