@@ -43,7 +43,7 @@ namespace Nightly
 #endif
 
 		std::cout << color << currentTime << " " << LogSeverityToStr(severity) << " @" << LogSourceToStr(source) << ": "
-		          << message.str() << clearColor << std::endl;
+		          << message.str() << clearColor << "\n";
 
 		// Clear color after logging on Windows
 		#ifdef NL_PLATFORM_WINDOWS
