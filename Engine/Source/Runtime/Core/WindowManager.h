@@ -12,8 +12,10 @@ namespace Nightly
 		WindowManager() = default;
 		~WindowManager() = default;
 
+		// Initializes the GLFW library and sets error callbacks.
 		static void Initialize();
 
+		// Returns whether the GLFW library has already been initialized.
 		static bool IsInitialized()
 		{
 			return m_IsInitialized;
