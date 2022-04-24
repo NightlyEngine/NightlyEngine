@@ -50,7 +50,6 @@ namespace Nightly
 
 	private:
 		void Initialize(const WindowProps& props);
-		static void GlfwErrorCallback(int error, const char* description);
 
 		GLFWwindow* m_Window = nullptr;
 		bool m_IsRunning = false;

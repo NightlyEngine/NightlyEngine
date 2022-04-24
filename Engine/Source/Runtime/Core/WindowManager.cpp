@@ -18,4 +18,9 @@ namespace Nightly
 	{
 		glfwTerminate();
 	}
+
+	void WindowManager::GlfwErrorCallback(int error, const char* description)
+	{
+		NL_CORE_ERROR("GLFW: " << description << "\n Error code: " << error, ENGINE);
+	}
 }

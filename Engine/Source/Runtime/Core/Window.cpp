@@ -58,9 +58,4 @@ namespace Nightly
 	{
 		return glfwWindowShouldClose(m_Window) || !m_IsRunning;
 	}
-
-	void Window::GlfwErrorCallback(int error, const char* description)
-	{
-		NL_CORE_ERROR("GLFW: " << description << "\n Error code: " << error, LogSource::ENGINE);
-	}
 }

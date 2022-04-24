@@ -20,5 +20,6 @@ namespace Nightly
 
 		// Destroys all windows and terminates the GLFW library.
 		static void Terminate();
+		static void GlfwErrorCallback(int error, const char* description);
 	};
 }
