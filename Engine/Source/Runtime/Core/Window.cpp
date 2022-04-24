@@ -26,6 +26,7 @@ namespace Nightly
 		// Create window
 		m_Window = glfwCreateWindow(props.width, props.height, props.title.c_str(), nullptr, nullptr);
 		NL_ASSERT(m_Window, "Failed to create window!", ENGINE);
+		NL_CORE_INFO("Created new window: " << props.title, ENGINE);
 
 		MakeContextCurrent();
 
