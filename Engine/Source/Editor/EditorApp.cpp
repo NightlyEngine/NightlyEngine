@@ -1,7 +1,9 @@
 #include "Runtime/Core/Application.h"
 #include "Runtime/Core/Engine.h"
+#include "Core/Core.h"
 #include "Core/Log.h"
 #include "Core/WindowManager.h"
+#include "Renderer/Renderer.h"
 
 using namespace Nightly;
 
@@ -23,7 +25,9 @@ namespace NightlyEditor
 			m_EngineInstance = std::make_unique<Engine>();
 			m_EngineInstance->Start();
 
-			NL_CORE_INFO("Initializing Nightly Editor...", LogSource::EDITOR);
+			NL_CORE_INFO("Initializing Nightly Editor...", EDITOR);
+
+			WindowManager::Initialize();
 
 			// Create editor window
 			WindowProps props;
@@ -32,6 +36,8 @@ namespace NightlyEditor
 			props.height = 720;
 
 			m_EditorWindow = WindowManager::Create(props);
+
+			Renderer::Initialize();
 
 			// Update the editor as long as the window is not closed
 			while (!m_EditorWindow->ShouldClose())
@@ -55,7 +61,7 @@ namespace NightlyEditor
 
 		void Quit() override
 		{
-			NL_CORE_INFO("Quitting Nightly Editor...", LogSource::EDITOR);
+			NL_CORE_INFO("Quitting Nightly Editor...", EDITOR);
 
 			if (m_EngineInstance)
 			{
