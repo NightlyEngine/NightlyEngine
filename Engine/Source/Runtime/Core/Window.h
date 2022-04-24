@@ -1,6 +1,7 @@
 #pragma once
 
 #include "EngineAPI.h"
+#include "ITrackable.h"
 
 struct GLFWwindow;
 
@@ -15,12 +16,15 @@ namespace Nightly
 	};
 
 	// Opaque window object.
+	class NL_API Window : public ITrackable<Window>
 	{
 	public:
 		explicit Window(const WindowProps& props)
 		{
 			Initialize(props);
 		}
+
+		NL_DEFINE_TRACKABLE(Window);
 
 		// Closes the window.
 		void Destroy();
