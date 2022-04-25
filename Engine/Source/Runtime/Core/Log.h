@@ -11,6 +11,7 @@ namespace Nightly
 		ENGINE,
 		EDITOR,
 		PLAYER,
+		PLUGIN
 	};
 
 	// Specifies the severity of a log message.

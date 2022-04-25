@@ -106,6 +106,9 @@ namespace Nightly
 			case LogSource::PLAYER:
 				return "Player";
 
+			case LogSource::PLUGIN:
+				return "Plugin";
+
 			default:
 				return "";
 		}
