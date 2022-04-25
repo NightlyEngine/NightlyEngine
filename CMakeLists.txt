@@ -27,6 +27,7 @@ add_subdirectory(Engine/Source/ThirdParty/glm)
 # Add Nightly modules
 add_subdirectory(Engine/Source/Runtime)
 add_subdirectory(Engine/Source/Editor)
+add_subdirectory(Engine/Source/Plugins)
 
 # Add preprocessor definitions
 target_compile_definitions(${PROJECT_NAME} PRIVATE NL_EXPORT_DLL)
@@ -39,3 +40,4 @@ target_include_directories(${PROJECT_NAME} PUBLIC "Engine/Source/ThirdParty/glm"
 # Set engine include paths
 target_include_directories(${PROJECT_NAME} PUBLIC "Engine/Source/Runtime")
 target_include_directories(${PROJECT_NAME} PUBLIC "Engine/Source/Editor")
+target_include_directories(${PROJECT_NAME} PUBLIC "Engine/Source/Plugins")
