@@ -4,6 +4,7 @@
 #include "Core/Log.h"
 #include "Core/WindowManager.h"
 #include "Renderer/Renderer.h"
+#include "Core/PluginManager.h"
 
 using namespace Nightly;
 
@@ -39,6 +40,8 @@ namespace NightlyEditor
 
 			Renderer::Initialize();
 
+			PluginManager::LoadActivePlugins();
+
 			// Update the editor as long as the window is not closed
 			while (!m_EditorWindow->ShouldClose())
 			{
@@ -69,6 +72,7 @@ namespace NightlyEditor
 			}
 
 			m_EditorWindow->Destroy();
+			PluginManager::UnloadPlugins();
 			WindowManager::Terminate();
 		}
 
