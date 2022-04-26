@@ -54,17 +54,18 @@ namespace Nightly
 			return nullptr;
 		}
 
-		void* plugin = GetProcAddress(instance, "GetPluginPtr");
+		using PluginPtr = Plugin* (*)();
+
+		auto plugin = (PluginPtr)GetProcAddress(instance, "GetPluginPtr");
 		if (!plugin)
 		{
 			NL_CORE_FATAL("Failed to load symbols for plugin: " << pluginName.str().c_str() << ".dll", ENGINE);
 			return nullptr;
 		}
 
-		using PluginPtr = Plugin* (*)();
-		auto fun = reinterpret_cast<PluginPtr>(plugin);
+		//auto fun = reinterpret_cast<PluginPtr>(plugin);
 
-		return fun();
+		return plugin();
 	}
 }
 
