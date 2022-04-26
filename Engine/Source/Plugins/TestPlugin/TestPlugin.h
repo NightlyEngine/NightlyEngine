@@ -13,11 +13,11 @@ namespace Nightly
 	};
 }
 
-#ifdef NL_PLATFORM_OSX
+#if defined(NL_PLATFORM_OSX)
 #define NL_CDECL __cdecl
-#elif NL_PLATFORM_LINUX
+#elif defined(NL_PLATFORM_LINUX)
 #define NL_CDECL __attribute__((__cdecl__))
-#elif NL_PLATFORM_WINDOWS
+#elif defined(NL_PLATFORM_WINDOWS)
 #define NL_CDECL __stdcall
 #endif
 
