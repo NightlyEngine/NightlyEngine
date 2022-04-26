@@ -8,6 +8,8 @@
 
 namespace Nightly
 {
+	class Plugin;
+
 	// This class allows direct communication with the native WinAPI.
 	class NL_API WindowsPlatform
 	{
@@ -17,6 +19,10 @@ namespace Nightly
 
 		// Sets the console color to white.
 		static void ClearConsoleColor();
+
+		// Loads a plugin from a dll file and returns
+		// a pointer to the loaded class.
+		static Plugin* LoadPlugin(std::string_view name);
 
 	private:
 		// Contains colors that can be used when printing to the console on Windows.
