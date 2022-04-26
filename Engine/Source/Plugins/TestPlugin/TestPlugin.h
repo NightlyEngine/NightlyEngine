@@ -18,7 +18,7 @@ namespace Nightly
 #elif defined(NL_PLATFORM_LINUX)
 #define NL_CDECL __attribute__((__cdecl__))
 #elif defined(NL_PLATFORM_WINDOWS)
-#define NL_CDECL __stdcall
+#define NL_CDECL __declspec(dllexport) __stdcall
 #endif
 
 // TODO: Move into macro
