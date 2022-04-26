@@ -45,17 +45,19 @@ namespace Nightly
 
 	Plugin* WindowsPlatform::LoadPlugin(std::string_view name)
 	{
-		HINSTANCE instance = LoadLibrary(name + R".dll");
+		std::stringstream pluginName;
+		pluginName << name << ".dll";
+		HINSTANCE instance = LoadLibraryA(pluginName.str().c_str());
 		if (!instance)
 		{
-			NL_CORE_FATAL("Plugin library file was not found: " << name << ".dll", ENGINE);
+			NL_CORE_FATAL("Plugin library file was not found: " << pluginName.str().c_str() << ".dll", ENGINE);
 			return nullptr;
 		}
 
 		void* plugin = GetProcAddress(instance, "GetPluginPtr");
 		if (!plugin)
 		{
-			NL_CORE_FATAL("Failed to load symbols for plugin: " << name << ".dll", ENGINE);
+			NL_CORE_FATAL("Failed to load symbols for plugin: " << pluginName.str().c_str() << ".dll", ENGINE);
 			return nullptr;
 		}
 
