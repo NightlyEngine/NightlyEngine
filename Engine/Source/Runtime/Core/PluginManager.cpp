@@ -4,7 +4,6 @@
 
 #include "Log.h"
 #include "Plugin.h"
-#include "Platform/PlatformDetection.h"
 
 #if defined(NL_PLATFORM_WINDOWS)
 #include "Platform/WindowsPlatform.h"
