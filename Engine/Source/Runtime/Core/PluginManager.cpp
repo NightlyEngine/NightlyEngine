@@ -1,10 +1,19 @@
 #include "PluginManager.h"
 
-#include <dlfcn.h>
 #include <array>
 
 #include "Log.h"
 #include "Plugin.h"
+#include "Platform/PlatformDetection.h"
+
+#if defined(NL_PLATFORM_WINDOWS)
+#include "Platform/WindowsPlatform.h"
+#else
+
+#include <dlfcn.h>
+
+#endif
+
 
 namespace Nightly
 {
@@ -37,6 +46,9 @@ namespace Nightly
 
 	Plugin* PluginManager::LoadPlugin(std::string_view name)
 	{
+		#if defined(NL_PLATFORM_WINDOWS)
+		return WindowsPlatform::LoadPlugin(name);
+		#else
 		std::stringstream libName;
 		libName << "libNightlyPlugin_" << name << ".dylib";
 
@@ -60,6 +72,7 @@ namespace Nightly
 		auto fun = reinterpret_cast<PluginPtr>(plugin);
 
 		return fun();
+		#endif
 	}
 
 	void PluginManager::UnloadPlugins()
