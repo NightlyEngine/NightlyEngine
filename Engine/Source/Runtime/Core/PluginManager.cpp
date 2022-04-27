@@ -15,11 +15,10 @@
 #endif
 
 #if defined(NL_PLATFORM_OSX)
-#define NL_LIB_EXT ".dylib"
+constexpr const char* NL_LIB_EXT = ".dll";
 #elif defined(NL_PLATFORM_LINUX)
-#define NL_LIB_EXT ".so"
+constexpr const char* NL_LIB_EXT = ".so";
 #endif
-
 
 namespace Nightly
 {
