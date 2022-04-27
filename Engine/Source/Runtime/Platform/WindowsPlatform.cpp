@@ -46,7 +46,7 @@ namespace Nightly
 	Plugin* WindowsPlatform::LoadPlugin(std::string_view name)
 	{
 		std::stringstream pluginName;
-		pluginName << << "NightlyPlugin_" name << ".dll";
+		pluginName << "NightlyPlugin_" name << ".dll";
 		HINSTANCE instance = LoadLibraryA(pluginName.str().c_str());
 		if (!instance)
 		{
