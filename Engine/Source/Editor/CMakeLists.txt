@@ -11,7 +11,9 @@ set_target_properties(NightlyEditor PROPERTIES
         RUNTIME_OUTPUT_DIRECTORY_RELEASE "${CMAKE_SOURCE_DIR}/Engine/Binaries/Release")
 
 # Set rpath relative to editor app
-set_target_properties(NightlyEditor PROPERTIES LINK_FLAGS "-Wl,-rpath,./")
+if (NOT MSVC)
+    set_target_properties(NightlyEditor PROPERTIES LINK_FLAGS "-Wl,-rpath,./")
+endif ()
 
 # Precompiled headers
 target_precompile_headers(NightlyEditor PUBLIC <iostream>)
