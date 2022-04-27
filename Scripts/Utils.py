@@ -24,7 +24,7 @@ def generate_project(generator, config, build_path):
     log_info(f"Generating {generator} project files...")
 
     # Generate project files
-    if os.system(f"cmake -S . -B {build_path} -G {generator} -DCMAKE_BUILD_TYPE={config}") != 0:
+    if os.system(f"cmake -S . -B {build_path} -G \"{generator}\" -DCMAKE_BUILD_TYPE={config}") != 0:
         log_fail("Failed to generate project files.")
         exit()
         
