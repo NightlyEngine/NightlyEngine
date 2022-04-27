@@ -70,4 +70,5 @@ print("Have fun and remember to stay hydrated!")
 if os_name != "Windows":
     os.system(editor_path)
 else:
-    os.system("./" + editor_path)
+    win_path = binary_path.replace("/", "\\")
+    os.system(".\\" + win_path + "\\" + editor_name)
