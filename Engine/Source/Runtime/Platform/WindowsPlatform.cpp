@@ -46,11 +46,11 @@ namespace Nightly
 	Plugin* WindowsPlatform::LoadPlugin(std::string_view name)
 	{
 		std::stringstream pluginName;
-		pluginName << name << ".dll";
+		pluginName << << "NightlyPlugin_" name << ".dll";
 		HINSTANCE instance = LoadLibraryA(pluginName.str().c_str());
 		if (!instance)
 		{
-			NL_CORE_FATAL("Plugin library file was not found: " << pluginName.str().c_str() << ".dll", ENGINE);
+			NL_CORE_FATAL("Plugin library file was not found: " << pluginName.str().c_str(), ENGINE);
 			return nullptr;
 		}
 
@@ -59,11 +59,9 @@ namespace Nightly
 		auto plugin = (PluginPtr)GetProcAddress(instance, "GetPluginPtr");
 		if (!plugin)
 		{
-			NL_CORE_FATAL("Failed to load symbols for plugin: " << pluginName.str().c_str() << ".dll", ENGINE);
+			NL_CORE_FATAL("Failed to load symbols for plugin: " << pluginName.str().c_str(), ENGINE);
 			return nullptr;
 		}
-
-		//auto fun = reinterpret_cast<PluginPtr>(plugin);
 
 		return plugin();
 	}
