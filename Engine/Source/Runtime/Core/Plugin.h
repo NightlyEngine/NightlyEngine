@@ -2,6 +2,25 @@
 
 #include "EngineAPI.h"
 
+#include "Platform/PlatformDetection.h"
+
+#if defined(NL_PLATFORM_OSX)
+#define NL_CDECL __cdecl
+#elif defined(NL_PLATFORM_LINUX)
+#define NL_CDECL __attribute__((__cdecl__))
+#elif defined(NL_PLATFORM_WINDOWS)
+#define NL_CDECL __declspec(dllexport)
+#endif
+
+// Defines the entry point for the plugin,
+// so it can be called from the PluginManager.
+#define NL_PLUGIN_IMPL(ClassName)                                           \
+        extern "C" NL_CDECL Nightly::Plugin* GetPluginPtr()                 \
+        {                                                                   \
+            return static_cast<Nightly::Plugin*>(new Nightly::ClassName);   \
+        }
+
+
 namespace Nightly
 {
 	// This is a base class for plugins.
