@@ -10,7 +10,14 @@
 #else
 
 #include <dlfcn.h>
+#include <filesystem>
 
+#endif
+
+#if defined(NL_PLATFORM_OSX)
+#define NL_LIB_EXT ".dylib"
+#elif defined(NL_PLATFORM_LINUX)
+#define NL_LIB_EXT ".so"
 #endif
 
 
@@ -49,7 +56,7 @@ namespace Nightly
 		return WindowsPlatform::LoadPlugin(name);
 		#else
 		std::stringstream libName;
-		libName << "libNightlyPlugin_" << name << ".dylib";
+		libName << "./libNightlyPlugin_" << name << NL_LIB_EXT;
 
 		// Load dynamic library file
 		void* handle = dlopen(libName.str().c_str(), RTLD_NOW);
