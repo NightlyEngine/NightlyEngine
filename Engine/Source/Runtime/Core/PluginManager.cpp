@@ -15,7 +15,7 @@
 #endif
 
 #if defined(NL_PLATFORM_OSX)
-constexpr const char* NL_LIB_EXT = ".dll";
+constexpr const char* NL_LIB_EXT = ".dylib";
 #elif defined(NL_PLATFORM_LINUX)
 constexpr const char* NL_LIB_EXT = ".so";
 #endif
