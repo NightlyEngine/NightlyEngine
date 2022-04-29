@@ -52,7 +52,7 @@ namespace Nightly
 		if (!instance)
 		{
 			NL_CORE_FATAL("Plugin library file was not found: " << pluginName.str().c_str(), ENGINE);
-			return nullptr;
+			return { };
 		}
 
 		using PluginPtr = Plugin* (*)();
@@ -61,7 +61,7 @@ namespace Nightly
 		if (!plugin)
 		{
 			NL_CORE_FATAL("Failed to load symbols for plugin: " << pluginName.str().c_str(), ENGINE);
-			return nullptr;
+			return { };
 		}
 
 		PluginSpecification specification;
