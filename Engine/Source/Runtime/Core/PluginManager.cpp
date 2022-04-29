@@ -32,10 +32,10 @@ namespace Nightly
 		for (const auto& pluginName : activePluginNames)
 		{
 			// Load plugin from file
-			auto plugin = LoadPlugin(pluginName);
+			PluginSpecification plugin = LoadPlugin(pluginName);
 
 			// Continue to next one if an error occurred
-			if (!plugin)
+			if (!plugin.pluginPtr)
 			{
 				NL_CORE_FATAL("Failed to load plugin: " << pluginName, ENGINE);
 				continue;
@@ -43,9 +43,10 @@ namespace Nightly
 
 			// Add to loaded plugins pool
 			m_LoadedPlugins.push_back(plugin);
+			
 			NL_CORE_INFO("Loaded plugin: " << pluginName, ENGINE);
 
-			plugin->OnLoad();
+			plugin.pluginPtr->OnLoad();
 		}
 	}
 
