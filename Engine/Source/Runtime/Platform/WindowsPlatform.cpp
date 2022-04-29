@@ -7,6 +7,7 @@
 #undef ERROR
 
 #include "Core/Plugin.h"
+#include "Core/PluginManager.h"
 
 namespace Nightly
 {
@@ -43,7 +44,7 @@ namespace Nightly
 		SetConsoleTextAttribute(hConsole, WinConsoleColors::White);
 	}
 
-	Plugin* WindowsPlatform::LoadPlugin(std::string_view name)
+	PluginSpecification WindowsPlatform::LoadPlugin(std::string_view name)
 	{
 		std::stringstream pluginName;
 		pluginName << "NightlyPlugin_" << name << ".dll";
@@ -56,14 +57,24 @@ namespace Nightly
 
 		using PluginPtr = Plugin* (*)();
 
-		auto plugin = (PluginPtr)GetProcAddress(instance, "GetPluginPtr");
+		auto plugin = (PluginPtr) GetProcAddress(instance, "GetPluginPtr");
 		if (!plugin)
 		{
 			NL_CORE_FATAL("Failed to load symbols for plugin: " << pluginName.str().c_str(), ENGINE);
 			return nullptr;
 		}
 
-		return plugin();
+		PluginSpecification specification;
+
+		specification.pluginPtr = plugin();
+		specification.handle = instance;
+
+		return specification;
+	}
+
+	void WindowsPlatform::UnloadPlugin(const PluginSpecification& plugin)
+	{
+		FreeLibrary((HINSTANCE) plugin.handle);
 	}
 }
 
