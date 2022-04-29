@@ -5,11 +5,10 @@
 #ifdef NL_PLATFORM_WINDOWS
 
 #include "Core/Log.h"
+#include "Core/PluginManager.h"
 
 namespace Nightly
 {
-	class PluginSpecification;
-
 	// This class allows direct communication with the native WinAPI.
 	class NL_API WindowsPlatform
 	{

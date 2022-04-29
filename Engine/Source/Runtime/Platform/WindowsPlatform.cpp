@@ -6,9 +6,6 @@
 
 #undef ERROR
 
-#include "Core/Plugin.h"
-#include "Core/PluginManager.h"
-
 namespace Nightly
 {
 	void WindowsPlatform::SetConsoleColor(const LogSeverity& severity)
