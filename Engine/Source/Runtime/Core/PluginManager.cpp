@@ -93,8 +93,17 @@ namespace Nightly
 
 		for (const auto& plugin : m_LoadedPlugins)
 		{
-			// TODO: Close library (dlclose) and create separate struct for plugins containing name, handle, ptr
-			plugin->OnUnload();
+			plugin.pluginPtr->OnUnload();
+
+			delete plugin.pluginPtr;
+
+			#if defined(NL_PLATFORM_WINDOWS)
+			WindowsPlatform::UnloadPlugin(plugin);
+			#else
+			dlclose(plugin.handle);
+			#endif
 		}
+
+		m_LoadedPlugins.clear();
 	}
 }
