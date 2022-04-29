@@ -50,7 +50,7 @@ namespace Nightly
 		}
 	}
 
-	Plugin* PluginManager::LoadPlugin(std::string_view name)
+	PluginSpecification PluginManager::LoadPlugin(std::string_view name)
 	{
 		#if defined(NL_PLATFORM_WINDOWS)
 		return WindowsPlatform::LoadPlugin(name);
@@ -63,7 +63,7 @@ namespace Nightly
 		if (!handle)
 		{
 			NL_CORE_FATAL("Plugin library file was not found: " << libName.str(), ENGINE);
-			return nullptr;
+			return { };
 		}
 
 		// Get Plugin pointer to call its functions
@@ -71,13 +71,19 @@ namespace Nightly
 		if (!plugin)
 		{
 			NL_CORE_FATAL("Failed to load symbols for plugin: " << libName.str(), ENGINE);
-			return nullptr;
+			return { };
 		}
 
 		using PluginPtr = Plugin* (*)();
 		auto fun = reinterpret_cast<PluginPtr>(plugin);
 
-		return fun();
+		PluginSpecification specification;
+
+		specification.pluginPtr = fun();
+		specification.handle = handle;
+
+		return specification;
+
 		#endif
 	}
 
