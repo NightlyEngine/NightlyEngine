@@ -2,6 +2,7 @@
 
 #include <glad/glad.h>
 #include <filesystem>
+#include <fstream>
 
 #include "Core/Core.h"
 #include "Core/Log.h"
