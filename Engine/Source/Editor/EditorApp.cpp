@@ -5,6 +5,8 @@
 #include "Core/WindowManager.h"
 #include "Renderer/Renderer.h"
 #include "Core/PluginManager.h"
+#include "World/World.h"
+#include "World/Entity.h"
 
 using namespace Nightly;
 
@@ -42,11 +44,17 @@ namespace NightlyEditor
 
 			PluginManager::LoadActivePlugins();
 
+			auto entity = std::make_shared<Entity>("Awesome Entity");
+			auto world = std::make_unique<World>();
+			world->AddEntity(entity);
+
 			// Update the editor as long as the window is not closed
 			while (!m_EditorWindow->ShouldClose())
 			{
 				Update();
 			}
+
+			world->RemoveEntity(entity);
 
 			Quit();
 		}
