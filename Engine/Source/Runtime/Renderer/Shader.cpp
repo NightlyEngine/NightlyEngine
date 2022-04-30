@@ -10,10 +10,9 @@ namespace Nightly
 {
 	void Shader::Compile(uint32_t type, std::string_view path)
 	{
-		std::ifstream file(path);
+		std::ifstream file(std::string(path).c_str());
 
 		// Check if file exists
-		auto error = std::stringstream("Shader file was not found: ") << path;
 		NL_ASSERT(std::filesystem::exists(path), NL_TEXT("Shader file was not found: " << path), ENGINE);
 
 		// Read file
