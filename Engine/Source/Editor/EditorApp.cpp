@@ -58,6 +58,8 @@ namespace NightlyEditor
 
 			m_EngineInstance->Update();
 
+			PluginManager::UpdatePlugins();
+
 			m_EditorWindow->SwapBuffers();
 			WindowManager::PollEvents();
 		}
