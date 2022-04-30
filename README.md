@@ -86,7 +86,7 @@ in `Engine/Binaries`. You can now open the project using an IDE like CLion.
    CMake [here](https://github.com/Kitware/CMake/releases/download/v3.23.1/cmake-3.23.1-windows-x86_64.msi). In the
    installer, select the option to also add CMake into your PATH environment variable.
 2. Download and install python3 [here](https://www.python.org/downloads/) and also add it to your PATH.
-3. Download and install the latest version of [Visual Studio](https://visualstudio.microsoft.com/de/downloads/).
+3. Download and install the latest version of [Visual Studio](https://visualstudio.microsoft.com/en/downloads/).
 4. Open cmd.exe and navigate into the `Scripts` folder: `cd Scripts`
 5. Generate and build the project: `python ./GenerateVisualStudio<2019/2022>.py`, select the version you'd like.
 6. Launch the editor: `python ./LaunchEditor.py`
