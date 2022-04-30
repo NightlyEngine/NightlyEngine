@@ -12,7 +12,8 @@ namespace Nightly
 		static void Initialize();
 
 	private:
-		static inline std::unique_ptr<Shader> m_VertexShader, m_FragmentShader;
+		static inline std::unique_ptr<Shader> m_VertexShader;
+		static inline std::unique_ptr<Shader> m_FragmentShader;
 		static inline std::unique_ptr<ShaderProgram> m_ShaderProgram;
 	};
 }
