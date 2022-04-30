@@ -32,7 +32,10 @@ add_library(NightlyEngine SHARED
         Renderer/Renderer.cpp
         Renderer/Shader.h
         Renderer/Shader.cpp
-        )
+        World/Entity.h
+        World/Entity.cpp
+        World/World.h
+        World/World.cpp)
 
 target_precompile_headers(NightlyEngine PUBLIC
         <iostream>
