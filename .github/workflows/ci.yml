@@ -72,6 +72,9 @@ jobs:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v3
       
+      # Use MSVC
+      - uses: ilammy/msvc-dev-cmd@v1
+      
       - name: Install submodules
         run: git submodule update --init
       
