@@ -30,8 +30,13 @@ namespace Nightly
 		Plugin() = default;
 		virtual ~Plugin() = default;
 
+		// Gets called when the plugin is loaded for the first time.
 		virtual void OnLoad() = 0;
+
+		// Gets called every frame.
 		virtual void OnUpdate() = 0;
+
+		// Gets called when the plugin is unloaded.
 		virtual void OnUnload() = 0;
 	};
 }
