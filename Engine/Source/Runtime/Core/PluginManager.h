@@ -16,7 +16,6 @@ namespace Nightly
 		void* handle = nullptr;
 	};
 
-	// NOT COMPLETE, MISSING WINDOWS SUPPORT.
 	// This class manages and loads native
 	// plugins as dynamic libraries.
 	class NL_API PluginManager
