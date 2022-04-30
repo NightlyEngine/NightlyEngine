@@ -11,7 +11,6 @@ namespace Nightly
 
 	void TestPlugin::OnUpdate()
 	{
-		NL_CORE_INFO("Updating plugin...", PLUGIN);
 	}
 
 	void TestPlugin::OnUnload()
