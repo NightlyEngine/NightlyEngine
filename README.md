@@ -50,9 +50,8 @@ greatly appreciated.
 
 Follow these steps to build Nightly from source:
 
-- Clone the repo: `git clone https://github.com/Futureblur/NightlyEngine.git`
+- Clone the repo with its submodules: `git clone --recursive-submodules -j8 https://github.com/Futureblur/NightlyEngine.git`
 - Go to the engine directory: `cd NightlyEngine`
-- Install all the submodules: `git submodule update --init`
 
 After that, follow the specific instructions for your OS down below.
 
