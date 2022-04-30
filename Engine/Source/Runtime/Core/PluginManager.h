@@ -29,6 +29,9 @@ namespace Nightly
 		// These are hard-coded for now.
 		static void LoadActivePlugins();
 
+		// Calls OnUpdate() on all active plugins.
+		static void UpdatePlugins();
+
 		// Unloads all plugins so the memory can be released.
 		static void UnloadPlugins();
 

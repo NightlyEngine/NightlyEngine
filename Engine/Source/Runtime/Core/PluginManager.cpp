@@ -43,10 +43,18 @@ namespace Nightly
 
 			// Add to loaded plugins pool
 			m_LoadedPlugins.push_back(plugin);
-			
+
 			NL_CORE_INFO("Loaded plugin: " << pluginName, ENGINE);
 
 			plugin.pluginPtr->OnLoad();
+		}
+	}
+
+	void PluginManager::UpdatePlugins()
+	{
+		for (const auto& plugin : m_LoadedPlugins)
+		{
+			plugin.pluginPtr->OnUpdate();
 		}
 	}
 
