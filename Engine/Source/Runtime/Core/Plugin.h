@@ -1,6 +1,7 @@
 #pragma once
 
 #include "EngineAPI.h"
+#include "ITrackable.h"
 
 #include "Platform/PlatformDetection.h"
 
@@ -24,11 +25,13 @@
 namespace Nightly
 {
 	// This is a base class for plugins.
-	class NL_API Plugin
+	class NL_API Plugin : public ITrackable<Plugin>
 	{
 	public:
 		Plugin() = default;
-		virtual ~Plugin() = default;
+		~Plugin() override = default;
+
+		NL_DEFINE_TRACKABLE(Plugin);
 
 		// Gets called when the plugin is loaded for the first time.
 		virtual void OnLoad() = 0;

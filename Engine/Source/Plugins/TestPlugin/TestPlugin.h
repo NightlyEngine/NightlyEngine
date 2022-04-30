@@ -6,6 +6,8 @@ namespace Nightly
 {
 	class NL_API TestPlugin : public Plugin
 	{
+		~TestPlugin() override = default;
+		
 		void OnLoad() override;
 		void OnUpdate() override;
 		void OnUnload() override;
