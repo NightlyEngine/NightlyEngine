@@ -66,17 +66,5 @@ jobs:
     #   make bootstrap
     #   make release
     
-    # Use ninja generator
-    - uses: seanmiddleditch/gha-setup-ninja@master
-      
-    - name: Generate ninja files
-      run: |
-          mkdir Engine/Build
-          cd Engine/Build
-          cmake -G Ninja ../..
-        
-    - name: Build CMake
-      run: cmake --build Engine/Build
-
     - name: Perform CodeQL Analysis
       uses: github/codeql-action/analyze@v2
