@@ -38,6 +38,11 @@ namespace Nightly
 		// Returns nullptr if it was not found.
 		std::shared_ptr<Entity> FindEntityByTag(std::string_view tag);
 
+		// Scans the entire entity registry and returns
+		// the first entity that matches the specified id.
+		// Returns nullptr if it was not found.
+		std::shared_ptr<Entity> FindEntityById(uint64_t id);
+
 		// Scans the entire entity registry and populates outList
 		// with all entities that match the specified name.
 		// If nothing was found, outList remains untouched.

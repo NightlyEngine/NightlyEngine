@@ -63,6 +63,18 @@ namespace Nightly
 		return entity == m_EntityRegistry.end() ? nullptr : *entity;
 	}
 
+	std::shared_ptr<Entity> World::FindEntityById(uint64_t id)
+	{
+		auto entity = std::find_if(m_EntityRegistry.begin(), m_EntityRegistry.end(),
+		                           [id](const std::shared_ptr<Entity>& element)
+		                           {
+			                           return element->GetUUID() == id;
+		                           });
+
+		// Return nullptr if not found
+		return entity == m_EntityRegistry.end() ? nullptr : *entity;
+	}
+
 	bool World::FindEntities(std::string_view name, EntityList& outList)
 	{
 		bool found = false;
