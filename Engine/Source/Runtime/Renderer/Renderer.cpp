@@ -9,6 +9,12 @@
 
 namespace Nightly
 {
+	std::unique_ptr<Shader> Renderer::m_VertexShader;
+	std::unique_ptr<Shader> Renderer::m_FragmentShader;
+	std::unique_ptr<ShaderProgram> Renderer::m_ShaderProgram;
+
+	Renderer::~Renderer() = default;
+
 	void Renderer::Initialize()
 	{
 		NL_CORE_INFO("Initializing Renderer...", ENGINE);
