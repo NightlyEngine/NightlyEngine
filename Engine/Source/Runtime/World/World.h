@@ -2,15 +2,20 @@
 
 #include "Core/EngineAPI.h"
 #include "Core/ITrackable.h"
-#include "Entity.h"
 
 namespace Nightly
 {
+	class Entity;
+
 	class NL_API World : public ITrackable<World>
 	{
 	public:
-		World() = default;
-		~World() override = default;
+		explicit World(std::string_view name)
+				: m_Name(name)
+		{
+		}
+
+		~World() override;
 
 		NL_DEFINE_TRACKABLE(World);
 
@@ -20,7 +25,18 @@ namespace Nightly
 		// Removes entity from the world registry.
 		void RemoveEntity(std::shared_ptr<Entity>& entity);
 
+		[[nodiscard]] const std::string& GetName() const
+		{
+			return m_Name;
+		}
+
+		void SetName(const std::string& newName)
+		{
+			m_Name = newName;
+		}
+
 	private:
+		std::string m_Name;
 		std::vector<std::shared_ptr<Entity>> m_EntityRegistry;
 	};
 }

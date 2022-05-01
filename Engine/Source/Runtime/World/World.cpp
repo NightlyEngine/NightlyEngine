@@ -1,9 +1,12 @@
 #include "World.h"
 
 #include "Core/Log.h"
+#include "Entity.h"
 
 namespace Nightly
 {
+	World::~World() = default;
+
 	void World::AddEntity(std::shared_ptr<Entity>& entity)
 	{
 		m_EntityRegistry.push_back(entity);
