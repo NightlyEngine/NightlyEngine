@@ -10,8 +10,8 @@ namespace Nightly
 	class NL_API Entity : public ITrackable<Entity>
 	{
 	public:
-		explicit Entity(std::string_view name = "New Entity")
-				: m_Name(name)
+		explicit Entity(std::string_view name = "New Entity", std::string_view tag = "Default")
+				: m_Name(name), m_Tag(tag)
 		{
 		}
 
@@ -29,7 +29,18 @@ namespace Nightly
 			m_Name = newName;
 		}
 
+		[[nodiscard]] const std::string& GetTag() const
+		{
+			return m_Tag;
+		}
+
+		void SetTag(const std::string& newTag)
+		{
+			m_Tag = newTag;
+		}
+
 	private:
 		std::string m_Name;
+		std::string m_Tag;
 	};
 }
