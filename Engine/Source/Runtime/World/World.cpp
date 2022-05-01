@@ -32,28 +32,26 @@ namespace Nightly
 
 	std::shared_ptr<Entity> World::FindEntity(std::string_view name)
 	{
-		for (const auto& entity : m_EntityRegistry)
-		{
-			if (entity->GetName() == name)
-			{
-				return entity;
-			}
-		}
+		auto entity = std::find_if(m_EntityRegistry.begin(), m_EntityRegistry.end(),
+		                           [name](const std::shared_ptr<Entity>& element)
+		                           {
+			                           return element->GetName() == name;
+		                           });
 
-		return nullptr;
+		// Return nullptr if not found
+		return entity == m_EntityRegistry.end() ? nullptr : *entity;
 	}
 
 	std::shared_ptr<Entity> World::FindEntityByTag(std::string_view tag)
 	{
-		for (const auto& entity : m_EntityRegistry)
-		{
-			if (entity->GetTag() == tag)
-			{
-				return entity;
-			}
-		}
+		auto entity = std::find_if(m_EntityRegistry.begin(), m_EntityRegistry.end(),
+		                           [tag](const std::shared_ptr<Entity>& element)
+		                           {
+			                           return element->GetTag() == tag;
+		                           });
 
-		return nullptr;
+		// Return nullptr if not found
+		return entity == m_EntityRegistry.end() ? nullptr : *entity;
 	}
 
 	bool World::FindEntities(std::string_view name, EntityList& outList)
