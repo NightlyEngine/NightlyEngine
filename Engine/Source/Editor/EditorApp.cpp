@@ -48,7 +48,6 @@ namespace NightlyEditor
 
 			auto world = std::make_unique<World>("New World");
 			auto entity = world->CreateEntity("Awesome Entity");
-			world->AddEntity(entity);
 			
 			// Update the editor as long as the window is not closed
 			while (!m_EditorWindow->ShouldClose())
