@@ -4,27 +4,23 @@
 
 namespace Nightly
 {
+	static std::random_device m_Device;
+
 	int Math::Random(int min, int max)
 	{
-		std::random_device device;
 		std::uniform_int_distribution distribution(min, max);
-
-		return distribution(device);
+		return distribution(m_Device);
 	}
 
 	float Math::Random(float min, float max)
 	{
-		std::random_device device;
 		std::uniform_real_distribution distribution(min, max);
-
-		return distribution(device);
+		return distribution(m_Device);
 	}
 
 	double Math::Random(double min, double max)
 	{
-		std::random_device device;
 		std::uniform_real_distribution distribution(min, max);
-
-		return distribution(device);
+		return distribution(m_Device);
 	}
 }
