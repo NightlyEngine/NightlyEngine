@@ -1,10 +1,12 @@
 #pragma once
 
 #include "EngineAPI.h"
-#include "Window.h"
 
 namespace Nightly
 {
+	class Window;
+	struct WindowProps;
+
 	// Wraps around the GLFW library and handles window states.
 	class NL_API WindowManager
 	{

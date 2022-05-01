@@ -4,6 +4,7 @@
 
 #include "Core.h"
 #include "Log.h"
+#include "Window.h"
 
 namespace Nightly
 {
