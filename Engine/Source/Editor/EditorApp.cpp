@@ -3,6 +3,7 @@
 #include "Core/Core.h"
 #include "Core/Log.h"
 #include "Core/WindowManager.h"
+#include "Core/Window.h"
 #include "Renderer/Renderer.h"
 #include "Core/PluginManager.h"
 #include "World/World.h"
@@ -45,7 +46,7 @@ namespace NightlyEditor
 			PluginManager::LoadActivePlugins();
 
 			auto entity = std::make_shared<Entity>("Awesome Entity");
-			auto world = std::make_unique<World>();
+			auto world = std::make_unique<World>("New World");
 			world->AddEntity(entity);
 
 			// Update the editor as long as the window is not closed
