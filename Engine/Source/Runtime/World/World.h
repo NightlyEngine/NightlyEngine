@@ -24,8 +24,9 @@ namespace Nightly
 		// Creates a new entity and adds it to the registry.
 		std::shared_ptr<Entity> CreateEntity(std::string_view name = "New Entity", std::string_view tag = "Default", uint64_t uuid = 0);
 
-		// Adds entity to the world registry.
-		void AddEntity(const std::shared_ptr<Entity>& entity);
+		// Adds entity to the registry if it isn't already there,
+		// returns false otherwise.
+		bool AddEntity(const std::shared_ptr<Entity>& entity);
 
 		// Scans the entire entity registry and returns
 		// the first entity that matches the specified name.

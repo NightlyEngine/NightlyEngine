@@ -24,10 +24,19 @@ namespace Nightly
 		return entity;
 	}
 
-	void World::AddEntity(const std::shared_ptr<Entity>& entity)
+	bool World::AddEntity(const std::shared_ptr<Entity>& entity)
 	{
+		auto it = std::find(m_EntityRegistry.begin(), m_EntityRegistry.end(), entity);
+
+		if (it != m_EntityRegistry.end())
+		{
+			return false;
+		}
+
 		m_EntityRegistry.push_back(entity);
 		NL_CORE_INFO("Registered entity: " << entity->GetName(), ENGINE);
+
+		return true;
 	}
 
 	std::shared_ptr<Entity> World::FindEntity(std::string_view name)
