@@ -35,7 +35,9 @@ add_library(NightlyEngine SHARED
         World/Entity.h
         World/Entity.cpp
         World/World.h
-        World/World.cpp)
+        World/World.cpp
+        Core/UUID.h
+        Core/UUID.cpp)
 
 target_precompile_headers(NightlyEngine PUBLIC
         <iostream>
