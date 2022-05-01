@@ -21,6 +21,9 @@ namespace Nightly
 
 		NL_DEFINE_TRACKABLE(World);
 
+		// Creates a new entity and adds it to the registry.
+		std::shared_ptr<Entity> CreateEntity(std::string_view name = "New Entity", std::string_view tag = "Default", uint64_t uuid = 0);
+
 		// Adds entity to the world registry.
 		void AddEntity(const std::shared_ptr<Entity>& entity);
 

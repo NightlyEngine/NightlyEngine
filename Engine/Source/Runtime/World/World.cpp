@@ -7,6 +7,23 @@ namespace Nightly
 {
 	World::~World() = default;
 
+	std::shared_ptr<Entity> World::CreateEntity(std::string_view name, std::string_view tag, uint64_t uuid)
+	{
+		std::shared_ptr<Entity> entity;
+
+		if (uuid == 0)
+		{
+			entity = std::make_shared<Entity>(name, tag);
+		}
+		else
+		{
+			entity = std::make_shared<Entity>(name, tag, uuid);
+		}
+
+		m_EntityRegistry.push_back(entity);
+		return entity;
+	}
+
 	void World::AddEntity(const std::shared_ptr<Entity>& entity)
 	{
 		m_EntityRegistry.push_back(entity);
