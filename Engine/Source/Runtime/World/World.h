@@ -10,7 +10,7 @@ namespace Nightly
 	class NL_API World : public ITrackable<World>
 	{
 	public:
-		explicit World(std::string_view name)
+		explicit World(std::string_view name = "New World")
 				: m_Name(name)
 		{
 		}
