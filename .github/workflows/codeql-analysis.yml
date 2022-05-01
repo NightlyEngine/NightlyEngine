@@ -69,6 +69,9 @@ jobs:
     - name: Install submodules
       run: git submodule update --init
     
+    - name: Install deps
+      run: sudo apt-get install libx11-dev libxrandr-dev libxinerama-dev libxcursor-dev libxi-dev libglfw3-dev libgl1-mesa-dev libglu1-mesa-dev
+    
     # Use ninja generator
     - uses: seanmiddleditch/gha-setup-ninja@master
     
