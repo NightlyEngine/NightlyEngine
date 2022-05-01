@@ -2,6 +2,7 @@
 
 #include "Core/EngineAPI.h"
 #include "Core/ITrackable.h"
+#include "Core/UUID.h"
 
 namespace Nightly
 {
@@ -9,11 +10,11 @@ namespace Nightly
 
 	using EntityList = std::vector<std::shared_ptr<Entity>>;
 
-	class NL_API World : public ITrackable<World>
+	class NL_API World : public ITrackable<World>, public UUID
 	{
 	public:
-		explicit World(std::string_view name = "New World")
-				: m_Name(name)
+		explicit World(std::string_view name = "New World", uint64_t id = 0)
+				: m_Name(name), UUID(id)
 		{
 		}
 
