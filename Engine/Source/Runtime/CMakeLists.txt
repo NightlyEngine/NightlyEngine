@@ -25,6 +25,8 @@ add_library(NightlyEngine SHARED
         Core/PluginManager.cpp
         Core/Math.h
         Core/Math.cpp
+        Core/UUID.h
+        Core/UUID.cpp
         Platform/PlatformDetection.h
         Platform/WindowsPlatform.h
         Platform/WindowsPlatform.cpp
@@ -36,8 +38,8 @@ add_library(NightlyEngine SHARED
         World/Entity.cpp
         World/World.h
         World/World.cpp
-        Core/UUID.h
-        Core/UUID.cpp)
+        World/WorldManager.h
+        World/WorldManager.cpp)
 
 target_precompile_headers(NightlyEngine PUBLIC
         <iostream>
