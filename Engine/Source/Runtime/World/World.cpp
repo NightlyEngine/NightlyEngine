@@ -107,17 +107,40 @@ namespace Nightly
 		return found;
 	}
 
-	void World::RemoveEntity(std::shared_ptr<Entity>& entity)
+	bool World::RemoveEntity(const std::shared_ptr<Entity>& entity)
 	{
-		auto it = std::remove(m_EntityRegistry.begin(), m_EntityRegistry.end(), entity);
+		const auto it = std::remove(m_EntityRegistry.begin(), m_EntityRegistry.end(), entity);
+		bool found = it != m_EntityRegistry.end();
 
-		if (it == m_EntityRegistry.end())
-		{
-			NL_CORE_ERROR("Failed to remove entity because it was not found in the registry: " << entity->GetName(), ENGINE);
-			return;
-		}
+		m_EntityRegistry.erase(it, m_EntityRegistry.end());
+		return found;
+	}
 
-		m_EntityRegistry.erase(it);
-		NL_CORE_INFO("Removed entity: " << entity->GetName(), ENGINE);
+	bool World::RemoveEntities(std::string_view name)
+	{
+		const auto it = std::remove_if(m_EntityRegistry.begin(), m_EntityRegistry.end(),
+		                               [name](const std::shared_ptr<Entity>& element)
+		                               {
+			                               return element->GetName() == name;
+		                               });
+
+		bool found = it != m_EntityRegistry.end();
+
+		m_EntityRegistry.erase(it, m_EntityRegistry.end());
+		return found;
+	}
+
+	bool World::RemoveEntitiesByTag(std::string_view tag)
+	{
+		const auto it = std::remove_if(m_EntityRegistry.begin(), m_EntityRegistry.end(),
+		                               [tag](const std::shared_ptr<Entity>& element)
+		                               {
+			                               return element->GetTag() == tag;
+		                               });
+
+		bool found = it != m_EntityRegistry.end();
+
+		m_EntityRegistry.erase(it, m_EntityRegistry.end());
+		return found;
 	}
 }

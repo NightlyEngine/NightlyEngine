@@ -55,8 +55,19 @@ namespace Nightly
 		// Returns whether at least one entity was found.
 		bool FindEntitiesByTag(std::string_view tag, EntityList& outList);
 
-		// Removes entity from the world registry.
-		void RemoveEntity(std::shared_ptr<Entity>& entity);
+		// Removes entity from the registry
+		// and returns whether the operation was successful.
+		bool RemoveEntity(const std::shared_ptr<Entity>& entity);
+
+		// Scans the entire entity registry and removes
+		// all entities that match the specified name.
+		// Returns whether the operation was successful.
+		bool RemoveEntities(std::string_view name);
+
+		// Scans the entire entity registry and removes
+		// all entities that match the specified tag.
+		// Returns whether the operation was successful.
+		bool RemoveEntitiesByTag(std::string_view tag);
 
 		[[nodiscard]] const std::string& GetName() const
 		{
