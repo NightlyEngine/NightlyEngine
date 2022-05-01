@@ -6,6 +6,8 @@
 
 namespace Nightly
 {
+	class World;
+
 	// An entity is an object that can be spawned in a world
 	// that has components which define how it should behave.
 	class NL_API Entity : public ITrackable<Entity>, public UUID
@@ -21,7 +23,7 @@ namespace Nightly
 		{
 		}
 
-		~Entity() override = default;
+		~Entity() override;
 
 		NL_DEFINE_TRACKABLE(Entity);
 
@@ -45,8 +47,15 @@ namespace Nightly
 			m_Tag = newTag;
 		}
 
+		// Returns the world that the entity is attached to.
+		std::shared_ptr<World> GetWorld()
+		{
+			return m_AttachedWorld;
+		}
+
 	private:
 		std::string m_Name;
 		std::string m_Tag;
+		std::shared_ptr<World> m_AttachedWorld;
 	};
 }
