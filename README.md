@@ -9,7 +9,7 @@ The engine is currently in the pre-alpha stage and thus not fully functional. Th
 branch and stable versions will have their own branches in the future. If you'd like to try out the engine, you can
 follow the steps below to [build it from source](#building-from-source). If you'd like to contribute, you're welcome!
 <br>
-<br>Follow me on [Twitter](https://twitter.com/byfutureblur) to stay up to date.
+<br>Feel free to follow me on [Twitter](https://twitter.com/byfutureblur) to stay up to date.
 
 ## FAQ
 
