@@ -2,6 +2,7 @@
 
 #include "Core/Log.h"
 #include "Entity.h"
+#include "WorldManager.h"
 
 namespace Nightly
 {
@@ -21,6 +22,8 @@ namespace Nightly
 		}
 
 		m_EntityRegistry.push_back(entity);
+		entity->Initialize(WorldManager::FindWorldById(GetUUID()));
+
 		return entity;
 	}
 
