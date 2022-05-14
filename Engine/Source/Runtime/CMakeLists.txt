@@ -6,9 +6,9 @@ set(CMAKE_CXX_STANDARD 20)
 add_library(NightlyEngine SHARED
         Core/Application.h
         Core/Core.h
-        Core/Engine.h
         Core/Log.h
         Core/Log.cpp
+        Core/Engine.h
         Core/Engine.cpp
         Core/EngineTime.h
         Core/EngineTime.cpp
@@ -39,7 +39,10 @@ add_library(NightlyEngine SHARED
         World/World.h
         World/World.cpp
         World/WorldManager.h
-        World/WorldManager.cpp)
+        World/WorldManager.cpp
+        World/Components/Component.h
+        World/Components/Component.cpp
+        World/Components/TransformComponent.h)
 
 target_precompile_headers(NightlyEngine PUBLIC
         <iostream>
