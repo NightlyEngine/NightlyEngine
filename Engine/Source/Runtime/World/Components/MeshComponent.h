@@ -1,10 +1,13 @@
 #pragma once
 
 #include "Component.h"
+#include "Core/EngineAPI.h"
 
 namespace Nightly
 {
-	class MeshComponent : public Component
+	struct ShaderProgram;
+
+	class NL_API MeshComponent : public Component
 	{
 	public:
 		MeshComponent()
@@ -16,7 +19,7 @@ namespace Nightly
 
 		NL_DEFINE_COMPONENT(MeshComponent)
 
-		void Draw() const;
+		void Draw();
 		void OnDestroy() override;
 
 	private:
