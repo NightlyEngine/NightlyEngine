@@ -4,7 +4,7 @@
 
 namespace Nightly
 {
-	class UUID
+	class NL_API UUID
 	{
 	public:
 		UUID();
