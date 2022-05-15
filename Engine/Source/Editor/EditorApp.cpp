@@ -10,6 +10,7 @@
 #include "World/World.h"
 #include "World/Entity.h"
 #include "World/WorldManager.h"
+#include "World/Components/MeshComponent.h"
 
 using namespace Nightly;
 
@@ -37,7 +38,7 @@ namespace NightlyEditor
 
 			// Create editor window
 			WindowProps props;
-			props.title = "Nightly Editor";
+			props.title = "Nightly Editor - Pre Alpha";
 			props.width = 1280;
 			props.height = 720;
 
@@ -51,6 +52,7 @@ namespace NightlyEditor
 			WorldManager::LoadWorld(world);
 
 			auto parent = world->CreateEntity("Parent Entity");
+			parent->AddComponent<MeshComponent>(std::make_shared<MeshComponent>());
 
 			// Update the editor as long as the window is not closed
 			while (!m_EditorWindow->ShouldClose())
@@ -70,6 +72,7 @@ namespace NightlyEditor
 
 			m_EngineInstance->Update();
 
+			Renderer::Update();
 			PluginManager::UpdatePlugins();
 
 			m_EditorWindow->SwapBuffers();
