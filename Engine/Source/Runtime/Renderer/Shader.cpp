@@ -1,6 +1,7 @@
 #include "Shader.h"
 
 #include <glad/glad.h>
+#include <glm/gtc/type_ptr.hpp>
 #include <filesystem>
 #include <fstream>
 
@@ -78,5 +79,23 @@ namespace Nightly
 	void ShaderProgram::Delete() const
 	{
 		glDeleteShader(m_Program);
+	}
+
+	void ShaderProgram::SetUniform3fv(const char* name, const Vec3& value) const
+	{
+		int location = glGetUniformLocation(m_Program, name);
+		glUniform3fv(location, 1, glm::value_ptr(value));
+	}
+
+	void ShaderProgram::SetUniform4fv(const char* name, const Vec3& value) const
+	{
+		int location = glGetUniformLocation(m_Program, name);
+		glUniform4fv(location, 1, glm::value_ptr(value));
+	}
+
+	void ShaderProgram::SetUniformMatrix4fv(const char* name, const Mat4& value) const
+	{
+		int location = glGetUniformLocation(m_Program, name);
+		glUniformMatrix4fv(location, 1, GL_FALSE, glm::value_ptr(value));
 	}
 }

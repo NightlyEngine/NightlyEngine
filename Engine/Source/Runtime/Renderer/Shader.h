@@ -1,6 +1,7 @@
 #pragma once
 
 #include "Core/EngineAPI.h"
+#include "Core/Math.h"
 
 namespace Nightly
 {
@@ -40,6 +41,10 @@ namespace Nightly
 		void Link() const;
 		void Use() const;
 		void Delete() const;
+
+		void SetUniform3fv(const char* name, const Vec3& value) const;
+		void SetUniform4fv(const char* name, const Vec3& value) const;
+		void SetUniformMatrix4fv(const char* name, const Mat4& value) const;
 
 	private:
 		uint32_t m_Program;
