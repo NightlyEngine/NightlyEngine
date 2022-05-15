@@ -21,6 +21,19 @@ namespace Nightly
 
 		[[nodiscard]] virtual std::string GetName() const = 0;
 
+		// TODO: Call this function
+		virtual void OnDestroy()
+		{
+		}
+
+		std::shared_ptr<Entity> GetEntity()
+		{
+			return m_AttachedEntity;
+		}
+
+	private:
 		std::shared_ptr<Entity> m_AttachedEntity;
+
+		friend class Entity;
 	};
 }
