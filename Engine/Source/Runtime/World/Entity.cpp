@@ -20,6 +20,8 @@ namespace Nightly
 
 	std::shared_ptr<Entity> Entity::GetPointer() const
 	{
+		if (!m_AttachedWorld) return nullptr;
+		
 		return m_AttachedWorld->FindEntityById(GetUUID());
 	}
 }
