@@ -83,5 +83,7 @@ namespace Nightly
 	private:
 		std::string m_Name;
 		std::vector<std::shared_ptr<Entity>> m_EntityRegistry;
+
+		friend class Renderer;
 	};
 }
