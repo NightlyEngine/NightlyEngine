@@ -1,12 +1,13 @@
 #pragma once
 
 #include "Component.h"
+#include "Core/EngineAPI.h"
 #include "Core/Math.h"
 
 namespace Nightly
 {
 	// Contains information like position, rotation and scale.
-	class TransformComponent : public Component
+	class NL_API TransformComponent : public Component
 	{
 	public:
 		TransformComponent() = default;

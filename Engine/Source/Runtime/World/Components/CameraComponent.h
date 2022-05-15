@@ -1,6 +1,7 @@
 #pragma once
 
 #include "Component.h"
+#include "Core/EngineAPI.h"
 #include "Core/Math.h"
 
 namespace Nightly
@@ -11,7 +12,7 @@ namespace Nightly
 		Orthographic
 	};
 
-	class CameraComponent : public Component
+	class NL_API CameraComponent : public Component
 	{
 	public:
 		CameraComponent(float fov, float near, float far)
