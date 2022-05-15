@@ -1,6 +1,9 @@
 #include "MeshComponent.h"
 
 #include <glad/glad.h>
+#include "Renderer/Renderer.h"
+#include "Renderer/Shader.h"
+#include "World/Entity.h"
 
 namespace Nightly
 {
@@ -37,8 +40,10 @@ namespace Nightly
 		glBindVertexArray(0);
 	}
 
-	void MeshComponent::Draw() const
+	void MeshComponent::Draw()
 	{
+		Renderer::GetShaderProgram()->SetUniformMatrix4fv("uModel", GetEntity()->Transform()->GetTransform());
+
 		glBindVertexArray(m_VAO);
 		glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, nullptr);
 		glBindVertexArray(0);
