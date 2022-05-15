@@ -51,6 +51,7 @@ target_precompile_headers(NightlyEngine PUBLIC
         <iostream>
         <string>
         <vector>
+        <array>
         <sstream>
         <memory>
         <fstream>
