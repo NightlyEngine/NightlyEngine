@@ -93,5 +93,8 @@ namespace Nightly
 
 	// Same as NL_FATAL, but with the option to specify a source.
 	#define NL_CORE_FATAL(message, source) NL_LOG(message, LogSource::source, Fatal)
+
+	// Converts Vec3 into text.
+	#define NL_VEC3_TEXT(vector) "( " << (vector).x << " | " << (vector).y << " | " << (vector).z << " )"
 }
 
