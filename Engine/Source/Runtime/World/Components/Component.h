@@ -21,6 +21,6 @@ namespace Nightly
 
 		[[nodiscard]] virtual std::string GetName() const = 0;
 
-		std::shared_ptr<Entity> m_ParentEntity;
+		std::shared_ptr<Entity> m_AttachedEntity;
 	};
 }
