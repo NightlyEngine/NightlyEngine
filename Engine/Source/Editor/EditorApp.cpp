@@ -50,7 +50,7 @@ namespace NightlyEditor
 			auto world = WorldManager::CreateWorld("New World");
 			WorldManager::LoadWorld(world);
 
-			auto entity = world->CreateEntity("Awesome Entity");
+			auto parent = world->CreateEntity("Parent Entity");
 
 			// Update the editor as long as the window is not closed
 			while (!m_EditorWindow->ShouldClose())
@@ -58,7 +58,7 @@ namespace NightlyEditor
 				Update();
 			}
 
-			world->RemoveEntity(entity);
+			world->RemoveEntity(parent);
 
 			Quit();
 		}
