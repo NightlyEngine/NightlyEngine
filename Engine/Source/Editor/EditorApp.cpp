@@ -52,6 +52,7 @@ namespace NightlyEditor
 			WorldManager::LoadWorld(world);
 
 			auto parent = world->CreateEntity("Parent Entity");
+			parent->Transform()->Translate(Vec3(0, 0, -1));
 			parent->AddComponent<MeshComponent>(std::make_shared<MeshComponent>());
 
 			// Update the editor as long as the window is not closed
