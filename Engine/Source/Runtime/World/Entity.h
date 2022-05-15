@@ -58,6 +58,49 @@ namespace Nightly
 			return m_AttachedWorld;
 		}
 
+		// Attaches this entity to the parent entity.
+		void SetParent(const std::shared_ptr<Entity>& parent)
+		{
+			if (!parent) return;
+
+			m_ParentEntity = parent;
+			parent->m_ChildEntities.push_back(GetPointer());
+
+			Transform()->SetPosition(Transform()->GetPosition() - parent->Transform()->GetPosition());
+		}
+
+		// Returns the parent that this entity is attached to.
+		std::shared_ptr<Entity> GetParent()
+		{
+			return m_ParentEntity;
+		}
+
+		// Detaches the entity from its parent.
+		void Detach()
+		{
+			if (!m_ParentEntity) return;
+
+			Transform()->SetPosition(Transform()->GetPosition() + GetParent()->Transform()->GetPosition());
+
+			auto& vec = m_ParentEntity->m_ChildEntities;
+			auto it = std::remove(vec.begin(), vec.end(), GetPointer());
+			m_ParentEntity->m_ChildEntities.erase(it, vec.end());
+			m_ParentEntity = nullptr;
+		}
+
+		// Returns the child entity by a specified index, which is 0 by default.
+		// Returns nullptr if the index was out of bounds.
+		std::shared_ptr<Entity> GetChild(uint64_t index = 0)
+		{
+			return m_ChildEntities.size() > index ? m_ChildEntities[index] : nullptr;
+		}
+
+		// Returns all child entities.
+		std::vector<std::shared_ptr<Entity>>& GetChildren()
+		{
+			return m_ChildEntities;
+		}
+
 		// Adds a component to the registry and returns
 		// whether the operation was successful.
 		template <typename T>
@@ -69,7 +112,7 @@ namespace Nightly
 				return false;
 			}
 
-			component->m_ParentEntity = GetPointer();
+			component->m_AttachedEntity = GetPointer();
 			m_ComponentRegistry.push_back(component);
 
 			return true;
@@ -128,10 +171,16 @@ namespace Nightly
 	private:
 		std::string m_Name;
 		std::string m_Tag;
+
 		std::shared_ptr<World> m_AttachedWorld;
+
 		std::shared_ptr<Entity> m_ParentEntity;
+		std::vector<std::shared_ptr<Entity>> m_ChildEntities;
+
 		std::vector<std::shared_ptr<Component>> m_ComponentRegistry;
 
 		[[nodiscard]] std::shared_ptr<Entity> GetPointer() const;
+
+		friend class World;
 	};
 }
