@@ -45,7 +45,9 @@ add_library(NightlyEngine SHARED
         World/Components/TransformComponent.h
         World/Components/TransformComponent.cpp
         World/Components/MeshComponent.h
-        World/Components/MeshComponent.cpp)
+        World/Components/MeshComponent.cpp
+        World/Components/CameraComponent.h
+        World/Components/CameraComponent.cpp)
 
 target_precompile_headers(NightlyEngine PUBLIC
         <iostream>
