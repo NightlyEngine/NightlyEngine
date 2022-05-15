@@ -115,21 +115,46 @@ namespace Nightly
 		const auto it = std::remove(m_EntityRegistry.begin(), m_EntityRegistry.end(), entity);
 		bool found = it != m_EntityRegistry.end();
 
-		m_EntityRegistry.erase(it, m_EntityRegistry.end());
+		if (found)
+		{
+			m_EntityRegistry.erase(it, m_EntityRegistry.end());
+			entity->m_AttachedWorld = nullptr;
+
+			// Also remove children recursively
+			for (const auto& element : entity->GetChildren())
+			{
+				return RemoveEntity(element);
+			}
+		}
+
 		return found;
 	}
 
 	bool World::RemoveEntities(std::string_view name)
 	{
-		const auto it = std::remove_if(m_EntityRegistry.begin(), m_EntityRegistry.end(),
-		                               [name](const std::shared_ptr<Entity>& element)
-		                               {
-			                               return element->GetName() == name;
-		                               });
+		bool found = false;
+		auto it = m_EntityRegistry.begin();
 
-		bool found = it != m_EntityRegistry.end();
+		while (it != m_EntityRegistry.end())
+		{
+			if (it->get()->GetName() == name)
+			{
+				found = true;
 
-		m_EntityRegistry.erase(it, m_EntityRegistry.end());
+				for (const auto& child : it->get()->GetChildren())
+				{
+					RemoveEntity(child);
+				}
+
+				it->get()->m_AttachedWorld = nullptr;
+				it = m_EntityRegistry.erase(it);
+			}
+			else
+			{
+				it++;
+			}
+		}
+
 		return found;
 	}
 
