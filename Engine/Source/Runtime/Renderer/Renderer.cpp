@@ -16,7 +16,7 @@ namespace Nightly
 {
 	std::unique_ptr<Shader> Renderer::m_VertexShader;
 	std::unique_ptr<Shader> Renderer::m_FragmentShader;
-	std::unique_ptr<ShaderProgram> Renderer::m_ShaderProgram;
+	std::shared_ptr<ShaderProgram> Renderer::m_ShaderProgram;
 
 	Renderer::~Renderer() = default;
 
@@ -29,7 +29,7 @@ namespace Nightly
 		m_VertexShader = std::make_unique<Shader>(GL_VERTEX_SHADER, "../../Source/Shaders/UnlitVertexShader.glsl");
 		m_FragmentShader = std::make_unique<Shader>(GL_FRAGMENT_SHADER, "../../Source/Shaders/UnlitFragmentShader.glsl");
 
-		m_ShaderProgram = std::make_unique<ShaderProgram>();
+		m_ShaderProgram = std::make_shared<ShaderProgram>();
 		m_ShaderProgram->Attach(m_VertexShader.get());
 		m_ShaderProgram->Attach(m_FragmentShader.get());
 		m_ShaderProgram->Link();

@@ -21,6 +21,6 @@ namespace Nightly
 	private:
 		static std::unique_ptr<Shader> m_VertexShader;
 		static std::unique_ptr<Shader> m_FragmentShader;
-		static std::unique_ptr<ShaderProgram> m_ShaderProgram;
+		static std::shared_ptr<ShaderProgram> m_ShaderProgram;
 	};
 }
