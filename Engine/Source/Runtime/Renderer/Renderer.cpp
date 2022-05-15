@@ -7,6 +7,11 @@
 #include "Core/Log.h"
 #include "Shader.h"
 
+#include "World/Components/MeshComponent.h"
+#include "World/Entity.h"
+#include "World/World.h"
+#include "World/WorldManager.h"
+
 namespace Nightly
 {
 	std::unique_ptr<Shader> Renderer::m_VertexShader;
@@ -29,5 +34,20 @@ namespace Nightly
 		m_ShaderProgram->Attach(m_FragmentShader.get());
 		m_ShaderProgram->Link();
 		m_ShaderProgram->Use();
+	}
+
+	void Renderer::Update()
+	{
+		m_ShaderProgram->Use();
+
+		// TODO: Move mesh components into separate registry to increase performance
+		for (const auto& entity : WorldManager::GetActiveWorld()->m_EntityRegistry)
+		{
+			auto mesh = entity->GetComponent<MeshComponent>();
+			if (mesh)
+			{
+				mesh->Draw();
+			}
+		}
 	}
 }

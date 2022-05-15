@@ -16,6 +16,8 @@ namespace Nightly
 		// Initializes the OpenGL library and necessary loads shaders.
 		static void Initialize();
 
+		static void Update();
+
 	private:
 		static std::unique_ptr<Shader> m_VertexShader;
 		static std::unique_ptr<Shader> m_FragmentShader;
