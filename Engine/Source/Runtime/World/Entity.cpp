@@ -14,7 +14,7 @@ namespace Nightly
 		m_AttachedWorld = attachedWorld;
 
 		auto component = std::make_shared<TransformComponent>();
-		component->m_ParentEntity = GetPointer();
+		component->m_AttachedEntity = GetPointer();
 		m_ComponentRegistry.push_back(component);
 	}
 

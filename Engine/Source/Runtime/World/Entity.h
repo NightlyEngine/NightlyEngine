@@ -129,6 +129,7 @@ namespace Nightly
 		std::string m_Name;
 		std::string m_Tag;
 		std::shared_ptr<World> m_AttachedWorld;
+		std::shared_ptr<Entity> m_ParentEntity;
 		std::vector<std::shared_ptr<Component>> m_ComponentRegistry;
 
 		[[nodiscard]] std::shared_ptr<Entity> GetPointer() const;
