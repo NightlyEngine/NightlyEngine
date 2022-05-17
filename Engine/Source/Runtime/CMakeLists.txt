@@ -48,6 +48,8 @@ add_library(NightlyEngine SHARED
         World/Components/MeshComponent.cpp
         World/Components/CameraComponent.h
         World/Components/CameraComponent.cpp)
+        Renderer/Framebuffer.h
+        Renderer/Framebuffer.cpp
 
 target_precompile_headers(NightlyEngine PUBLIC
         <iostream>
