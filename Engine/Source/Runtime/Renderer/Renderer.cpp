@@ -6,6 +6,7 @@
 #include "Core/Core.h"
 #include "Core/Log.h"
 #include "Shader.h"
+#include "ScreenPlane.h"
 
 #include "World/Components/MeshComponent.h"
 #include "World/Entity.h"
@@ -19,6 +20,8 @@ namespace Nightly
 	std::unique_ptr<Shader> Renderer::m_FragmentShader;
 	std::shared_ptr<ShaderProgram> Renderer::m_ShaderProgram;
 	std::unique_ptr<Entity> Renderer::m_FallbackCamera;
+
+	Framebuffer Renderer::m_Framebuffer;
 
 	Renderer::~Renderer() = default;
 
@@ -40,14 +43,17 @@ namespace Nightly
 		m_FallbackCamera = std::make_unique<Entity>("Fallback Camera");
 		m_FallbackCamera->Initialize(nullptr);
 		m_FallbackCamera->AddComponent<CameraComponent>(std::make_shared<CameraComponent>(60, 0.1f, 1000.0f));
+
+		m_Framebuffer.Setup();
+
+		ScreenPlane::Initialize();
 	}
 
 	void Renderer::Update()
 	{
-		ClearColor();
+		BeginFrame();
 
 		m_ShaderProgram->Use();
-
 		m_ShaderProgram->SetUniformMatrix4fv("uView", m_FallbackCamera->GetComponent<CameraComponent>()->GetView());
 		m_ShaderProgram->SetUniformMatrix4fv("uProjection", m_FallbackCamera->GetComponent<CameraComponent>()->GetProjection());
 
@@ -60,11 +66,33 @@ namespace Nightly
 				mesh->Draw();
 			}
 		}
+
+		EndFrame();
+
+		ScreenPlane::Update(m_Framebuffer.GetColorBuffer());
+	}
+
+	void Renderer::Cleanup()
+	{
+		ScreenPlane::Cleanup();
+	}
+
+	void Renderer::BeginFrame()
+	{
+		m_Framebuffer.Bind();
+		glEnable(GL_DEPTH_TEST);
+		ClearColor();
+	}
+
+	void Renderer::EndFrame()
+	{
+		Framebuffer::Unbind();
+		glDisable(GL_DEPTH_TEST);
 	}
 
 	void Renderer::ClearColor()
 	{
-		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 		glClearColor(27 / 255.f, 25 / 255.f, 50 / 255.f, 1);
+		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 	}
 }
