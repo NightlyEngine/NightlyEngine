@@ -91,6 +91,7 @@ namespace NightlyEditor
 
 			m_EditorWindow->Destroy();
 			PluginManager::UnloadPlugins();
+			Renderer::Cleanup();
 			WindowManager::Terminate();
 		}
 
