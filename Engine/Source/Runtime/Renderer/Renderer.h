@@ -2,6 +2,7 @@
 
 #include "Core/EngineAPI.h"
 #include "Framebuffer.h"
+#include "Core/Event/Event.h"
 
 namespace Nightly
 {
@@ -29,6 +30,7 @@ namespace Nightly
 		static void BeginFrame();
 		static void EndFrame();
 		static void ClearColor();
+		static void InvalidateFramebuffer(EventFun fun);
 
 	private:
 		static std::unique_ptr<Shader> m_VertexShader;

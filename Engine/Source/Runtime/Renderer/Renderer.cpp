@@ -5,6 +5,8 @@
 
 #include "Core/Core.h"
 #include "Core/Log.h"
+#include "Core/WindowManager.h"
+#include "Core/Window.h"
 #include "Shader.h"
 #include "ScreenPlane.h"
 
@@ -13,6 +15,9 @@
 #include "World/World.h"
 #include "World/WorldManager.h"
 #include "World/Components/CameraComponent.h"
+
+#include "Core/Event/EventSystem.h"
+#include "Core/Event/WindowEvents.h"
 
 namespace Nightly
 {
@@ -42,11 +47,15 @@ namespace Nightly
 
 		m_FallbackCamera = std::make_unique<Entity>("Fallback Camera");
 		m_FallbackCamera->Initialize(nullptr);
-		m_FallbackCamera->AddComponent<CameraComponent>(std::make_shared<CameraComponent>(60, 0.1f, 1000.0f));
+
+		float aspect = WindowManager::GetCurrentWindow()->GetAspectRatio();
+		m_FallbackCamera->AddComponent<CameraComponent>(std::make_shared<CameraComponent>(60, aspect, 0.1f, 1000.0f));
 
 		m_Framebuffer.Setup();
 
 		ScreenPlane::Initialize();
+
+		EventSystem::Subscribe(Events::OnFramebufferResize::EventType, InvalidateFramebuffer);
 	}
 
 	void Renderer::Update()
@@ -75,6 +84,7 @@ namespace Nightly
 	void Renderer::Cleanup()
 	{
 		ScreenPlane::Cleanup();
+		m_Framebuffer.Cleanup();
 	}
 
 	void Renderer::BeginFrame()
@@ -94,5 +104,19 @@ namespace Nightly
 	{
 		glClearColor(27 / 255.f, 25 / 255.f, 50 / 255.f, 1);
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+	}
+
+	void Renderer::InvalidateFramebuffer(EventFun fun)
+	{
+		auto event = NL_CAST_EVENT(OnFramebufferResize, fun);
+
+		if (event)
+		{
+			glViewport(0, 0, event->GetWidth(), event->GetHeight());
+			m_Framebuffer.Invalidate(event->GetWidth(), event->GetHeight());
+
+			float ratio = (float) event->GetWidth() / (float) event->GetHeight();
+			m_FallbackCamera->GetComponent<CameraComponent>()->SetAspectRatio(ratio);
+		}
 	}
 }
