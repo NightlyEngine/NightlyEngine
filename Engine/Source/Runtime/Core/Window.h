@@ -1,6 +1,7 @@
 #pragma once
 
 #include "EngineAPI.h"
+#include "Core.h"
 #include "ITrackable.h"
 
 struct GLFWwindow;
@@ -16,7 +17,7 @@ namespace Nightly
 	};
 
 	// Opaque window object.
-	class NL_API Window : public ITrackable<Window>
+	class NL_API Window : public ITrackable<Window>, public std::enable_shared_from_this<Window>
 	{
 	public:
 		explicit Window(const WindowProps& props)
@@ -52,10 +53,36 @@ namespace Nightly
 			return m_Window;
 		}
 
+		NL_NODISCARD int GetWidth() const
+		{
+			return m_Width;
+		}
+
+		NL_NODISCARD int GetHeight() const
+		{
+			return m_Height;
+		}
+
+		NL_NODISCARD float GetAspectRatio() const
+		{
+			return m_Width / (float) m_Height;
+		}
+
 	private:
 		void Initialize(const WindowProps& props);
 
+		static void OnWindowResize(GLFWwindow* window, int width, int height);
+		static void OnFramebufferResize(GLFWwindow* window, int width, int height);
+		static void OnWindowMove(GLFWwindow* window, int x, int y);
+		static void OnWindowIconify(GLFWwindow* window, int iconified);
+		static void OnWindowMaximize(GLFWwindow* window, int maximized);
+		static void OnWindowFocus(GLFWwindow* window, int focused);
+		static void OnWindowClose(GLFWwindow* window);
+
 		GLFWwindow* m_Window = nullptr;
 		bool m_IsRunning = false;
+
+		int m_Width = 0;
+		int m_Height = 0;
 	};
 }

@@ -9,6 +9,9 @@
 #include "Log.h"
 #include "WindowManager.h"
 
+#include "Event/EventSystem.h"
+#include "Event/WindowEvents.h"
+
 namespace Nightly
 {
 	void Window::Initialize(const WindowProps& props)
@@ -33,9 +36,20 @@ namespace Nightly
 		// Initialize the OpenGL API with GLAD
 		NL_ASSERT(gladLoadGLLoader((GLADloadproc) glfwGetProcAddress), "Failed to initialize OpenGL loader!", ENGINE);
 
-		m_IsRunning = true;
-	}
+		m_Width = props.width;
+		m_Height = props.height;
 
+		m_IsRunning = true;
+
+		// Register callbacks
+		glfwSetWindowSizeCallback(m_Window, OnWindowResize);
+		glfwSetFramebufferSizeCallback(m_Window, OnFramebufferResize);
+		glfwSetWindowPosCallback(m_Window, OnWindowMove);
+		glfwSetWindowIconifyCallback(m_Window, OnWindowIconify);
+		glfwSetWindowMaximizeCallback(m_Window, OnWindowMaximize);
+		glfwSetWindowFocusCallback(m_Window, OnWindowFocus);
+		glfwSetWindowCloseCallback(m_Window, OnWindowClose);
+	}
 
 	void Window::MakeContextCurrent()
 	{
@@ -56,5 +70,47 @@ namespace Nightly
 	bool Window::ShouldClose() const
 	{
 		return glfwWindowShouldClose(m_Window) || !m_IsRunning;
+	}
+
+	void Window::OnWindowResize(GLFWwindow* window, int width, int height)
+	{
+		Events::OnWindowResize event(window, width, height);
+		EventSystem::Dispatch(event);
+	}
+
+	void Window::OnFramebufferResize(GLFWwindow* window, int width, int height)
+	{
+		Events::OnFramebufferResize event(window, width, height);
+		EventSystem::Dispatch(event);
+	}
+
+	void Window::OnWindowMove(GLFWwindow* window, int x, int y)
+	{
+		Events::OnWindowMove event(window, x, y);
+		EventSystem::Dispatch(event);
+	}
+
+	void Window::OnWindowIconify(GLFWwindow* window, int iconified)
+	{
+		Events::OnWindowIconify event(window, iconified);
+		EventSystem::Dispatch(event);
+	}
+
+	void Window::OnWindowMaximize(GLFWwindow* window, int maximized)
+	{
+		Events::OnWindowMaximize event(window, maximized);
+		EventSystem::Dispatch(event);
+	}
+
+	void Window::OnWindowFocus(GLFWwindow* window, int focused)
+	{
+		Events::OnWindowFocus event(window, focused);
+		EventSystem::Dispatch(event);
+	}
+
+	void Window::OnWindowClose(GLFWwindow* window)
+	{
+		Events::OnWindowClose event(window);
+		EventSystem::Dispatch(event);
 	}
 }
