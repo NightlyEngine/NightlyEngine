@@ -10,8 +10,13 @@ namespace Nightly
 
 		void Setup();
 
+		// Recreates the framebuffer using the new resolution.
+		void Invalidate(int width, int height);
+
 		void Bind() const;
 		static void Unbind();
+
+		void Cleanup();
 
 		[[nodiscard]] uint32_t GetColorBuffer() const
 		{
