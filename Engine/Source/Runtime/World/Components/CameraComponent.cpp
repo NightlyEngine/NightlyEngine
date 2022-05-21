@@ -2,11 +2,11 @@
 
 namespace Nightly
 {
-	void CameraComponent::Update()
+	void CameraComponent::UpdateProjection()
 	{
 		if (m_ProjectionType == ProjectionType::Perspective)
 		{
-			m_Projection = glm::perspective(glm::radians(m_FOV), 16.f / 9.f, m_Near, m_Far);
+			m_Projection = glm::perspective(glm::radians(m_FOV), m_AspectRatio, m_Near, m_Far);
 		}
 		else
 		{
