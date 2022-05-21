@@ -55,7 +55,10 @@ add_library(NightlyEngine SHARED
         Renderer/Framebuffer.cpp
         Renderer/ScreenPlane.h
         Renderer/ScreenPlane.cpp
-        Core/Event/WindowEvents.h Core/Event/WindowEvents.cpp)
+        Core/Event/WindowEvents.h
+        Core/Event/WindowEvents.cpp
+        Core/Event/InputSystem.cpp
+        Core/Event/InputSystem.h
 
 target_precompile_headers(NightlyEngine PUBLIC Core/PCH.h)
 
