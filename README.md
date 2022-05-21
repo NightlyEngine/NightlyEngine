@@ -1,4 +1,5 @@
 ![Banner](Resources/Branding/Banner.png)
+![GitHub CI](https://github.com/dwyl/auth_plug/actions/workflows/CI.yml/badge.svg)
 <div align="center">
 A modern, lightweight and cross-platform engine that makes game development fun again.
 </div>
