@@ -65,7 +65,7 @@ namespace Nightly
 
 		NL_NODISCARD float GetAspectRatio() const
 		{
-			return m_Width / (float) m_Height;
+			return (float) m_Width / (float) m_Height;
 		}
 
 	private:
