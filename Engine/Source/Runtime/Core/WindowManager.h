@@ -24,7 +24,14 @@ namespace Nightly
 		}
 
 		// Creates a new window object using the given properties.
-		static std::unique_ptr<Window> Create(const WindowProps& props);
+		static std::shared_ptr<Window> Create(const WindowProps& props);
+
+		// FIXME:   Returns the firstly created window for now.
+		//          In the future, this function will return the focused window.
+		static std::shared_ptr<Window> GetCurrentWindow()
+		{
+			return !m_WindowRegistry.empty() ? m_WindowRegistry[0] : nullptr;
+		}
 
 		// Processes events that are in the event queue.
 		static void PollEvents();
@@ -36,5 +43,7 @@ namespace Nightly
 		static void GlfwErrorCallback(int error, const char* description);
 
 		static inline bool m_IsInitialized = false;
+
+		static std::vector<std::shared_ptr<Window>> m_WindowRegistry;
 	};
 }

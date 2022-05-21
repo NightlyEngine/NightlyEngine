@@ -8,6 +8,8 @@
 
 namespace Nightly
 {
+	std::vector<std::shared_ptr<Window>> WindowManager::m_WindowRegistry;
+
 	void WindowManager::Initialize()
 	{
 		NL_ASSERT(glfwInit(), "Failed to initialize GLFW!", ENGINE);
@@ -17,9 +19,11 @@ namespace Nightly
 		glfwSetErrorCallback(GlfwErrorCallback);
 	}
 
-	std::unique_ptr<Window> WindowManager::Create(const WindowProps& props)
+	std::shared_ptr<Window> WindowManager::Create(const WindowProps& props)
 	{
-		return std::make_unique<Window>(props);
+		auto window = std::make_shared<Window>(props);
+		m_WindowRegistry.push_back(window);
+		return window;
 	}
 
 	void WindowManager::PollEvents()
