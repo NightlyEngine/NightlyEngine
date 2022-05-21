@@ -28,7 +28,7 @@ namespace Nightly
 
 		// FIXME:   Returns the firstly created window for now.
 		//          In the future, this function will return the focused window.
-		static std::shared_ptr<Window> GetCurrentWindow()
+		static inline std::shared_ptr<Window> GetCurrentWindow()
 		{
 			return !m_WindowRegistry.empty() ? m_WindowRegistry[0] : nullptr;
 		}
@@ -44,6 +44,6 @@ namespace Nightly
 
 		static inline bool m_IsInitialized = false;
 
-		static std::vector<std::shared_ptr<Window>> m_WindowRegistry;
+		static inline std::vector<std::shared_ptr<Window>> m_WindowRegistry;
 	};
 }

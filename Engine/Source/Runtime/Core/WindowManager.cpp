@@ -8,8 +8,6 @@
 
 namespace Nightly
 {
-	std::vector<std::shared_ptr<Window>> WindowManager::m_WindowRegistry;
-
 	void WindowManager::Initialize()
 	{
 		NL_ASSERT(glfwInit(), "Failed to initialize GLFW!", ENGINE);
