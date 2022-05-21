@@ -8,3 +8,4 @@
 #include <fstream>
 #include <array>
 #include <memory>
+#include <functional>
