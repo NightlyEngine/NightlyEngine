@@ -13,6 +13,9 @@ add_library(NightlyEngine SHARED
         Core/EngineTime.h
         Core/EngineTime.cpp
         Core/EngineAPI.h
+        Core/Event/Event.h
+        Core/Event/EventSystem.cpp
+        Core/Event/EventSystem.h
         Core/Window.h
         Core/Window.cpp
         Core/WindowManager.h
@@ -52,18 +55,11 @@ add_library(NightlyEngine SHARED
         Renderer/Framebuffer.cpp
         Renderer/ScreenPlane.h
         Renderer/ScreenPlane.cpp
-        )
+        Core/Event/WindowEvents.h Core/Event/WindowEvents.cpp)
 
-target_precompile_headers(NightlyEngine PUBLIC
-        <iostream>
-        <string>
-        <vector>
-        <array>
-        <sstream>
-        <memory>
-        <fstream>
-        )
+target_precompile_headers(NightlyEngine PUBLIC Core/PCH.h)
 
 target_link_libraries(NightlyEngine glad)
 target_link_libraries(NightlyEngine glfw)
 target_link_libraries(NightlyEngine glm)
+

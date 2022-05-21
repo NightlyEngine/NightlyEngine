@@ -11,7 +11,7 @@ if (NOT MSVC)
 endif ()
 
 # Precompiled headers
-target_precompile_headers(NightlyEditor PUBLIC <iostream>)
+target_precompile_headers(NightlyEditor PUBLIC ../Runtime/Core/PCH.h)
 
 # Link editor with engine
 target_link_libraries(NightlyEditor NightlyEngine)
