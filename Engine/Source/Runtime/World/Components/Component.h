@@ -3,9 +3,10 @@
 #include "Core/EngineAPI.h"
 #include "Core/ITrackable.h"
 #include "Core/UUID.h"
+#include "Core/Core.h"
 
 // Implements the GetName() function.
-#define NL_DEFINE_COMPONENT(ClassName) [[nodiscard]] virtual std::string GetName() const override { return #ClassName; }
+#define NL_DEFINE_COMPONENT(ClassName) NL_NODISCARD virtual std::string GetName() const override { return #ClassName; }
 
 namespace Nightly
 {
@@ -19,7 +20,7 @@ namespace Nightly
 
 		NL_DEFINE_TRACKABLE(Component);
 
-		[[nodiscard]] virtual std::string GetName() const = 0;
+		NL_NODISCARD virtual std::string GetName() const = 0;
 
 		// TODO: Call this function
 		virtual void OnDestroy()

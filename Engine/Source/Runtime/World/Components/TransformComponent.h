@@ -28,7 +28,9 @@ namespace Nightly
 		void Scale(const Vec3& scale);
 
 		// Returns the transformation matrix.
-		[[nodiscard]] Mat4 GetTransform() const
+		NL_NODISCARD Mat4
+
+		GetTransform() const
 		{
 			Vec3 rotation = glm::radians(m_Rotation);
 			Mat4 transform = Mat4(1.0f);
@@ -45,7 +47,9 @@ namespace Nightly
 			m_Position = position;
 		}
 
-		[[nodiscard]] Vec3 GetPosition() const
+		NL_NODISCARD Vec3
+
+		GetPosition() const
 		{
 			return m_Position;
 		}
@@ -55,7 +59,9 @@ namespace Nightly
 			m_Rotation = rotation;
 		}
 
-		[[nodiscard]] Vec3 GetRotation() const
+		NL_NODISCARD Vec3
+
+		GetRotation() const
 		{
 			return m_Rotation;
 		}
@@ -65,7 +71,9 @@ namespace Nightly
 			m_Scale = scale;
 		}
 
-		[[nodiscard]] Vec3 GetScale() const
+		NL_NODISCARD Vec3
+
+		GetScale() const
 		{
 			return m_Scale;
 		}

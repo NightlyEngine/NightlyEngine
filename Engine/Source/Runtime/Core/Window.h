@@ -37,17 +37,17 @@ namespace Nightly
 
 		// Returns true after the window has been created.
 		// Returns false if Destroy() was called.
-		bool IsRunning() const
+		NL_NODISCARD bool IsRunning() const
 		{
 			return m_IsRunning;
 		}
 
 		// Returns whether the close flag has been set
 		// or the window is not running.
-		bool ShouldClose() const;
+		NL_NODISCARD bool ShouldClose() const;
 
 		// Returns a pointer to the GLFWwindow object.
-		GLFWwindow* GetNativeWindow() const
+		NL_NODISCARD GLFWwindow* GetNativeWindow() const
 		{
 			return m_Window;
 		}
