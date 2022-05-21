@@ -97,7 +97,7 @@ namespace NightlyEditor
 
 	private:
 		std::unique_ptr<Engine> m_EngineInstance;
-		std::unique_ptr<Window> m_EditorWindow;
+		std::shared_ptr<Window> m_EditorWindow;
 	};
 }
 
