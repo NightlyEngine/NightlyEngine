@@ -73,3 +73,8 @@ Engine/Binaries
 
 # Python
 __pycache__
+
+# Vim
+.cache
+.clangd
+compile_commands.json
