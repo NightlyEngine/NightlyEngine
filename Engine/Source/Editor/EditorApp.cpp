@@ -11,6 +11,7 @@
 #include "World/Entity.h"
 #include "World/WorldManager.h"
 #include "World/Components/MeshComponent.h"
+#include "Core/Event/InputSystem.h"
 
 using namespace Nightly;
 
@@ -44,6 +45,7 @@ namespace NightlyEditor
 
 			m_EditorWindow = WindowManager::Create(props);
 
+			InputSystem::Initialize(WindowManager::GetCurrentWindow()->GetNativeWindow());
 			Renderer::Initialize();
 
 			PluginManager::LoadActivePlugins();
@@ -73,6 +75,7 @@ namespace NightlyEditor
 
 			m_EngineInstance->Update();
 
+			InputSystem::Update();
 			Renderer::Update();
 			PluginManager::UpdatePlugins();
 
