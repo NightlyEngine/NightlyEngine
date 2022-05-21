@@ -59,6 +59,7 @@ add_library(NightlyEngine SHARED
         Core/Event/WindowEvents.cpp
         Core/Event/InputSystem.cpp
         Core/Event/InputSystem.h
+        Core/Event/KeyDefinitions.h)
 
 target_precompile_headers(NightlyEngine PUBLIC Core/PCH.h)
 
