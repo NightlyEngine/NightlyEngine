@@ -3,8 +3,6 @@
 #include "Runtime/Core/EngineAPI.h"
 #include "Core/Core.h"
 
-#include <string>
-
 // Implements the GetName() function.
 #define NL_DEFINE_EVENT(ClassName) ClassName() : WindowEvent(nullptr) {} \
 NL_NODISCARD virtual std::string GetName() const override { return #ClassName; } \
