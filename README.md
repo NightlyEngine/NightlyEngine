@@ -1,12 +1,22 @@
 ![Banner](Resources/Branding/Banner.png)
-![CI](https://img.shields.io/github/workflow/status/NightlyEngine/NightlyEngine/CI?style=for-the-badge)
 <div align="center">
-A modern, lightweight and cross-platform engine that makes game development fun again.
+<a href="https://github.com/NightlyEngine/NightlyEngine/actions/workflows/ci.yml">
+<img src="https://img.shields.io/github/workflow/status/NightlyEngine/NightlyEngine/CI?color=957FEF&label=%F0%9F%9B%A0%20Build&style=for-the-badge" alt="CI Status">
+</a>
+<img src="https://img.shields.io/github/repo-size/NightlyEngine/NightlyEngine?color=957FEF&label=%F0%9F%93%A6%20Repo%20Size&style=for-the-badge" alt="Repo Size">
+<a href="https://github.com/NightlyEngine/NightlyEngine/stargazers">
+<img src="https://img.shields.io/github/stars/NightlyEngine/NightlyEngine?color=957FEF&label=%E2%AD%90%EF%B8%8F%20Stars&style=for-the-badge" alt="Star Count">
+</a>
+<a href="https://github.com/NightlyEngine/NightlyEngine/blob/development/LICENSE.md">
+<img src="https://img.shields.io/github/license/NightlyEngine/NightlyEngine?color=957FEF&label=%F0%9F%93%9D%20License&style=for-the-badge" alt="GPL-3 License">
+</a>
+<br><br>A modern, lightweight and cross-platform engine that makes game development fun again.
 </div>
 
 ## Current state
 
-The engine is currently in the pre-alpha stage and thus not fully functional. The latest version can be found in the `development`
+The engine is currently in the pre-alpha stage and thus not fully functional. The latest version can be found in
+the `development`
 branch and stable versions will have their own branches in the future. If you'd like to try out the engine, you can
 follow the steps below to [build it from source](#building-from-source). If you'd like to contribute, you're welcome!
 <br>
@@ -51,7 +61,8 @@ greatly appreciated.
 
 Follow these steps to build Nightly from source:
 
-- Clone the repo with its submodules: `git clone --recursive-submodules -j8 https://github.com/Futureblur/NightlyEngine.git`
+- Clone the repo with its
+  submodules: `git clone --recursive-submodules -j8 https://github.com/Futureblur/NightlyEngine.git`
 - Go to the engine directory: `cd NightlyEngine`
 
 After that, follow the specific instructions for your OS down below.
