@@ -1,5 +1,5 @@
 ![Banner](Resources/Branding/Banner.png)
-![GitHub CI](https://github.com/dwyl/auth_plug/actions/workflows/CI.yml/badge.svg)
+![CI](https://img.shields.io/github/workflow/status/NightlyEngine/NightlyEngine/CI?style=for-the-badge)
 <div align="center">
 A modern, lightweight and cross-platform engine that makes game development fun again.
 </div>
