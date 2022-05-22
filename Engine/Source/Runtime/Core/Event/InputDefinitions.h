@@ -9,7 +9,7 @@
 #define NL_PRESS                  1
 
 // Key is being held down.
-#define NL_REPEAT                 2
+#define NL_HOLD                 2
 
 // Primitive keys
 
