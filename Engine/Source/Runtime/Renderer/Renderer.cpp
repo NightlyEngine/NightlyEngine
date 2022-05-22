@@ -44,19 +44,24 @@ namespace Nightly
 			m_ShaderProgram.Use();
 		}
 
-		m_ShaderProgram = std::make_shared<ShaderProgram>();
-		m_ShaderProgram->Attach(m_VertexShader.get());
-		m_ShaderProgram->Attach(m_FragmentShader.get());
-		m_ShaderProgram->Link();
-		m_ShaderProgram->Use();
+		// Create viewport camera
+		{
+			m_FallbackCamera = std::make_unique<Entity>("Fallback Camera");
+			m_FallbackCamera->Initialize(nullptr);
 
-		m_FallbackCamera = std::make_unique<Entity>("Fallback Camera");
-		m_FallbackCamera->Initialize(nullptr);
+			float aspect = WindowManager::GetCurrentWindow()->GetAspectRatio();
+			auto camera = std::make_shared<CameraComponent>(60, aspect, 0.1f, 1000.0f);
+			m_FallbackCamera->AddComponent<CameraComponent>(camera);
+		}
 
-		float aspect = WindowManager::GetCurrentWindow()->GetAspectRatio();
-		m_FallbackCamera->AddComponent<CameraComponent>(std::make_shared<CameraComponent>(60, aspect, 0.1f, 1000.0f));
+		// Create framebuffer
+		{
+			int width = WindowManager::GetCurrentWindow()->GetWidth();
+			int height = WindowManager::GetCurrentWindow()->GetHeight();
 
-		m_Framebuffer.Setup();
+			FramebufferProps props(width, height, false);
+			m_Framebuffer = Framebuffer(props);
+		}
 
 		ScreenPlane::Initialize();
 
@@ -117,11 +122,16 @@ namespace Nightly
 
 		if (event)
 		{
+			// Resize OpenGL viewport
 			glViewport(0, 0, event->GetWidth(), event->GetHeight());
-			m_Framebuffer.Invalidate(event->GetWidth(), event->GetHeight());
 
+			// Update viewport camera's aspect ratio
 			float ratio = (float) event->GetWidth() / (float) event->GetHeight();
 			m_FallbackCamera->GetComponent<CameraComponent>()->SetAspectRatio(ratio);
+
+			// Recreate framebuffer
+			FramebufferProps props(event->GetWidth(), event->GetHeight(), false);
+			m_Framebuffer.Invalidate(props);
 		}
 	}
 }
