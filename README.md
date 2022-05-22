@@ -13,7 +13,7 @@
 <br><br>A modern, lightweight and cross-platform engine that makes game development fun again.
 </div>
 
-## Current state
+## 📌 Current state
 
 The engine is currently in the pre-alpha stage and thus not fully functional. The latest version can be found in
 the `development`
@@ -22,7 +22,7 @@ follow the steps below to [build it from source](#building-from-source). If you'
 <br>
 <br>Feel free to follow me on [Twitter](https://twitter.com/byfutureblur) to stay up to date.
 
-## FAQ
+## 🤔 FAQ
 
 ### Oh God, another game engine?
 
@@ -57,7 +57,7 @@ payment. If you would like to support the development process in any way, you ca
 GitHub or following me on [Twitter](https://twitter.com/byfutureblur). Also, feel free to ⭐️ this repo! Your help is
 greatly appreciated.
 
-## Building from source
+## 🛠 Building from source
 
 Follow these steps to build Nightly from source:
 
@@ -106,7 +106,7 @@ in `Engine/Binaries`. You can now open the project using an IDE like CLion.
 Your project files will be written to `Engine/Build/{Configuration}/Engine/Source`, while the binaries will be stored
 in `Engine/Binaries`. You can now open the project using an IDE like Visual Studio.
 
-## License
+## 📝 License
 
 Nightly Engine is distributed under the GPL-3.0 license.
 See [LICENSE.md](https://github.com/Futureblur/NightlyEngine/blob/development/LICENSE.md) for more information.
