@@ -11,6 +11,7 @@
 
 #include "Event/EventSystem.h"
 #include "Event/WindowEvents.h"
+#include "Core/Event/InputSystem.h"
 
 namespace Nightly
 {
@@ -49,6 +50,8 @@ namespace Nightly
 		glfwSetWindowMaximizeCallback(m_Window, OnWindowMaximize);
 		glfwSetWindowFocusCallback(m_Window, OnWindowFocus);
 		glfwSetWindowCloseCallback(m_Window, OnWindowClose);
+		glfwSetKeyCallback(m_Window, InputSystem::KeyCallback);
+		glfwSetMouseButtonCallback(m_Window, InputSystem::MouseButtonCallback);
 	}
 
 	void Window::MakeContextCurrent()
@@ -63,6 +66,8 @@ namespace Nightly
 
 	void Window::Destroy()
 	{
+		if (!m_IsRunning) return;
+		
 		m_IsRunning = false;
 		glfwDestroyWindow(m_Window);
 	}
