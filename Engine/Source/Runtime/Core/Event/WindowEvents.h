@@ -1,8 +1,8 @@
 #pragma once
 
 #include "Core/EngineAPI.h"
-#include "Event.h"
 #include "Core/Core.h"
+#include "Event.h"
 
 struct GLFWwindow;
 
