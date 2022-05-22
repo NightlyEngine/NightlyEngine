@@ -60,7 +60,7 @@ namespace NightlyEditor
 			parent->AddComponent<MeshComponent>(std::make_shared<MeshComponent>());
 
 			// Quit when ESC is pressed
-			InputSystem::BindInput(NL_KEY_ESCAPE, NL_PRESS, [this]
+			InputSystem::BindKey(NL_KEY_ESCAPE, NL_PRESS, [this]
 			{
 				m_EditorWindow->Destroy();
 			});
