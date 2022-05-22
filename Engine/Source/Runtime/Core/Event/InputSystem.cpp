@@ -1,70 +1,68 @@
 #include "InputSystem.h"
-#include "Core/Log.h"
 
 #include <GLFW/glfw3.h>
 
+#include "Core/Log.h"
+#include "EventSystem.h"
+#include "InputEvents.h"
+
 namespace Nightly
 {
-	void InputSystem::Initialize(GLFWwindow* window)
+	InputAction InputSystem::BindInput(int key, int action, const InputCallback& trigger)
 	{
-		glfwSetKeyCallback(window, OnKeyPress);
+		return BindInput(InputAction(key, action, InputType::KEYBOARD, trigger));
 	}
 
-	KeyAction InputSystem::BindKey(int key, int action, const InputCallback& trigger)
+	InputAction InputSystem::BindInput(const InputAction& inputAction)
 	{
-		return BindKey(KeyAction(key, action, trigger));
-	}
-
-	KeyAction InputSystem::BindKey(const KeyAction& keyAction)
-	{
-		if (!IsValidAction(keyAction.m_Action)) return { };
+		if (!IsValidAction(inputAction.m_Action)) return { };
 
 		// Place in the appropriate registry
-		if (keyAction.m_Action == NL_REPEAT)
+		if (inputAction.m_Action == NL_HOLD)
 		{
-			m_KeyHoldBinds.push_back(keyAction);
+			m_InputHoldBinds.push_back(inputAction);
 		}
 		else
 		{
-			m_KeyPressBinds.push_back(keyAction);
+			m_InputBinds.push_back(inputAction);
 		}
 
-		return keyAction;
+		return inputAction;
 	}
 
-	bool InputSystem::RemoveBinding(const KeyAction& keyAction)
+	bool InputSystem::RemoveBinding(const InputAction& inputAction)
 	{
-		return RemoveBinding(keyAction.GetId());
+		return RemoveBinding(inputAction.GetId());
 	}
 
 	bool InputSystem::RemoveBinding(uint64_t id)
 	{
 		bool successful = false;
 
-		// Remove from key hold binds
+		// Remove from input hold binds
 		{
-			auto it = std::remove_if(m_KeyHoldBinds.begin(), m_KeyHoldBinds.end(),
-			                         [id](const KeyAction& key)
+			auto it = std::remove_if(m_InputHoldBinds.begin(), m_InputHoldBinds.end(),
+			                         [id](const InputAction& key)
 			                         {
 				                         return key.GetId() == id;
 			                         });
 
-			if (it != m_KeyHoldBinds.end()) successful = true;
+			if (it != m_InputHoldBinds.end()) successful = true;
 
-			m_KeyHoldBinds.erase(it, m_KeyHoldBinds.end());
+			m_InputHoldBinds.erase(it, m_InputHoldBinds.end());
 		}
 
-		// Remove from key press binds
+		// Remove from input binds
 		{
-			auto it = std::remove_if(m_KeyPressBinds.begin(), m_KeyPressBinds.end(),
-			                         [id](const KeyAction& key)
+			auto it = std::remove_if(m_InputBinds.begin(), m_InputBinds.end(),
+			                         [id](const InputAction& key)
 			                         {
 				                         return key.GetId() == id;
 			                         });
 
-			if (it != m_KeyPressBinds.end()) successful = true;
+			if (it != m_InputBinds.end()) successful = true;
 
-			m_KeyPressBinds.erase(it, m_KeyPressBinds.end());
+			m_InputBinds.erase(it, m_InputBinds.end());
 		}
 
 		return successful;
@@ -72,50 +70,120 @@ namespace Nightly
 
 	void InputSystem::Update()
 	{
-		for (const auto& k : m_KeyHoldBinds)
+		for (const auto& binding : m_InputHoldBinds)
 		{
-			if (k.IsHeldDown())
+			if (binding.IsHeldDown())
 			{
-				FireCallback(k);
+				FireCallback(binding);
 			}
 		}
 	}
 
-	void InputSystem::FireCallback(const KeyAction& keyAction)
+	void InputSystem::FireCallback(const InputAction& inputAction)
 	{
 		try
 		{
-			keyAction.m_Trigger();
+			inputAction.m_Trigger();
 		} catch (std::bad_function_call& bfc)
 		{
 			NL_CORE_ERROR("Failed to fire input callback function!", ENGINE);
 		}
 	}
 
-	void InputSystem::OnKeyPress(GLFWwindow* window, int key, int scancode, int action, int mods)
+	void InputSystem::KeyCallback(GLFWwindow* window, int key, int scancode, int action, int mods)
 	{
-		// Register input change if NL_REPEAT
-		for (auto& k : m_KeyHoldBinds)
+		// Discard GLFW_REPEAT since we implemented our own solution for holding keys / buttons
+		if (action == NL_HOLD) return;
+
+		// Dispatch events
+		if (action == NL_PRESS)
 		{
-			if (k.m_Key == key)
+			Events::OnKeyPress event(window, key);
+			EventSystem::Dispatch(event);
+		}
+		else if (action == NL_RELEASE)
+		{
+			Events::OnKeyRelease event(window, key);
+			EventSystem::Dispatch(event);
+		}
+
+		// Register input change if NL_HOLD
+		for (auto& binding : m_InputHoldBinds)
+		{
+			if (binding.m_Key == key)
 			{
+				if (binding.IsHeldDown())
+				{
+					Events::OnKeyHold event(window, key);
+					EventSystem::Dispatch(event);
+				}
+
 				if (action == NL_PRESS)
 				{
-					k.m_HeldDown = true;
+					binding.m_HeldDown = true;
 				}
 				else if (action == NL_RELEASE)
 				{
-					k.m_HeldDown = false;
+					binding.m_HeldDown = false;
 				}
 			}
 		}
 
 		// Fire callbacks on NL_PRESS or NL_RELEASE actions
-		for (const auto& k : m_KeyPressBinds)
+		for (const auto& binding : m_InputBinds)
 		{
-			if (k.m_Key == key && k.m_Action == action)
+			if (binding.m_Key == key && binding.m_Action == action)
 			{
-				FireCallback(k);
+				FireCallback(binding);
+			}
+		}
+	}
+
+	void InputSystem::MouseButtonCallback(GLFWwindow* window, int button, int action, int mods)
+	{
+		// Discard GLFW_REPEAT since we implemented our own solution for holding keys / buttons
+		if (action == NL_HOLD) return;
+
+		// Dispatch events
+		if (action == NL_PRESS)
+		{
+			Events::OnMouseButtonPress event(window, button);
+			EventSystem::Dispatch(event);
+		}
+		else if (action == NL_RELEASE)
+		{
+			Events::OnMouseButtonRelease event(window, button);
+			EventSystem::Dispatch(event);
+		}
+
+		// Register input change if NL_HOLD
+		for (auto& binding : m_InputHoldBinds)
+		{
+			if (binding.m_Key == button)
+			{
+				if (binding.IsHeldDown())
+				{
+					Events::OnMouseButtonHold event(window, button);
+					EventSystem::Dispatch(event);
+				}
+
+				if (action == NL_PRESS)
+				{
+					binding.m_HeldDown = true;
+				}
+				else if (action == NL_RELEASE)
+				{
+					binding.m_HeldDown = false;
+				}
+			}
+		}
+
+		// Fire callbacks on NL_PRESS or NL_RELEASE actions
+		for (const auto& binding : m_InputBinds)
+		{
+			if (binding.m_Key == button && binding.m_Action == action)
+			{
+				FireCallback(binding);
 			}
 		}
 	}

@@ -3,7 +3,7 @@
 #include "Core/EngineAPI.h"
 #include "Core/Core.h"
 #include "Core/UUID.h"
-#include "KeyDefinitions.h"
+#include "InputDefinitions.h"
 
 struct GLFWwindow;
 
@@ -11,41 +11,73 @@ namespace Nightly
 {
 	typedef std::function<void()> InputCallback;
 
-	// Defines an input event.
-	struct KeyAction
+	// Specifies the source of an input, like keyboard, mouse or controller.
+	enum class InputType
 	{
-		KeyAction()
-				: m_Key(), m_Action(), m_Trigger(), m_Id()
+		KEYBOARD,
+		MOUSE,
+		CONTROLLER
+	};
+
+	// Defines an input event.
+	struct InputAction
+	{
+		InputAction()
+				: m_Key(), m_Action(), m_Type(), m_Trigger(), m_Id()
 		{
 		}
 
-		KeyAction(int key, int action, InputCallback trigger)
-				: m_Key(key), m_Action(action), m_Trigger(std::move(trigger)), m_Id(UUID().GetUUID())
+		InputAction(int key, int action, const InputType& type, InputCallback trigger)
+				: m_Key(key), m_Action(action), m_Type(type), m_Trigger(std::move(trigger)), m_Id(UUID().GetUUID())
 		{
 		}
 
-		int m_Key;
-		int m_Action;
-		InputCallback m_Trigger;
+		// Returns the key / button that has been assigned to the input action.
+		NL_NODISCARD int GetKey() const
+		{
+			return m_Key;
+		}
+
+		// Returns whether the key / button is pressed, released or being held down.
+		NL_NODISCARD int GetAction() const
+		{
+			return m_Action;
+		}
+
+		NL_NODISCARD InputType GetInputType() const
+		{
+			return m_Type;
+		}
+
+		// Returns the callback function to be fired.
+		NL_NODISCARD InputCallback GetCallback() const
+		{
+			return m_Trigger;
+		}
 
 		NL_NODISCARD uint64_t GetId() const
 		{
 			return m_Id;
 		}
 
-		// Returns whether the key is being held down.
-		// Only works if action is set to NL_REPEAT.
+		// Returns whether the key / button is being held down.
+		// Only works if action is set to NL_HOLD.
 		NL_NODISCARD bool IsHeldDown() const
 		{
 			return m_HeldDown;
 		}
 
-		bool operator==(const KeyAction& keyAction) const
+		bool operator==(const InputAction& action) const
 		{
-			return keyAction.m_Key == m_Key && keyAction.m_Action == m_Action;
+			return action.m_Key == m_Key && action.m_Action == m_Action;
 		}
 
 	private:
+		int m_Key;
+		int m_Action;
+		InputType m_Type;
+		InputCallback m_Trigger;
+
 		uint64_t m_Id;
 		bool m_HeldDown = false;
 
@@ -59,45 +91,44 @@ namespace Nightly
 		InputSystem() = default;
 		~InputSystem() = default;
 
-		// Registers key callbacks for the specified window.
-		static void Initialize(GLFWwindow* window);
-
-		// Fires callbacks for keys that are being held down.
+		// Fires callbacks for keys / buttons that are being held down.
 		static void Update();
 
-		// Triggers function when an action is performed with a key.
-		// Action must be either NL_PRESS, NL_RELEASE or NL_REPEAT.
-		// Returns the generated KeyAction object.
-		static KeyAction BindKey(int key, int action, const InputCallback& trigger);
+		// Triggers function when an action is performed with a key / button.
+		// Action must be either NL_PRESS, NL_RELEASE or NL_HOLD.
+		// Returns the generated InputAction object.
+		static InputAction BindInput(int key, int action, const InputCallback& trigger);
 
-		// Triggers function when an action is performed with a key.
-		// Action must be either NL_PRESS, NL_RELEASE or NL_REPEAT.
-		// Returns the generated KeyAction object.
-		static KeyAction BindKey(const KeyAction& keyAction);
+		// Triggers function when an action is performed with a key / button.
+		// Action must be either NL_PRESS, NL_RELEASE or NL_HOLD.
+		// Returns the generated InputAction object.
+		static InputAction BindInput(const InputAction& inputAction);
 
-		// Removes the key binding from the registry.
+		// Removes the input binding from the registry.
 		// Returns whether the operation was successful.
-		static bool RemoveBinding(const KeyAction& keyAction);
+		static bool RemoveBinding(const InputAction& inputAction);
 
-		// Removes the key binding from the registry.
-		// The id can be obtained using KeyAction.GetId().
+		// Removes the input binding from the registry.
+		// The id can be obtained using InputAction.GetId().
 		// Returns whether the operation was successful.
 		static bool RemoveBinding(uint64_t id);
 
 	private:
-		// Returns true when an action is either NL_PRESS, NL_RELEASE or NL_REPEAT.
+		// Returns true when an action is either NL_PRESS, NL_RELEASE or NL_HOLD.
 		static bool IsValidAction(int action)
 		{
-			return action == NL_PRESS || action == NL_RELEASE || action == NL_REPEAT;
+			return action == NL_PRESS || action == NL_RELEASE || action == NL_HOLD;
 		}
 
-		// Triggers the callback of keyAction.
-		static void FireCallback(const KeyAction& keyAction);
+		// Triggers the callback of the input action.
+		static void FireCallback(const InputAction& inputAction);
 
-		// GLFW key callback
-		static void OnKeyPress(GLFWwindow* window, int key, int scancode, int action, int mods);
+		static void KeyCallback(GLFWwindow* window, int key, int scancode, int action, int mods);
+		static void MouseButtonCallback(GLFWwindow* window, int button, int action, int mods);
 
-		static inline std::vector<KeyAction> m_KeyPressBinds;
-		static inline std::vector<KeyAction> m_KeyHoldBinds;
+		static inline std::vector<InputAction> m_InputBinds;
+		static inline std::vector<InputAction> m_InputHoldBinds;
+
+		friend class Window;
 	};
 }
