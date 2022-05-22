@@ -16,6 +16,13 @@ add_library(NightlyEngine SHARED
         Core/Event/Event.h
         Core/Event/EventSystem.cpp
         Core/Event/EventSystem.h
+        Core/Event/WindowEvents.h
+        Core/Event/WindowEvents.cpp
+        Core/Event/InputSystem.cpp
+        Core/Event/InputSystem.h
+        Core/Event/InputDefinitions.h
+        Core/Event/InputEvents.h
+        Core/Event/InputEvents.cpp
         Core/Window.h
         Core/Window.cpp
         Core/WindowManager.h
@@ -37,6 +44,10 @@ add_library(NightlyEngine SHARED
         Renderer/Renderer.cpp
         Renderer/Shader.h
         Renderer/Shader.cpp
+        Renderer/Framebuffer.h
+        Renderer/Framebuffer.cpp
+        Renderer/ScreenPlane.h
+        Renderer/ScreenPlane.cpp
         World/Entity.h
         World/Entity.cpp
         World/World.h
@@ -51,15 +62,7 @@ add_library(NightlyEngine SHARED
         World/Components/MeshComponent.cpp
         World/Components/CameraComponent.h
         World/Components/CameraComponent.cpp
-        Renderer/Framebuffer.h
-        Renderer/Framebuffer.cpp
-        Renderer/ScreenPlane.h
-        Renderer/ScreenPlane.cpp
-        Core/Event/WindowEvents.h
-        Core/Event/WindowEvents.cpp
-        Core/Event/InputSystem.cpp
-        Core/Event/InputSystem.h
-        Core/Event/KeyDefinitions.h)
+        )
 
 target_precompile_headers(NightlyEngine PUBLIC Core/PCH.h)
 
