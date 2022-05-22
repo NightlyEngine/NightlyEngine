@@ -7,6 +7,8 @@
 #include "Core/WindowManager.h"
 #include "Core/Window.h"
 #include "Core/Event/InputSystem.h"
+#include "Core/Event/EventSystem.h"
+#include "Core/Event/InputEvents.h"
 #include "World/World.h"
 #include "World/Entity.h"
 #include "World/WorldManager.h"
@@ -46,7 +48,6 @@ namespace NightlyEditor
 
 			m_EditorWindow = WindowManager::Create(props);
 
-			InputSystem::Initialize(WindowManager::GetCurrentWindow()->GetNativeWindow());
 			Renderer::Initialize();
 
 			PluginManager::LoadActivePlugins();
@@ -57,6 +58,12 @@ namespace NightlyEditor
 			auto parent = world->CreateEntity("Parent Entity");
 			parent->Transform()->Translate(Vec3(0, 0, -1));
 			parent->AddComponent<MeshComponent>(std::make_shared<MeshComponent>());
+
+			// Quit when ESC is pressed
+			InputSystem::BindInput(NL_KEY_ESCAPE, NL_PRESS, [this]
+			{
+				m_EditorWindow->Destroy();
+			});
 
 			// Update the editor as long as the window is not closed
 			while (!m_EditorWindow->ShouldClose())
