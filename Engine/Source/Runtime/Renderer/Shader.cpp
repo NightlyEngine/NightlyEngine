@@ -50,9 +50,10 @@ namespace Nightly
 		m_Program = glCreateProgram();
 	}
 
-	void ShaderProgram::Attach(const Shader* shader) const
+	void ShaderProgram::Attach(const Shader& shader) const
 	{
-		glAttachShader(m_Program, (GLuint) *shader);
+		NL_ASSERT(m_IsInitialized, "Forgot to call Initialize() on ShaderProgram.", ENGINE);
+		glAttachShader(m_Program, (GLuint) shader);
 	}
 
 	void ShaderProgram::Link() const
