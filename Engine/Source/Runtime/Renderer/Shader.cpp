@@ -45,9 +45,10 @@ namespace Nightly
 		glDeleteShader(m_Shader);
 	}
 
-	ShaderProgram::ShaderProgram()
+	void ShaderProgram::Initialize()
 	{
 		m_Program = glCreateProgram();
+		m_IsInitialized = true;
 	}
 
 	void ShaderProgram::Attach(const Shader& shader) const
@@ -58,6 +59,7 @@ namespace Nightly
 
 	void ShaderProgram::Link() const
 	{
+		NL_ASSERT(m_IsInitialized, "Forgot to call Initialize() on ShaderProgram.", ENGINE);
 		glLinkProgram(m_Program);
 
 		int success;
@@ -74,28 +76,36 @@ namespace Nightly
 
 	void ShaderProgram::Use() const
 	{
+		NL_ASSERT(m_IsInitialized, "Forgot to call Initialize() on ShaderProgram.", ENGINE);
 		glUseProgram(m_Program);
 	}
 
 	void ShaderProgram::Delete() const
 	{
+		NL_ASSERT(m_IsInitialized, "Forgot to call Initialize() on ShaderProgram.", ENGINE);
 		glDeleteShader(m_Program);
 	}
 
 	void ShaderProgram::SetUniform3fv(const char* name, const Vec3& value) const
 	{
+		NL_ASSERT(m_IsInitialized, "Forgot to call Initialize() on ShaderProgram.", ENGINE);
+		
 		int location = glGetUniformLocation(m_Program, name);
 		glUniform3fv(location, 1, glm::value_ptr(value));
 	}
 
 	void ShaderProgram::SetUniform4fv(const char* name, const Vec3& value) const
 	{
+		NL_ASSERT(m_IsInitialized, "Forgot to call Initialize() on ShaderProgram.", ENGINE);
+
 		int location = glGetUniformLocation(m_Program, name);
 		glUniform4fv(location, 1, glm::value_ptr(value));
 	}
 
 	void ShaderProgram::SetUniformMatrix4fv(const char* name, const Mat4& value) const
 	{
+		NL_ASSERT(m_IsInitialized, "Forgot to call Initialize() on ShaderProgram.", ENGINE);
+
 		int location = glGetUniformLocation(m_Program, name);
 		glUniformMatrix4fv(location, 1, GL_FALSE, glm::value_ptr(value));
 	}
