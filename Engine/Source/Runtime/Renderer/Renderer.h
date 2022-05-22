@@ -1,14 +1,13 @@
 #pragma once
 
 #include "Core/EngineAPI.h"
-#include "Framebuffer.h"
 #include "Core/Event/Event.h"
+#include "Framebuffer.h"
+#include "Shader.h"
 
 namespace Nightly
 {
 	class Entity;
-	class Shader;
-	struct ShaderProgram;
 
 	class NL_API Renderer
 	{
@@ -18,10 +17,12 @@ namespace Nightly
 
 		// Initializes the OpenGL library and necessary loads shaders.
 		static void Initialize();
+
+		// Renders the current world.
 		static void Update();
 		static void Cleanup();
 
-		static std::shared_ptr<ShaderProgram> GetShaderProgram()
+		static ShaderProgram GetShaderProgram()
 		{
 			return m_ShaderProgram;
 		}
@@ -33,9 +34,9 @@ namespace Nightly
 		static void InvalidateFramebuffer(EventFun fun);
 
 	private:
-		static std::unique_ptr<Shader> m_VertexShader;
-		static std::unique_ptr<Shader> m_FragmentShader;
-		static std::shared_ptr<ShaderProgram> m_ShaderProgram;
+		static inline Shader m_VertexShader;
+		static inline Shader m_FragmentShader;
+		static inline ShaderProgram m_ShaderProgram;
 		static std::unique_ptr<Entity> m_FallbackCamera;
 
 		static Framebuffer m_Framebuffer;

@@ -21,11 +21,7 @@
 
 namespace Nightly
 {
-	std::unique_ptr<Shader> Renderer::m_VertexShader;
-	std::unique_ptr<Shader> Renderer::m_FragmentShader;
-	std::shared_ptr<ShaderProgram> Renderer::m_ShaderProgram;
 	std::unique_ptr<Entity> Renderer::m_FallbackCamera;
-
 	Framebuffer Renderer::m_Framebuffer;
 
 	Renderer::~Renderer() = default;
@@ -35,9 +31,18 @@ namespace Nightly
 		NL_CORE_INFO("Initializing Renderer...", ENGINE);
 		NL_ASSERT(gladLoadGLLoader((GLADloadproc) glfwGetProcAddress), "Failed to initialize OpenGL library!", ENGINE);
 
-		// FIXME: Shader file paths are invalid when engine gets shipped
-		m_VertexShader = std::make_unique<Shader>(GL_VERTEX_SHADER, "../../Source/Shaders/UnlitVertexShader.glsl");
-		m_FragmentShader = std::make_unique<Shader>(GL_FRAGMENT_SHADER, "../../Source/Shaders/UnlitFragmentShader.glsl");
+		// Setup shaders
+		{
+			// FIXME: Shader file paths are invalid when engine gets shipped
+			m_VertexShader = Shader(GL_VERTEX_SHADER, "../../Source/Shaders/UnlitVertexShader.glsl");
+			m_FragmentShader = Shader(GL_FRAGMENT_SHADER, "../../Source/Shaders/UnlitFragmentShader.glsl");
+
+			m_ShaderProgram.Initialize();
+			m_ShaderProgram.Attach(m_VertexShader);
+			m_ShaderProgram.Attach(m_FragmentShader);
+			m_ShaderProgram.Link();
+			m_ShaderProgram.Use();
+		}
 
 		m_ShaderProgram = std::make_shared<ShaderProgram>();
 		m_ShaderProgram->Attach(m_VertexShader.get());
@@ -62,9 +67,9 @@ namespace Nightly
 	{
 		BeginFrame();
 
-		m_ShaderProgram->Use();
-		m_ShaderProgram->SetUniformMatrix4fv("uView", m_FallbackCamera->GetComponent<CameraComponent>()->GetView());
-		m_ShaderProgram->SetUniformMatrix4fv("uProjection", m_FallbackCamera->GetComponent<CameraComponent>()->GetProjection());
+		m_ShaderProgram.Use();
+		m_ShaderProgram.SetUniformMatrix4fv("uView", m_FallbackCamera->GetComponent<CameraComponent>()->GetView());
+		m_ShaderProgram.SetUniformMatrix4fv("uProjection", m_FallbackCamera->GetComponent<CameraComponent>()->GetProjection());
 
 		// TODO: Move mesh components into separate registry to increase performance
 		for (const auto& entity : WorldManager::GetActiveWorld()->m_EntityRegistry)

@@ -1,6 +1,7 @@
 #pragma once
 
 #include "Core/EngineAPI.h"
+#include "Shader.h"
 
 namespace Nightly
 {
@@ -25,6 +26,6 @@ namespace Nightly
 		static inline uint32_t m_VAO = 0;
 		static inline uint32_t m_VBO = 0;
 
-		static std::unique_ptr<ShaderProgram> m_ScreenShader;
+		static inline ShaderProgram m_ScreenShader;
 	};
 }

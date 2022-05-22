@@ -6,19 +6,17 @@
 
 namespace Nightly
 {
-	std::unique_ptr<ShaderProgram> ScreenPlane::m_ScreenShader;
-
 	void ScreenPlane::Initialize()
 	{
 		// FIXME: Shader file paths are invalid when engine gets shipped, see Renderer.cpp
-		auto vertexShader = std::make_unique<Shader>(GL_VERTEX_SHADER, "../../Source/Shaders/ScreenVertexShader.glsl");
-		auto fragmentShader = std::make_unique<Shader>(GL_FRAGMENT_SHADER, "../../Source/Shaders/ScreenFragmentShader.glsl");
+		auto vertexShader = Shader(GL_VERTEX_SHADER, "../../Source/Shaders/ScreenVertexShader.glsl");
+		auto fragmentShader = Shader(GL_FRAGMENT_SHADER, "../../Source/Shaders/ScreenFragmentShader.glsl");
 
-		m_ScreenShader = std::make_unique<ShaderProgram>();
-		m_ScreenShader->Attach(vertexShader.get());
-		m_ScreenShader->Attach(fragmentShader.get());
-		m_ScreenShader->Link();
-		m_ScreenShader->Use();
+		m_ScreenShader.Initialize();
+		m_ScreenShader.Attach(vertexShader);
+		m_ScreenShader.Attach(fragmentShader);
+		m_ScreenShader.Link();
+		m_ScreenShader.Use();
 
 		// Plane vertices
 		std::array<float, 24> vertices = {
@@ -54,7 +52,7 @@ namespace Nightly
 		glClearColor(1, 1, 1, 1);
 		glClear(GL_COLOR_BUFFER_BIT);
 
-		m_ScreenShader->Use();
+		m_ScreenShader.Use();
 		glBindVertexArray(m_VAO);
 		glBindTexture(GL_TEXTURE_2D, renderTexture);
 		glDrawArrays(GL_TRIANGLES, 0, 6);
