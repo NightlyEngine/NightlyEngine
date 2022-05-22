@@ -1,17 +1,17 @@
-#include "Runtime/Core/Application.h"
-#include "Runtime/Core/Engine.h"
+#include "Core/Application.h"
+#include "Core/Engine.h"
 #include "Core/Core.h"
 #include "Core/Log.h"
 #include "Core/Math.h"
+#include "Core/PluginManager.h"
 #include "Core/WindowManager.h"
 #include "Core/Window.h"
-#include "Renderer/Renderer.h"
-#include "Core/PluginManager.h"
+#include "Core/Event/InputSystem.h"
 #include "World/World.h"
 #include "World/Entity.h"
 #include "World/WorldManager.h"
 #include "World/Components/MeshComponent.h"
-#include "Core/Event/InputSystem.h"
+#include "Renderer/Renderer.h"
 
 using namespace Nightly;
 
@@ -30,6 +30,7 @@ namespace NightlyEditor
 			m_IsRunning = true;
 
 			// Create engine app
+			// FIXME: Do we even need this?
 			m_EngineInstance = std::make_unique<Engine>();
 			m_EngineInstance->Start();
 
