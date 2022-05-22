@@ -9,8 +9,10 @@ namespace Nightly
 	class NL_API Shader
 	{
 	public:
+		Shader() = default;
+
 		Shader(uint32_t type, std::string_view path)
-				: m_Shader(), m_Type(type)
+				: m_Type(type), m_Shader()
 		{
 			Compile(type, path);
 		}
@@ -34,10 +36,11 @@ namespace Nightly
 
 	struct ShaderProgram
 	{
-		ShaderProgram();
+		ShaderProgram() = default;
 		~ShaderProgram() = default;
 
-		void Attach(const Shader* shader) const;
+		void Initialize();
+		void Attach(const Shader& shader) const;
 		void Link() const;
 		void Use() const;
 		void Delete() const;
@@ -48,5 +51,6 @@ namespace Nightly
 
 	private:
 		uint32_t m_Program;
+		bool m_IsInitialized = false;
 	};
 }
