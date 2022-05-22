@@ -8,9 +8,19 @@
 
 namespace Nightly
 {
-	InputAction InputSystem::BindInput(int key, int action, const InputCallback& trigger)
+	InputAction InputSystem::BindKey(int key, int action, const InputCallback& trigger)
 	{
 		return BindInput(InputAction(key, action, InputType::KEYBOARD, trigger));
+	}
+
+	InputAction InputSystem::BindMouse(int key, int action, const InputCallback& trigger)
+	{
+		return BindInput(InputAction(key, action, InputType::MOUSE, trigger));
+	}
+
+	InputAction InputSystem::BindController(int key, int action, const InputCallback& trigger)
+	{
+		return BindInput(InputAction(key, action, InputType::CONTROLLER, trigger));
 	}
 
 	InputAction InputSystem::BindInput(const InputAction& inputAction)

@@ -94,12 +94,22 @@ namespace Nightly
 		// Fires callbacks for keys / buttons that are being held down.
 		static void Update();
 
-		// Triggers function when an action is performed with a key / button.
+		// Triggers a function when an action is performed with a key.
 		// Action must be either NL_PRESS, NL_RELEASE or NL_HOLD.
 		// Returns the generated InputAction object.
-		static InputAction BindInput(int key, int action, const InputCallback& trigger);
+		static InputAction BindKey(int key, int action, const InputCallback& trigger);
 
-		// Triggers function when an action is performed with a key / button.
+		// Triggers a function when an action is performed with a mouse button.
+		// Action must be either NL_PRESS, NL_RELEASE or NL_HOLD.
+		// Returns the generated InputAction object.
+		static InputAction BindMouse(int key, int action, const InputCallback& trigger);
+
+		// Triggers a function when an action is performed with a controller button.
+		// Action must be either NL_PRESS, NL_RELEASE or NL_HOLD.
+		// Returns the generated InputAction object.
+		static InputAction BindController(int key, int action, const InputCallback& trigger);
+
+		// Triggers a function when an action is performed with a key / button.
 		// Action must be either NL_PRESS, NL_RELEASE or NL_HOLD.
 		// Returns the generated InputAction object.
 		static InputAction BindInput(const InputAction& inputAction);
