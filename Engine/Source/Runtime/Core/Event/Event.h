@@ -4,8 +4,7 @@
 #include "Core/Core.h"
 
 // Implements the GetName() function.
-#define NL_DEFINE_EVENT(ClassName) ClassName() : WindowEvent(nullptr) {} \
-NL_NODISCARD virtual std::string GetName() const override { return #ClassName; } \
+#define NL_DEFINE_EVENT(ClassName) NL_NODISCARD virtual std::string GetName() const override { return #ClassName; } \
 static const inline std::string EventType = #ClassName
 
 namespace Nightly
