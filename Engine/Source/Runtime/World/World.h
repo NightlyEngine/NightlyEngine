@@ -3,6 +3,7 @@
 #include "Core/EngineAPI.h"
 #include "Core/ITrackable.h"
 #include "Core/UUID.h"
+#include "Core/Core.h"
 
 namespace Nightly
 {
@@ -14,7 +15,7 @@ namespace Nightly
 	{
 	public:
 		explicit World(std::string_view name = "New World", uint64_t id = 0)
-				: m_Name(name), UUID(id)
+				: UUID(id), m_Name(name)
 		{
 		}
 
@@ -70,11 +71,12 @@ namespace Nightly
 		// Returns whether the operation was successful.
 		bool RemoveEntitiesByTag(std::string_view tag);
 
-		[[nodiscard]] const std::string& GetName() const
+		NL_NODISCARD const std::string& GetName() const
 		{
 			return m_Name;
 		}
 
+		// TODO: Validate world name
 		void SetName(const std::string& newName)
 		{
 			m_Name = newName;
