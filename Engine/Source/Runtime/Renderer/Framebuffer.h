@@ -1,5 +1,8 @@
 #pragma once
 
+#include "Core/EngineAPI.h"
+#include "Core/Core.h"
+
 namespace Nightly
 {
 	struct NL_API FramebufferProps
@@ -33,29 +36,48 @@ namespace Nightly
 
 		friend class Framebuffer;
 	};
+
+	class NL_API Framebuffer
 	{
 	public:
-		Framebuffer() = default;
+		Framebuffer()
+				: m_Framebuffer(), m_ColorBuffer(), m_RenderBuffer(), m_Props()
+		{
+		}
+
+		explicit Framebuffer(const FramebufferProps& props)
+				: m_Framebuffer(), m_ColorBuffer(), m_RenderBuffer(), m_Props(props)
+		{
+			Generate(props);
+		}
+
 		~Framebuffer() = default;
 
-		void Setup();
-
-		// Recreates the framebuffer using the new resolution.
-		void Invalidate(int width, int height);
+		// Recreates the framebuffer using the new properties.
+		void Invalidate(const FramebufferProps& props);
 
 		void Bind() const;
 		static void Unbind();
 
 		void Cleanup();
 
-		[[nodiscard]] uint32_t GetColorBuffer() const
+		NL_NODISCARD uint32_t GetColorBuffer() const
 		{
 			return m_ColorBuffer;
 		}
 
+		NL_NODISCARD FramebufferProps GetProps() const
+		{
+			return m_Props;
+		}
+
 	private:
+		void Generate(const FramebufferProps& props);
+
 		uint32_t m_Framebuffer;
 		uint32_t m_ColorBuffer;
 		uint32_t m_RenderBuffer;
+
+		FramebufferProps m_Props;
 	};
 }
