@@ -42,7 +42,7 @@ namespace Nightly
 
 	void MeshComponent::Draw()
 	{
-		Renderer::GetShaderProgram()->SetUniformMatrix4fv("uModel", GetEntity()->Transform()->GetTransform());
+		Renderer::GetShaderProgram().SetUniformMatrix4fv("uModel", GetEntity()->Transform()->GetTransform());
 
 		glBindVertexArray(m_VAO);
 		glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, nullptr);
