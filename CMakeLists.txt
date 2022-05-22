@@ -28,10 +28,6 @@ else ()
     set(CMAKE_RUNTIME_OUTPUT_DIRECTORY "${PROJECT_SOURCE_DIR}/Engine/Binaries/${CMAKE_BUILD_TYPE}")
 endif ()
 
-# Get rid of an additional <CONFIGURATION> directory
-#set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY_DEBUG "${PROJECT_SOURCE_DIR}/Engine/Binaries/${CMAKE_BUILD_TYPE}")
-#set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY_RELEASE "${PROJECT_SOURCE_DIR}/Engine/Binaries/${CMAKE_BUILD_TYPE}")
-
 # Include the source directory
 include_directories("${PROJECT_SOURCE_DIR}/Engine/Source")
 
