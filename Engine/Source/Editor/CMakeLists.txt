@@ -12,7 +12,9 @@ add_executable(NightlyEditor
         Windows/DockspaceWindow.cpp
         Windows/DockspaceWindow.h
         Windows/WorldWindow.cpp
-        Windows/WorldWindow.h)
+        Windows/WorldWindow.h
+        Windows/ViewportWindow.cpp
+        Windows/ViewportWindow.h)
 
 # Set rpath relative to editor app
 if (NOT MSVC)
