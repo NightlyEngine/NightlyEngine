@@ -10,7 +10,6 @@ namespace NightlyEditor
 {
 	void WorldWindow::OnDraw()
 	{
-		ImGui::PushStyleVar(ImGuiStyleVar_FramePadding, { 4, 10 });
 		ImGui::PushStyleVar(ImGuiStyleVar_WindowPadding, { 0, 0 });
 		ImGui::Begin("World", &m_IsOpen);
 		ImGui::PopStyleVar();
@@ -39,7 +38,6 @@ namespace NightlyEditor
 			}
 		}
 
-		ImGui::PopStyleVar();
 		ImGui::End();
 	}
 }
