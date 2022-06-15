@@ -17,7 +17,7 @@ namespace Nightly
 		glfwSetErrorCallback(GlfwErrorCallback);
 	}
 
-	std::shared_ptr<Window> WindowManager::Create(const WindowProps& props)
+	Ref<Window> WindowManager::Create(const WindowProps& props)
 	{
 		auto window = std::make_shared<Window>(props);
 		m_WindowRegistry.push_back(window);

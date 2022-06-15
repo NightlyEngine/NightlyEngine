@@ -27,13 +27,13 @@ namespace Nightly
 		{
 		}
 
-		std::shared_ptr<Entity> GetEntity()
+		Ref<Entity> GetEntity()
 		{
 			return m_AttachedEntity;
 		}
 
 	private:
-		std::shared_ptr<Entity> m_AttachedEntity;
+		Ref<Entity> m_AttachedEntity;
 
 		friend class Entity;
 	};

@@ -7,7 +7,7 @@ namespace Nightly
 {
 	Entity::~Entity() = default;
 
-	void Entity::Initialize(const std::shared_ptr<World>& attachedWorld)
+	void Entity::Initialize(const Ref<World>& attachedWorld)
 	{
 		if (Transform()) return;
 
@@ -18,10 +18,10 @@ namespace Nightly
 		m_ComponentRegistry.push_back(component);
 	}
 
-	std::shared_ptr<Entity> Entity::GetPointer() const
+	Ref<Entity> Entity::GetPointer() const
 	{
 		if (!m_AttachedWorld) return nullptr;
-		
+
 		return m_AttachedWorld->FindEntityById(GetUUID());
 	}
 }

@@ -1,6 +1,7 @@
 #pragma once
 
 #include "EngineAPI.h"
+#include "Core.h"
 
 namespace Nightly
 {
@@ -24,11 +25,11 @@ namespace Nightly
 		}
 
 		// Creates a new window object using the given properties.
-		static std::shared_ptr<Window> Create(const WindowProps& props);
+		static Ref<Window> Create(const WindowProps& props);
 
 		// FIXME:   Returns the firstly created window for now.
 		//          In the future, this function will return the focused window.
-		static inline std::shared_ptr<Window> GetCurrentWindow()
+		static inline Ref<Window> GetCurrentWindow()
 		{
 			return !m_WindowRegistry.empty() ? m_WindowRegistry[0] : nullptr;
 		}
@@ -44,6 +45,6 @@ namespace Nightly
 
 		static inline bool m_IsInitialized = false;
 
-		static inline std::vector<std::shared_ptr<Window>> m_WindowRegistry;
+		static inline std::vector<Ref<Window>> m_WindowRegistry;
 	};
 }

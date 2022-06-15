@@ -9,7 +9,7 @@ namespace Nightly
 {
 	class Entity;
 
-	using EntityList = std::vector<std::shared_ptr<Entity>>;
+	using EntityList = std::vector<Ref<Entity>>;
 
 	class NL_API World : public ITrackable<World>, public UUID
 	{
@@ -24,26 +24,26 @@ namespace Nightly
 		NL_DEFINE_TRACKABLE(World);
 
 		// Creates a new entity and adds it to the registry.
-		std::shared_ptr<Entity> CreateEntity(std::string_view name = "New Entity", std::string_view tag = "Default", uint64_t uuid = 0);
+		Ref<Entity> CreateEntity(std::string_view name = "New Entity", std::string_view tag = "Default", uint64_t uuid = 0);
 
 		// Adds entity to the registry if it isn't already there,
 		// returns false otherwise.
-		bool AddEntity(const std::shared_ptr<Entity>& entity);
+		bool AddEntity(const Ref<Entity>& entity);
 
 		// Scans the entire entity registry and returns
 		// the first entity that matches the specified name.
 		// Returns nullptr if it was not found.
-		std::shared_ptr<Entity> FindEntity(std::string_view name);
+		Ref<Entity> FindEntity(std::string_view name);
 
 		// Scans the entire entity registry and returns
 		// the first entity that matches the specified tag.
 		// Returns nullptr if it was not found.
-		std::shared_ptr<Entity> FindEntityByTag(std::string_view tag);
+		Ref<Entity> FindEntityByTag(std::string_view tag);
 
 		// Scans the entire entity registry and returns
 		// the first entity that matches the specified id.
 		// Returns nullptr if it was not found.
-		std::shared_ptr<Entity> FindEntityById(uint64_t id);
+		Ref<Entity> FindEntityById(uint64_t id);
 
 		// Scans the entire entity registry and populates outList
 		// with all entities that match the specified name.
@@ -59,7 +59,7 @@ namespace Nightly
 
 		// Removes entity with its children from the registry
 		// and returns whether the operation was successful.
-		bool RemoveEntity(const std::shared_ptr<Entity>& entity);
+		bool RemoveEntity(const Ref<Entity>& entity);
 
 		// Scans the entire entity registry and removes
 		// all entities that match the specified name.

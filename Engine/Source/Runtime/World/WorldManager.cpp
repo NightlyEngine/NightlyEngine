@@ -5,15 +5,15 @@
 
 namespace Nightly
 {
-	std::vector<std::shared_ptr<World>> WorldManager::m_WorldRegistry;
-	std::shared_ptr<World> WorldManager::m_ActiveWorld;
+	std::vector<Ref<World>> WorldManager::m_WorldRegistry;
+	Ref<World> WorldManager::m_ActiveWorld;
 
 	WorldManager::~WorldManager() = default;
 
-	std::shared_ptr<World> WorldManager::CreateWorld(std::string_view name, uint64_t id)
+	Ref<World> WorldManager::CreateWorld(std::string_view name, uint64_t id)
 	{
 		const auto it = std::find_if(m_WorldRegistry.begin(), m_WorldRegistry.end(),
-		                             [name](const std::shared_ptr<World>& element)
+		                             [name](const Ref<World>& element)
 		                             {
 			                             return element->GetName() == name;
 		                             });
@@ -33,7 +33,7 @@ namespace Nightly
 		return world;
 	}
 
-	bool WorldManager::LoadWorld(const std::shared_ptr<World>& newWorld)
+	bool WorldManager::LoadWorld(const Ref<World>& newWorld)
 	{
 		if (m_ActiveWorld == newWorld) return false;
 
@@ -52,10 +52,10 @@ namespace Nightly
 		return true;
 	}
 
-	std::shared_ptr<World> WorldManager::FindWorld(std::string_view name)
+	Ref<World> WorldManager::FindWorld(std::string_view name)
 	{
 		auto world = std::find_if(m_WorldRegistry.begin(), m_WorldRegistry.end(),
-		                          [name](const std::shared_ptr<World>& element)
+		                          [name](const Ref<World>& element)
 		                          {
 			                          return element->GetName() == name;
 		                          });
@@ -64,10 +64,10 @@ namespace Nightly
 		return world == m_WorldRegistry.end() ? nullptr : *world;
 	}
 
-	std::shared_ptr<World> WorldManager::FindWorldById(uint64_t id)
+	Ref<World> WorldManager::FindWorldById(uint64_t id)
 	{
 		auto world = std::find_if(m_WorldRegistry.begin(), m_WorldRegistry.end(),
-		                          [id](const std::shared_ptr<World>& element)
+		                          [id](const Ref<World>& element)
 		                          {
 			                          return element->GetUUID() == id;
 		                          });
@@ -76,7 +76,7 @@ namespace Nightly
 		return world == m_WorldRegistry.end() ? nullptr : *world;
 	}
 
-	bool WorldManager::RemoveWorld(const std::shared_ptr<World>& world)
+	bool WorldManager::RemoveWorld(const Ref<World>& world)
 	{
 		const auto it = std::remove(m_WorldRegistry.begin(), m_WorldRegistry.end(), world);
 		bool found = it != m_WorldRegistry.end();

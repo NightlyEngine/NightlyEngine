@@ -30,7 +30,7 @@ namespace Nightly
 		NL_DEFINE_TRACKABLE(Entity);
 
 		// Creates transform component and sets the attached world.
-		void Initialize(const std::shared_ptr<World>& attachedWorld);
+		void Initialize(const Ref<World>& attachedWorld);
 
 		[[nodiscard]] const std::string& GetName() const
 		{
@@ -53,13 +53,13 @@ namespace Nightly
 		}
 
 		// Returns the world that the entity is attached to.
-		std::shared_ptr<World> GetWorld()
+		Ref<World> GetWorld()
 		{
 			return m_AttachedWorld;
 		}
 
 		// Attaches this entity to the parent entity.
-		void SetParent(const std::shared_ptr<Entity>& parent)
+		void SetParent(const Ref<Entity>& parent)
 		{
 			if (!parent) return;
 
@@ -70,7 +70,7 @@ namespace Nightly
 		}
 
 		// Returns the parent that this entity is attached to.
-		std::shared_ptr<Entity> GetParent()
+		Ref<Entity> GetParent()
 		{
 			return m_ParentEntity;
 		}
@@ -90,13 +90,13 @@ namespace Nightly
 
 		// Returns the child entity by a specified index, which is 0 by default.
 		// Returns nullptr if the index was out of bounds.
-		std::shared_ptr<Entity> GetChild(uint64_t index = 0)
+		Ref<Entity> GetChild(uint64_t index = 0)
 		{
 			return m_ChildEntities.size() > index ? m_ChildEntities[index] : nullptr;
 		}
 
 		// Returns all child entities.
-		std::vector<std::shared_ptr<Entity>>& GetChildren()
+		std::vector<Ref<Entity>>& GetChildren()
 		{
 			return m_ChildEntities;
 		}
@@ -104,7 +104,7 @@ namespace Nightly
 		// Adds a component to the registry and returns
 		// whether the operation was successful.
 		template <typename T>
-		bool AddComponent(std::shared_ptr<T> component)
+		bool AddComponent(Ref<T> component)
 		{
 			// Prevent adding another transform component
 			if (std::is_same_v<T, TransformComponent>)
@@ -148,7 +148,7 @@ namespace Nightly
 		// Returns the first component that matches
 		// the specified type, otherwise nullptr.
 		template <typename T>
-		std::shared_ptr<T> GetComponent()
+		Ref<T> GetComponent()
 		{
 			for (const auto& component : m_ComponentRegistry)
 			{
@@ -163,7 +163,7 @@ namespace Nightly
 		}
 
 		// Returns the transform component.
-		std::shared_ptr<TransformComponent> Transform()
+		Ref<TransformComponent> Transform()
 		{
 			return GetComponent<TransformComponent>();
 		}
@@ -172,14 +172,14 @@ namespace Nightly
 		std::string m_Name;
 		std::string m_Tag;
 
-		std::shared_ptr<World> m_AttachedWorld;
+		Ref<World> m_AttachedWorld;
 
-		std::shared_ptr<Entity> m_ParentEntity;
-		std::vector<std::shared_ptr<Entity>> m_ChildEntities;
+		Ref<Entity> m_ParentEntity;
+		std::vector<Ref<Entity>> m_ChildEntities;
 
-		std::vector<std::shared_ptr<Component>> m_ComponentRegistry;
+		std::vector<Ref<Component>> m_ComponentRegistry;
 
-		[[nodiscard]] std::shared_ptr<Entity> GetPointer() const;
+		NL_NODISCARD Ref<Entity> GetPointer() const;
 
 		friend class World;
 	};
