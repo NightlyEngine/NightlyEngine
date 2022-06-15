@@ -8,7 +8,17 @@ namespace Nightly
 {
 	void Framebuffer::Invalidate(const FramebufferProps& props)
 	{
-		Generate(props);
+		if (props.IsHDR())
+		{
+			glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA16F, props.GetWidth(), props.GetHeight(), 0, GL_RGBA, GL_FLOAT, nullptr);
+		}
+		else
+		{
+			glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, props.GetWidth(), props.GetHeight(), 0, GL_RGB, GL_UNSIGNED_BYTE, nullptr);
+		}
+
+		// Renderbuffer
+		glRenderbufferStorage(GL_RENDERBUFFER, GL_DEPTH24_STENCIL8, props.GetWidth(), props.GetHeight());
 	}
 
 	void Framebuffer::Bind() const
@@ -54,6 +64,7 @@ namespace Nightly
 		glRenderbufferStorage(GL_RENDERBUFFER, GL_DEPTH24_STENCIL8, props.GetWidth(), props.GetHeight());
 
 		Bind();
+		
 		glFramebufferTexture2D(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, GL_TEXTURE_2D, m_RenderBuffer, 0);
 		glFramebufferRenderbuffer(GL_FRAMEBUFFER, GL_DEPTH_STENCIL_ATTACHMENT, GL_RENDERBUFFER, m_RenderBuffer);
 
