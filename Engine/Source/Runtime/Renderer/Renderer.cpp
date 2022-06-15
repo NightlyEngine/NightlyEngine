@@ -61,6 +61,11 @@ namespace Nightly
 
 			FramebufferProps props(width, height, false);
 			m_Framebuffer = Framebuffer(props);
+
+			if (!m_DrawFramebufferToScreen)
+			{
+				Framebuffer::Unbind();
+			}
 		}
 
 		ScreenPlane::Initialize();
@@ -103,16 +108,25 @@ namespace Nightly
 	void Renderer::BeginFrame()
 	{
 		ClearColor();
-		m_Framebuffer.Bind();
+
+		if (m_DrawFramebufferToScreen)
+		{
+			m_Framebuffer.Bind();
+		}
+
 		glEnable(GL_DEPTH_TEST);
 		ClearColor();
 	}
 
 	void Renderer::EndFrame()
 	{
-		Framebuffer::Unbind();
 		glDisable(GL_DEPTH_TEST);
-		ClearColor();
+
+		if (m_DrawFramebufferToScreen)
+		{
+			Framebuffer::Unbind();
+			ClearColor();
+		}
 	}
 
 	void Renderer::ClearColor()
