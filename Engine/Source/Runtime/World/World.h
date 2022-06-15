@@ -82,9 +82,15 @@ namespace Nightly
 			m_Name = newName;
 		}
 
+		// Returns a vector of all entities in this world.
+		NL_NODISCARD const EntityList& GetEntityRegistry() const
+		{
+			return m_EntityRegistry;
+		}
+
 	private:
 		std::string m_Name;
-		std::vector<std::shared_ptr<Entity>> m_EntityRegistry;
+		EntityList m_EntityRegistry;
 
 		friend class Renderer;
 	};
