@@ -5,9 +5,6 @@
 
 namespace Nightly
 {
-	std::vector<Ref<World>> WorldManager::m_WorldRegistry;
-	Ref<World> WorldManager::m_ActiveWorld;
-
 	WorldManager::~WorldManager() = default;
 
 	Ref<World> WorldManager::CreateWorld(std::string_view name, uint64_t id)

@@ -45,7 +45,7 @@ namespace Nightly
 		}
 
 	private:
-		static std::vector<Ref<World>> m_WorldRegistry;
-		static Ref<World> m_ActiveWorld;
+		static inline std::vector<Ref<World>> m_WorldRegistry;
+		static inline Ref<World> m_ActiveWorld;
 	};
 }
