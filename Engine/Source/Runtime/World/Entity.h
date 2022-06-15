@@ -32,7 +32,7 @@ namespace Nightly
 		// Creates transform component and sets the attached world.
 		void Initialize(const Ref<World>& attachedWorld);
 
-		[[nodiscard]] const std::string& GetName() const
+		NL_NODISCARD const std::string& GetName() const
 		{
 			return m_Name;
 		}
@@ -42,7 +42,7 @@ namespace Nightly
 			m_Name = newName;
 		}
 
-		[[nodiscard]] const std::string& GetTag() const
+		NL_NODISCARD const std::string& GetTag() const
 		{
 			return m_Tag;
 		}

@@ -1,6 +1,7 @@
 #pragma once
 
 #include "EngineAPI.h"
+#include "Core.h"
 
 namespace Nightly
 {
@@ -20,7 +21,7 @@ namespace Nightly
 			return m_UUID;
 		}
 
-		[[nodiscard]] const uint64_t& GetUUID() const
+		NL_NODISCARD const uint64_t& GetUUID() const
 		{
 			return m_UUID;
 		}
