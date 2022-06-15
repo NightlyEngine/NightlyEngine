@@ -3,7 +3,16 @@ project(NightlyEditor)
 
 set(CMAKE_CXX_STANDARD 20)
 
-add_executable(NightlyEditor EditorApp.cpp)
+add_executable(NightlyEditor
+        EditorApp.cpp
+        EditorUI.cpp
+        EditorUI.h
+        Windows/EditorWindow.cpp
+        Windows/EditorWindow.h
+        Windows/DockspaceWindow.cpp
+        Windows/DockspaceWindow.h
+        Windows/WorldWindow.cpp
+        Windows/WorldWindow.h)
 
 # Set rpath relative to editor app
 if (NOT MSVC)
