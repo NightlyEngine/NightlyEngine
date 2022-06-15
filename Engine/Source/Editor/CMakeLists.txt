@@ -3,7 +3,14 @@ project(NightlyEditor)
 
 set(CMAKE_CXX_STANDARD 20)
 
-add_executable(NightlyEditor EditorApp.cpp)
+find_package(Vulkan REQUIRED)
+
+add_executable(NightlyEditor
+        EditorApp.cpp
+        EditorUI.cpp
+        EditorUI.h
+        UIBackend.cpp
+        UIBackend.h)
 
 # Set rpath relative to editor app
 if (NOT MSVC)

@@ -3,6 +3,8 @@ project(NightlyEngine)
 
 set(CMAKE_CXX_STANDARD 20)
 
+find_package(Vulkan REQUIRED FATAL_ERROR)
+
 add_library(NightlyEngine SHARED
         Core/Application.h
         Core/Core.h
@@ -62,11 +64,15 @@ add_library(NightlyEngine SHARED
         World/Components/MeshComponent.cpp
         World/Components/CameraComponent.h
         World/Components/CameraComponent.cpp
-        )
+        Renderer/VulkanAPI.cpp
+        Renderer/VulkanAPI.h)
 
 target_precompile_headers(NightlyEngine PUBLIC Core/PCH.h)
+
+target_include_directories(NightlyEngine PUBLIC ${Vulkan_INCLUDE_DIR})
 
 target_link_libraries(NightlyEngine glad)
 target_link_libraries(NightlyEngine glfw)
 target_link_libraries(NightlyEngine glm)
+target_link_libraries(NightlyEngine ${Vulkan_LIBRARIES})
 
