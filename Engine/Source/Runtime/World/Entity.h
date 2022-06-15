@@ -3,6 +3,8 @@
 #include "Core/EngineAPI.h"
 #include "Core/ITrackable.h"
 #include "Core/UUID.h"
+#include "Core/Core.h"
+
 #include "Components/Component.h"
 #include "Components/TransformComponent.h"
 
@@ -16,12 +18,12 @@ namespace Nightly
 	{
 	public:
 		explicit Entity(std::string_view name = "New Entity", std::string_view tag = "Default")
-				: m_Name(name), m_Tag(tag), UUID()
+				: UUID(), m_Name(name), m_Tag(tag)
 		{
 		}
 
 		Entity(std::string_view name, std::string_view tag, uint64_t uuid)
-				: m_Name(name), m_Tag(tag), UUID(uuid)
+				: UUID(uuid), m_Name(name), m_Tag(tag)
 		{
 		}
 
@@ -99,6 +101,12 @@ namespace Nightly
 		std::vector<Ref<Entity>>& GetChildren()
 		{
 			return m_ChildEntities;
+		}
+
+		// Returns whether the entity has any children.
+		bool HasChildren()
+		{
+			return !m_ChildEntities.empty();
 		}
 
 		// Adds a component to the registry and returns
