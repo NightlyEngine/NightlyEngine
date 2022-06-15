@@ -49,7 +49,7 @@ namespace Nightly
 
 	void ScreenPlane::Update(uint32_t renderTexture)
 	{
-		glClearColor(1, 1, 1, 1);
+		glClearColor(0, 1, 1, 1);
 		glClear(GL_COLOR_BUFFER_BIT);
 
 		m_ScreenShader.Use();
