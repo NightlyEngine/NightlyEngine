@@ -10,6 +10,7 @@
 #include "Windows/EditorWindow.h"
 #include "Windows/DockspaceWindow.h"
 #include "Windows/WorldWindow.h"
+#include "Windows/ViewportWindow.h"
 
 namespace NightlyEditor
 {
@@ -28,6 +29,51 @@ namespace NightlyEditor
 
 		io.Fonts->AddFontFromFileTTF("../../Source/ThirdParty/imgui-cmake/misc/fonts/Roboto-Medium.ttf", 16.0f);
 
+		ConfigureStyle();
+
+		ImGui_ImplGlfw_InitForOpenGL(window, true);
+		ImGui_ImplOpenGL3_Init("#version 150");
+
+		auto dockspaceWindow = std::make_shared<DockspaceWindow>();
+		auto worldWindow = std::make_shared<WorldWindow>();
+		auto viewportWindow = std::make_shared<ViewportWindow>();
+
+		AddEditorWindow(dockspaceWindow);
+		AddEditorWindow(worldWindow);
+		AddEditorWindow(viewportWindow);
+	}
+
+	void EditorUI::Draw()
+	{
+		ImGui_ImplOpenGL3_NewFrame();
+		ImGui_ImplGlfw_NewFrame();
+		ImGui::NewFrame();
+
+		// ImGui::ShowDemoWindow();
+
+		for (const auto& window : m_WindowRegistry)
+		{
+			window->OnDraw();
+		}
+
+		ImGui::Render();
+		ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
+	}
+
+	void EditorUI::Terminate()
+	{
+		ImGui_ImplOpenGL3_Shutdown();
+		ImGui_ImplGlfw_Shutdown();
+		ImGui::DestroyContext();
+	}
+
+	void EditorUI::AddEditorWindow(const Ref<EditorWindow>& window)
+	{
+		m_WindowRegistry.push_back(window);
+	}
+
+	void EditorUI::ConfigureStyle()
+	{
 		ImGui::StyleColorsDark();
 
 		ImColor bg(34, 34, 34);
@@ -76,43 +122,5 @@ namespace NightlyEditor
 		style.Colors[ImGuiCol_Separator] = black;
 		style.Colors[ImGuiCol_SeparatorHovered] = primary;
 		style.Colors[ImGuiCol_SeparatorActive] = primary;
-
-		ImGui_ImplGlfw_InitForOpenGL(window, true);
-		ImGui_ImplOpenGL3_Init("#version 150");
-
-		auto dockspaceWindow = std::make_shared<DockspaceWindow>();
-		auto worldWindow = std::make_shared<WorldWindow>();
-
-		AddEditorWindow(dockspaceWindow);
-		AddEditorWindow(worldWindow);
-	}
-
-	void EditorUI::Draw()
-	{
-		ImGui_ImplOpenGL3_NewFrame();
-		ImGui_ImplGlfw_NewFrame();
-		ImGui::NewFrame();
-
-		ImGui::ShowDemoWindow();
-
-		for (const auto& window : m_WindowRegistry)
-		{
-			window->OnDraw();
-		}
-
-		ImGui::Render();
-		ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
-	}
-
-	void EditorUI::Terminate()
-	{
-		ImGui_ImplOpenGL3_Shutdown();
-		ImGui_ImplGlfw_Shutdown();
-		ImGui::DestroyContext();
-	}
-
-	void EditorUI::AddEditorWindow(const Ref<EditorWindow>& window)
-	{
-		m_WindowRegistry.push_back(window);
 	}
 }
