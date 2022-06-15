@@ -137,16 +137,9 @@ namespace Nightly
 
 	void Renderer::InvalidateViewport()
 	{
-		// Resize OpenGL viewport
-		//glViewport(0, 0, (int) m_ViewportSize.x, (int) m_ViewportSize.y);
-
 		// Update viewport camera's aspect ratio
 		float ratio = m_ViewportSize.x / m_ViewportSize.y;
 		m_FallbackCamera->GetComponent<CameraComponent>()->SetAspectRatio(ratio);
-
-		// Recreate framebuffer
-		/*FramebufferProps props((int) m_ViewportSize.x, (int) m_ViewportSize.y, m_Framebuffer.GetProps().IsHDR());
-		m_Framebuffer.Invalidate(props);*/
 	}
 
 	void Renderer::InvalidateFramebuffer(EventFun fun)
