@@ -3,7 +3,7 @@
 	url = https://github.com/glfw/glfw.git
 [submodule "Engine/Source/ThirdParty/glm"]
 	path = Engine/Source/ThirdParty/glm
-	url = https://github.com/g-truc/glm.git]
+	url = https://github.com/g-truc/glm.git
 [submodule "Engine/Source/ThirdParty/imgui-cmake"]
 	path = Engine/Source/ThirdParty/imgui-cmake
 	url = https://github.com/futureblur/imgui-cmake.git
