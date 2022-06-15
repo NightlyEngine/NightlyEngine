@@ -7,10 +7,13 @@
 
 #if defined(NL_PLATFORM_OSX)
 #define NL_CDECL __cdecl
+#define NL_PLUGIN_API __attribute__((visibility("default")))
 #elif defined(NL_PLATFORM_LINUX)
 #define NL_CDECL __attribute__((__cdecl__))
+#define NL_PLUGIN_API __attribute__((visibility("default")))
 #elif defined(NL_PLATFORM_WINDOWS)
 #define NL_CDECL __declspec(dllexport)
+#define NL_PLUGIN_API __declspec(dllexport)
 #endif
 
 // Defines the entry point for the plugin,
