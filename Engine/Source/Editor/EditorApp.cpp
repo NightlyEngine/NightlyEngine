@@ -15,6 +15,8 @@
 #include "World/Components/MeshComponent.h"
 #include "Renderer/Renderer.h"
 
+#include "EditorUI.h"
+
 using namespace Nightly;
 
 namespace NightlyEditor
@@ -48,7 +50,10 @@ namespace NightlyEditor
 
 			m_EditorWindow = WindowManager::Create(props);
 
+			Renderer::m_DrawFramebufferToScreen = true;
 			Renderer::Initialize();
+
+			EditorUI::Initialize(m_EditorWindow->GetNativeWindow());
 
 			PluginManager::LoadActivePlugins();
 
@@ -85,6 +90,7 @@ namespace NightlyEditor
 
 			InputSystem::Update();
 			Renderer::Update();
+			EditorUI::Draw();
 			PluginManager::UpdatePlugins();
 
 			m_EditorWindow->SwapBuffers();
@@ -102,13 +108,14 @@ namespace NightlyEditor
 
 			m_EditorWindow->Destroy();
 			PluginManager::UnloadPlugins();
+			EditorUI::Terminate();
 			Renderer::Cleanup();
 			WindowManager::Terminate();
 		}
 
 	private:
 		std::unique_ptr<Engine> m_EngineInstance;
-		std::shared_ptr<Window> m_EditorWindow;
+		Ref<Window> m_EditorWindow;
 	};
 }
 
