@@ -16,7 +16,7 @@ namespace Nightly
 		EventSystem() = default;
 		~EventSystem() = default;
 
-		// Listens to callbacks and executes code when it gets fired.
+		// Listens for callbacks and executes code when it gets fired.
 		static void Subscribe(const std::string& type, const EventCallback& trigger);
 
 		// Triggers callbacks on all subscribed objects.
