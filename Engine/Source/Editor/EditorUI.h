@@ -21,6 +21,8 @@ namespace NightlyEditor
 		static void AddEditorWindow(const Ref<EditorWindow>& window);
 
 	private:
+		static void ConfigureStyle();
+
 		static inline std::vector<Ref<EditorWindow>> m_WindowRegistry;
 	};
 }
