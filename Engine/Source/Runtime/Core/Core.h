@@ -20,3 +20,6 @@
 #endif
 
 #define NL_NODISCARD [[nodiscard]]
+
+template <typename T>
+using Ref = std::shared_ptr<T>;
