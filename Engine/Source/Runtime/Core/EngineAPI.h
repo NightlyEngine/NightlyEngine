@@ -14,5 +14,10 @@
 #endif
 
 #else
+#if defined(NL_PLATFORM_WINDOWS)
+#define NL_API __declspec(dllimport)
+#else
 #define NL_API
+#endif
+
 #endif
