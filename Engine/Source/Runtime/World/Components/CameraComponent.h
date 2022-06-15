@@ -19,7 +19,7 @@ namespace Nightly
 	public:
 		CameraComponent(float fov, float aspectRatio, float near, float far)
 				: m_ProjectionType(ProjectionType::Perspective),
-				  m_FOV(fov > 0 ? fov : 60), m_Near(near), m_Far(far),
+				  m_FOV(fov > 0.0f ? fov : 60.0f), m_Near(near), m_Far(far),
 				  m_AspectRatio(aspectRatio), m_Bounds(0.0f),
 				  m_Projection(glm::perspective(glm::radians(fov), 1.6f, near, far))
 		{
