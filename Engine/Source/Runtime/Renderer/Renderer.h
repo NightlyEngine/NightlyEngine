@@ -27,10 +27,32 @@ namespace Nightly
 			return m_ShaderProgram;
 		}
 
+		static Framebuffer GetFramebuffer()
+		{
+			return m_Framebuffer;
+		}
+
+		static Vec2 GetViewportSize()
+		{
+			return m_ViewportSize;
+		}
+
+		static void SetViewportSize(const Vec2& size)
+		{
+			if (size.x > 0 && size.y > 0)
+			{
+				m_ViewportSize = size;
+				InvalidateViewport();
+			}
+		}
+
+		static inline bool m_DrawFramebufferToScreen = false;
+
 	private:
 		static void BeginFrame();
 		static void EndFrame();
 		static void ClearColor();
+		static void InvalidateViewport();
 		static void InvalidateFramebuffer(EventFun fun);
 
 	private:
@@ -40,5 +62,7 @@ namespace Nightly
 		static std::unique_ptr<Entity> m_FallbackCamera;
 
 		static Framebuffer m_Framebuffer;
+
+		static inline Vec2 m_ViewportSize;
 	};
 }

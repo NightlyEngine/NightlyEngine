@@ -88,7 +88,10 @@ namespace Nightly
 
 		EndFrame();
 
-		ScreenPlane::Update(m_Framebuffer.GetColorBuffer());
+		if (m_DrawFramebufferToScreen)
+		{
+			ScreenPlane::Update(m_Framebuffer.GetColorBuffer());
+		}
 	}
 
 	void Renderer::Cleanup()
@@ -99,6 +102,7 @@ namespace Nightly
 
 	void Renderer::BeginFrame()
 	{
+		ClearColor();
 		m_Framebuffer.Bind();
 		glEnable(GL_DEPTH_TEST);
 		ClearColor();
@@ -108,6 +112,7 @@ namespace Nightly
 	{
 		Framebuffer::Unbind();
 		glDisable(GL_DEPTH_TEST);
+		ClearColor();
 	}
 
 	void Renderer::ClearColor()
@@ -116,10 +121,25 @@ namespace Nightly
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 	}
 
+	void Renderer::InvalidateViewport()
+	{
+		// Resize OpenGL viewport
+		//glViewport(0, 0, (int) m_ViewportSize.x, (int) m_ViewportSize.y);
+
+		// Update viewport camera's aspect ratio
+		float ratio = m_ViewportSize.x / m_ViewportSize.y;
+		m_FallbackCamera->GetComponent<CameraComponent>()->SetAspectRatio(ratio);
+
+		// Recreate framebuffer
+		/*FramebufferProps props((int) m_ViewportSize.x, (int) m_ViewportSize.y, m_Framebuffer.GetProps().IsHDR());
+		m_Framebuffer.Invalidate(props);*/
+	}
+
 	void Renderer::InvalidateFramebuffer(EventFun fun)
 	{
-		auto event = NL_CAST_EVENT(OnFramebufferResize, fun);
+		if (!m_DrawFramebufferToScreen) return;
 
+		auto event = NL_CAST_EVENT(OnFramebufferResize, fun);
 		if (event)
 		{
 			// Resize OpenGL viewport
