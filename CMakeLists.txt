@@ -10,6 +10,7 @@ set(GLFW_BUILD_EXAMPLES OFF CACHE BOOL "" FORCE)
 
 # Set ImGui backends
 set(IMGUI_BACKEND_GLFW TRUE)
+set(IMGUI_BACKEND_OpenGL3 TRUE)
 set(IMGUI_BACKEND_GLFW_PATH "../glfw/include")
 
 # Set MSVC compiler flags
