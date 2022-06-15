@@ -8,6 +8,10 @@ set(GLFW_BUILD_DOCS OFF CACHE BOOL "" FORCE)
 set(GLFW_BUILD_TESTS OFF CACHE BOOL "" FORCE)
 set(GLFW_BUILD_EXAMPLES OFF CACHE BOOL "" FORCE)
 
+# Set ImGui backends
+set(IMGUI_BACKEND_GLFW TRUE)
+set(IMGUI_BACKEND_GLFW_PATH "../glfw/include")
+
 # Set MSVC compiler flags
 if (MSVC)
     add_compile_options(
@@ -35,6 +39,7 @@ include_directories("${PROJECT_SOURCE_DIR}/Engine/Source")
 add_subdirectory(Engine/Source/ThirdParty/glfw)
 add_subdirectory(Engine/Source/ThirdParty/glad)
 add_subdirectory(Engine/Source/ThirdParty/glm)
+add_subdirectory(Engine/Source/ThirdParty/imgui-cmake)
 
 # Add Nightly modules
 add_subdirectory(Engine/Source/Runtime)
@@ -48,6 +53,7 @@ target_compile_definitions(${PROJECT_NAME} PRIVATE NL_EXPORT_DLL)
 target_include_directories(${PROJECT_NAME} PUBLIC "Engine/Source/ThirdParty/glfw/include")
 target_include_directories(${PROJECT_NAME} PUBLIC "Engine/Source/ThirdParty/glad/include")
 target_include_directories(${PROJECT_NAME} PUBLIC "Engine/Source/ThirdParty/glm")
+target_include_directories(${PROJECT_NAME} PUBLIC "Engine/Source/ThirdParty/imgui-cmake")
 
 # Set engine include paths
 target_include_directories(${PROJECT_NAME} PUBLIC "Engine/Source/Runtime")

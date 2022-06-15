@@ -13,5 +13,6 @@ endif ()
 # Precompiled headers
 target_precompile_headers(NightlyEditor PUBLIC ../Runtime/Core/PCH.h)
 
-# Link editor with engine
+# Link editor with submodules
 target_link_libraries(NightlyEditor NightlyEngine)
+target_link_libraries(NightlyEditor imgui)
