@@ -68,3 +68,12 @@ def install_deps(os_name, deps, install_cmd, update_cmd):
 
 
     log_info("Installation finished.")
+
+
+def prompt_configuration():
+    config = input("Which configuration? [Debug/Release]: ")
+    if config != "Debug" and config != "Release":
+        log_fail("Unknown configuration. Valid configurations: Debug, Release")
+        return ""
+
+    return config

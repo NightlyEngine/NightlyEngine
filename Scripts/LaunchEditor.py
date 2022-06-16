@@ -1,9 +1,10 @@
 from os.path import exists
 import os
-from Utils import log_info, log_fail, get_os
+from Utils import log_info, log_fail, get_os, prompt_configuration
 
-# Build configuration
-config = "Debug"
+config = prompt_configuration()
+if config == "":
+    exit()
 
 # Set paths
 binary_path = f"Engine/Binaries/{config}"
@@ -66,9 +67,13 @@ log_info("Launching Nightly Editor...")
 # Wish the user a good time
 print("Have fun and remember to stay hydrated!")
 
+# Set working directory to editor location
+os.chdir(binary_path)
+
 # Launch Nightly
 if os_name != "Windows":
-    os.system(editor_path)
+    os.system("./" + editor_name)
 else:
     win_path = binary_path.replace("/", "\\")
-    os.system(".\\" + win_path + "\\" + editor_name)
+    # os.system(".\\" + win_path + "\\" + editor_name)
+    os.system(editor_name)
