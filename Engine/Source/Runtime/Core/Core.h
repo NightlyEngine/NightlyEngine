@@ -8,7 +8,12 @@
 // Creates a string stream for concatenating multiple data types.
 #define NL_TEXT(string) std::stringstream("").str() << string
 
-#define NL_ASSERT(condition, message, source) NL_CORE_FATAL(message, source)
+#define NL_ASSERT(condition, message, source)           \
+do                                                      \
+{                                                       \
+	if(!(condition)) NL_CORE_FATAL(message, source);    \
+}                                                       \
+while(0)
 #else
 
 #include <cassert>
