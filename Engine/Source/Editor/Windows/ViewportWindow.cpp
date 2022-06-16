@@ -16,7 +16,7 @@ namespace NightlyEditor
 
 		ImVec2 size = ImGui::GetContentRegionAvail();
 		Renderer::SetViewportSize(Vec2(size.x, size.y));
-		ImGui::Image(reinterpret_cast<ImTextureID>(Renderer::GetFramebuffer().GetColorBuffer()), size);
+		ImGui::Image((ImTextureID) (uint64_t) (Renderer::GetFramebuffer().GetColorBuffer()), size);
 
 		ImGui::End();
 	}
