@@ -6,7 +6,7 @@
 #include "World/World.h"
 #include "World/Entity.h"
 
-namespace NightlyEditor
+namespace NLE
 {
 	void WorldWindow::OnDraw()
 	{
@@ -14,7 +14,7 @@ namespace NightlyEditor
 		ImGui::Begin("World", &m_IsOpen);
 		ImGui::PopStyleVar();
 
-		for (const auto& entity : Nightly::WorldManager::GetActiveWorld()->GetEntityRegistry())
+		for (const auto& entity : NL::WorldManager::GetActiveWorld()->GetEntityRegistry())
 		{
 			const char* name = entity->GetName().c_str();
 

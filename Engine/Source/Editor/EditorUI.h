@@ -4,7 +4,7 @@
 
 struct GLFWwindow;
 
-namespace NightlyEditor
+namespace NLE
 {
 	class EditorWindow;
 

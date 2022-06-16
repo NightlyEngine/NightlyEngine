@@ -2,7 +2,7 @@
 
 #include "EditorWindow.h"
 
-namespace NightlyEditor
+namespace NLE
 {
 	class DockspaceWindow : public EditorWindow
 	{

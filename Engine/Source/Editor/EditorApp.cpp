@@ -17,9 +17,9 @@
 
 #include "EditorUI.h"
 
-using namespace Nightly;
+using namespace NL;
 
-namespace NightlyEditor
+namespace NLE
 {
 	class EditorApp : public Application
 	{
@@ -119,13 +119,11 @@ namespace NightlyEditor
 	};
 }
 
-using namespace NightlyEditor;
-
 int main(int argc, char** argv)
 {
 	std::cout << "\n\n" << "Nightly Engine Copyright (C) 2022 Futureblur\n"
 	          << "Welcome to Nightly Engine! Enjoy your time and happy coding :)\n\n";
 
-	auto editor = std::make_unique<EditorApp>();
+	auto editor = std::make_unique<NLE::EditorApp>();
 	editor->Start();
 }

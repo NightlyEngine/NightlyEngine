@@ -2,7 +2,7 @@
 
 #include <imgui.h>
 
-namespace NightlyEditor
+namespace NLE
 {
 	void DockspaceWindow::OnDraw()
 	{

@@ -12,7 +12,7 @@
 #include "Windows/WorldWindow.h"
 #include "Windows/ViewportWindow.h"
 
-namespace NightlyEditor
+namespace NLE
 {
 	void EditorUI::Initialize(GLFWwindow* window)
 	{

@@ -1,5 +1,5 @@
 #include "EditorWindow.h"
 
-namespace NightlyEditor
+namespace NLE
 {
 }

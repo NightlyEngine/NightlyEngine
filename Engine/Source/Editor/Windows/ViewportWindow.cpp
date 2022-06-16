@@ -4,9 +4,9 @@
 
 #include "Renderer/Renderer.h"
 
-using namespace Nightly;
+using namespace NL;
 
-namespace NightlyEditor
+namespace NLE
 {
 	void ViewportWindow::OnDraw()
 	{

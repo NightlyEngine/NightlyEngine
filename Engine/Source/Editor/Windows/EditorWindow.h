@@ -1,6 +1,6 @@
 #pragma once
 
-namespace NightlyEditor
+namespace NLE
 {
 	class EditorWindow
 	{
