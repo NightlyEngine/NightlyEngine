@@ -13,11 +13,14 @@ set(IMGUI_BACKEND_GLFW TRUE)
 set(IMGUI_BACKEND_OpenGL3 TRUE)
 set(IMGUI_BACKEND_GLFW_PATH "../glfw/include")
 
+# Build GLFW as a shared library
+set(GLFW_LIBRARY_TYPE "SHARED")
+
 # Set MSVC compiler flags
 if (MSVC)
     add_compile_options(
-            $<$<CONFIG:>:/MT>
-            $<$<CONFIG:Debug>:/MTd>
+            $<$<CONFIG:>:/MDd>
+            $<$<CONFIG:Debug>:/MDd>
             $<$<CONFIG:Release>:/MT>
     )
 endif ()
