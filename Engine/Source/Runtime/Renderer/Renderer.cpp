@@ -50,7 +50,7 @@ namespace Nightly
 			m_FallbackCamera->Initialize(nullptr);
 
 			float aspect = WindowManager::GetCurrentWindow()->GetAspectRatio();
-			auto camera = std::make_shared<CameraComponent>(60, aspect, 0.1f, 1000.0f);
+			auto camera = std::make_shared<CameraComponent>(60.0f, aspect, 0.1f, 1000.0f);
 			m_FallbackCamera->AddComponent<CameraComponent>(camera);
 		}
 
