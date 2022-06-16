@@ -66,7 +66,5 @@ add_library(NightlyEngine SHARED
 
 target_precompile_headers(NightlyEngine PUBLIC Core/PCH.h)
 
-target_link_libraries(NightlyEngine glad)
-target_link_libraries(NightlyEngine glfw)
-target_link_libraries(NightlyEngine glm)
+target_link_libraries(NightlyEngine PUBLIC glad glfw glm ${CMAKE_DL_LIBS})
 
