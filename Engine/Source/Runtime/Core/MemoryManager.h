@@ -2,7 +2,7 @@
 
 #include "EngineAPI.h"
 
-namespace Nightly
+namespace NL
 {
 	// Keeps track of the total heap allocated memory.
 	class NL_API MemoryManager

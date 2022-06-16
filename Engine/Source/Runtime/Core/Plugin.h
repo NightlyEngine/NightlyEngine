@@ -19,13 +19,13 @@
 // Defines the entry point for the plugin,
 // so it can be called from the PluginManager.
 #define NL_PLUGIN_IMPL(ClassName)                                           \
-        extern "C" NL_CDECL Nightly::Plugin* GetPluginPtr()                 \
+        extern "C" NL_CDECL NL::Plugin* GetPluginPtr()                 \
         {                                                                   \
-            return static_cast<Nightly::Plugin*>(new Nightly::ClassName);   \
+            return static_cast<NL::Plugin*>(new NL::ClassName);   \
         }
 
 
-namespace Nightly
+namespace NL
 {
 	// This is a base class for plugins.
 	class NL_API Plugin : public ITrackable<Plugin>

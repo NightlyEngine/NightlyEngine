@@ -4,7 +4,7 @@
 
 #include "Core/Core.h"
 
-namespace Nightly
+namespace NL
 {
 	void Framebuffer::Invalidate(const FramebufferProps& props)
 	{
@@ -64,7 +64,7 @@ namespace Nightly
 		glRenderbufferStorage(GL_RENDERBUFFER, GL_DEPTH24_STENCIL8, props.GetWidth(), props.GetHeight());
 
 		Bind();
-		
+
 		glFramebufferTexture2D(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, GL_TEXTURE_2D, m_RenderBuffer, 0);
 		glFramebufferRenderbuffer(GL_FRAMEBUFFER, GL_DEPTH_STENCIL_ATTACHMENT, GL_RENDERBUFFER, m_RenderBuffer);
 

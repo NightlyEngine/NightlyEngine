@@ -6,7 +6,7 @@
 #include "EventSystem.h"
 #include "InputEvents.h"
 
-namespace Nightly
+namespace NL
 {
 	InputAction InputSystem::BindKey(int key, int action, const InputCallback& trigger)
 	{

@@ -3,7 +3,7 @@
 #include "Component.h"
 #include "Core/EngineAPI.h"
 
-namespace Nightly
+namespace NL
 {
 	struct ShaderProgram;
 

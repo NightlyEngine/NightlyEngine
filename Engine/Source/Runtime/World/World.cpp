@@ -4,7 +4,7 @@
 #include "Entity.h"
 #include "WorldManager.h"
 
-namespace Nightly
+namespace NL
 {
 	World::~World() = default;
 

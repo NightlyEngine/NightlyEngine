@@ -5,7 +5,7 @@
 #include "Renderer/Shader.h"
 #include "World/Entity.h"
 
-namespace Nightly
+namespace NL
 {
 	void MeshComponent::Setup()
 	{

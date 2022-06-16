@@ -19,7 +19,7 @@
 #include "Core/Event/EventSystem.h"
 #include "Core/Event/WindowEvents.h"
 
-namespace Nightly
+namespace NL
 {
 	std::unique_ptr<Entity> Renderer::m_FallbackCamera;
 	Framebuffer Renderer::m_Framebuffer;

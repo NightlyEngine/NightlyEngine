@@ -7,7 +7,7 @@
 #include "Core/Log.h"
 #include "Core/PluginManager.h"
 
-namespace Nightly
+namespace NL
 {
 	// This class allows direct communication with the native WinAPI.
 	class NL_API WindowsPlatform

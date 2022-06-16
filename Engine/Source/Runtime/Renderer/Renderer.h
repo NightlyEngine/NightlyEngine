@@ -5,7 +5,7 @@
 #include "Framebuffer.h"
 #include "Shader.h"
 
-namespace Nightly
+namespace NL
 {
 	class Entity;
 

@@ -2,7 +2,7 @@
 
 #include <random>
 
-namespace Nightly
+namespace NL
 {
 	static std::random_device m_Device;
 

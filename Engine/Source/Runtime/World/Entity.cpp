@@ -3,7 +3,7 @@
 #include "World.h"
 #include "Components/TransformComponent.h"
 
-namespace Nightly
+namespace NL
 {
 	Entity::~Entity() = default;
 

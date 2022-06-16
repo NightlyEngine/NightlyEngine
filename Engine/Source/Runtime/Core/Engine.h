@@ -2,7 +2,7 @@
 
 #include "Application.h"
 
-namespace Nightly
+namespace NL
 {
 	// The entire engine runtime application.
 	class NL_API Engine : public Application

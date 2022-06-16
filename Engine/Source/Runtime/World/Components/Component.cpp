@@ -2,7 +2,7 @@
 
 #include "World/Entity.h"
 
-namespace Nightly
+namespace NL
 {
 	Component::~Component() = default;
 }

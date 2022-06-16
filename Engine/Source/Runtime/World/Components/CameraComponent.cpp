@@ -1,6 +1,6 @@
 #include "CameraComponent.h"
 
-namespace Nightly
+namespace NL
 {
 	void CameraComponent::UpdateProjection()
 	{

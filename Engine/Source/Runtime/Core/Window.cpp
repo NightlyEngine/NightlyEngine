@@ -13,7 +13,7 @@
 #include "Event/WindowEvents.h"
 #include "Core/Event/InputSystem.h"
 
-namespace Nightly
+namespace NL
 {
 	void Window::Initialize(const WindowProps& props)
 	{
@@ -67,7 +67,7 @@ namespace Nightly
 	void Window::Destroy()
 	{
 		if (!m_IsRunning) return;
-		
+
 		m_IsRunning = false;
 		glfwDestroyWindow(m_Window);
 	}

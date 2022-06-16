@@ -6,7 +6,7 @@
 
 #undef ERROR
 
-namespace Nightly
+namespace NL
 {
 	void WindowsPlatform::SetConsoleColor(const LogSeverity& severity)
 	{

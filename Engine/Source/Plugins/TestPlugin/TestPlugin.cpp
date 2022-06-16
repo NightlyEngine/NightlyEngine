@@ -2,7 +2,7 @@
 
 #include "Runtime/Core/Log.h"
 
-namespace Nightly
+namespace NL
 {
 	void TestPlugin::OnLoad()
 	{

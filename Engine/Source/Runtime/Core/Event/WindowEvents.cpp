@@ -2,6 +2,6 @@
 
 #include <GLFW/glfw3.h>
 
-namespace Nightly::Events
+namespace NL::Events
 {
 }

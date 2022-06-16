@@ -2,7 +2,7 @@
 
 #include "EngineAPI.h"
 
-namespace Nightly
+namespace NL
 {
 	// This class contains functions for retrieving time related information.
 	class NL_API EngineTime

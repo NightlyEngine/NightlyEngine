@@ -8,7 +8,7 @@
 #include "Core/Core.h"
 #include "Core/Log.h"
 
-namespace Nightly
+namespace NL
 {
 	void Shader::Compile(uint32_t type, std::string_view path)
 	{
@@ -89,7 +89,7 @@ namespace Nightly
 	void ShaderProgram::SetUniform3fv(const char* name, const Vec3& value) const
 	{
 		NL_ASSERT(m_IsInitialized, "Forgot to call Initialize() on ShaderProgram.", ENGINE);
-		
+
 		int location = glGetUniformLocation(m_Program, name);
 		glUniform3fv(location, 1, glm::value_ptr(value));
 	}

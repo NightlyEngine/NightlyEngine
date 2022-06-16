@@ -1,6 +1,6 @@
 #include "EventSystem.h"
 
-namespace Nightly
+namespace NL
 {
 	EventSystem::EventPool EventSystem::m_EventPool;
 

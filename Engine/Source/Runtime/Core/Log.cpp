@@ -8,7 +8,7 @@
 
 #endif
 
-namespace Nightly
+namespace NL
 {
 	void Log::Info(const std::stringstream& message, const LogSource& source)
 	{

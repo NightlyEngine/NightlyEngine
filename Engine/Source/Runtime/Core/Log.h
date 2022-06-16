@@ -2,7 +2,7 @@
 
 #include "EngineAPI.h"
 
-namespace Nightly
+namespace NL
 {
 	// Specifies the source from which the message comes from.
 	// Standalone games should always use LogSource::PLAYER.
@@ -71,28 +71,28 @@ namespace Nightly
             } while(0)
 
 	// Macro for logging an info message to the console with the source being PLAYER.
-	#define NL_INFO(message) NL_LOG(message, Nightly::LogSource::PLAYER, Info)
+	#define NL_INFO(message) NL_LOG(message, NL::LogSource::PLAYER, Info)
 
 	// Same as NL_INFO, but with the option to specify a source.
-	#define NL_CORE_INFO(message, source) NL_LOG(message, Nightly::LogSource::source, Info)
+	#define NL_CORE_INFO(message, source) NL_LOG(message, NL::LogSource::source, Info)
 
 	// Macro for logging a warning message to the console with the source being PLAYER.
-	#define NL_WARN(message) NL_LOG(message, Nightly::LogSource::PLAYER, Warn)
+	#define NL_WARN(message) NL_LOG(message, NL::LogSource::PLAYER, Warn)
 
 	// Same as NL_WARN, but with the option to specify a source.
-	#define NL_CORE_WARN(message, source) NL_LOG(message, Nightly::LogSource::source, Warn)
+	#define NL_CORE_WARN(message, source) NL_LOG(message, NL::LogSource::source, Warn)
 
 	// Macro for logging an error message to the console with the source being PLAYER.
-	#define NL_ERROR(message) NL_LOG(message, Nightly::LogSource::PLAYER, Error)
+	#define NL_ERROR(message) NL_LOG(message, NL::LogSource::PLAYER, Error)
 
 	// Same as NL_ERROR, but with the option to specify a source.
-	#define NL_CORE_ERROR(message, source) NL_LOG(message, Nightly::LogSource::source, Error)
+	#define NL_CORE_ERROR(message, source) NL_LOG(message, NL::LogSource::source, Error)
 
 	// Macro for logging a fatal error message to the console with the source being PLAYER.
-	#define NL_FATAL(message) NL_LOG(message, Nightly::LogSource::PLAYER, Fatal)
+	#define NL_FATAL(message) NL_LOG(message, NL::LogSource::PLAYER, Fatal)
 
 	// Same as NL_FATAL, but with the option to specify a source.
-	#define NL_CORE_FATAL(message, source) NL_LOG(message, Nightly::LogSource::source, Fatal)
+	#define NL_CORE_FATAL(message, source) NL_LOG(message, NL::LogSource::source, Fatal)
 
 	// Converts Vec3 into text.
 	#define NL_VEC3_TEXT(vector) "( " << (vector).x << " | " << (vector).y << " | " << (vector).z << " )"

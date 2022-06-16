@@ -20,7 +20,7 @@ constexpr const char* NL_LIB_EXT = ".dylib";
 constexpr const char* NL_LIB_EXT = ".so";
 #endif
 
-namespace Nightly
+namespace NL
 {
 	void PluginManager::LoadActivePlugins()
 	{

@@ -3,7 +3,7 @@
 #include "EngineAPI.h"
 #include "Core.h"
 
-namespace Nightly
+namespace NL
 {
 	class Window;
 	struct WindowProps;

@@ -6,7 +6,7 @@
 
 struct GLFWwindow;
 
-namespace Nightly
+namespace NL
 {
 	// Specifies the properties of a window during creation.
 	struct WindowProps

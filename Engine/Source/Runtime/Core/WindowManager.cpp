@@ -6,7 +6,7 @@
 #include "Log.h"
 #include "Window.h"
 
-namespace Nightly
+namespace NL
 {
 	void WindowManager::Initialize()
 	{

@@ -5,7 +5,7 @@
 // Sets the TrackableClassName variable that is used by ITrackable.
 #define NL_DEFINE_TRACKABLE(className) static constexpr std::string_view TrackableClassName = #className
 
-namespace Nightly
+namespace NL
 {
 	// Tracks the heap memory usage of its derived class
 	// and reports it to MemoryManager for profiling.

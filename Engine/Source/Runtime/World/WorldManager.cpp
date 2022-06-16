@@ -3,7 +3,7 @@
 #include "Core/Log.h"
 #include "World.h"
 
-namespace Nightly
+namespace NL
 {
 	std::vector<Ref<World>> WorldManager::m_WorldRegistry;
 	Ref<World> WorldManager::m_ActiveWorld;

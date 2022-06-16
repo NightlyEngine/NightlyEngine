@@ -5,12 +5,15 @@
 
 #define NL_CAST_EVENT(Type, fun) (Events::Type*) &fun
 
-namespace Nightly
+namespace NL
 {
 	class NL_API EventSystem
 	{
 	public:
-		typedef std::function<void(EventFun fun)> EventCallback;
+		typedef std::function<
+		void(EventFun
+		fun)>
+		EventCallback;
 		typedef std::map<std::string, std::vector<EventCallback>> EventPool;
 
 		EventSystem() = default;

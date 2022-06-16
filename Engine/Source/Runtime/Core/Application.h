@@ -4,7 +4,7 @@
 
 #include "ITrackable.h"
 
-namespace Nightly
+namespace NL
 {
 	// This is a base class for all application types.
 	class NL_API Application : public ITrackable<Application>

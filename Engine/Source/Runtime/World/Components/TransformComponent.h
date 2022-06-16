@@ -4,7 +4,7 @@
 #include "Core/EngineAPI.h"
 #include "Core/Math.h"
 
-namespace Nightly
+namespace NL
 {
 	// Contains information like position, rotation and scale.
 	class NL_API TransformComponent : public Component

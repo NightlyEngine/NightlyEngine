@@ -2,7 +2,7 @@
 
 #include "EngineAPI.h"
 
-namespace Nightly
+namespace NL
 {
 	class Plugin;
 

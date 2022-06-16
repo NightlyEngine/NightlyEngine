@@ -3,7 +3,7 @@
 #include "Core.h"
 #include "Log.h"
 
-namespace Nightly
+namespace NL
 {
 	void Engine::Start()
 	{

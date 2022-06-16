@@ -8,7 +8,7 @@
 // Implements the GetName() function.
 #define NL_DEFINE_COMPONENT(ClassName) NL_NODISCARD virtual std::string GetName() const override { return #ClassName; }
 
-namespace Nightly
+namespace NL
 {
 	class Entity;
 

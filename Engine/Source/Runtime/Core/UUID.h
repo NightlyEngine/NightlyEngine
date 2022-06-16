@@ -3,7 +3,7 @@
 #include "EngineAPI.h"
 #include "Core.h"
 
-namespace Nightly
+namespace NL
 {
 	class NL_API UUID
 	{
@@ -34,9 +34,9 @@ namespace Nightly
 namespace std
 {
 	template <>
-	struct hash<Nightly::UUID>
+	struct hash<NL::UUID>
 	{
-		std::size_t operator()(const Nightly::UUID& uuid) const
+		std::size_t operator()(const NL::UUID& uuid) const
 		{
 			return hash<uint64_t>()((uint64_t) uuid);
 		}

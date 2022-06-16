@@ -2,7 +2,7 @@
 
 #include "World/Entity.h"
 
-namespace Nightly
+namespace NL
 {
 	void TransformComponent::Translate(const Vec3& position)
 	{

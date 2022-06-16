@@ -4,7 +4,7 @@
 #include <ctime>
 #include <iomanip>
 
-namespace Nightly
+namespace NL
 {
 	std::string EngineTime::GetTimeString()
 	{

@@ -7,7 +7,7 @@
 
 struct GLFWwindow;
 
-namespace Nightly::Events
+namespace NL::Events
 {
 	struct NL_API InputEvent : public Event
 	{

@@ -5,7 +5,7 @@
 #include "Core/Math.h"
 #include "Core/Core.h"
 
-namespace Nightly
+namespace NL
 {
 	enum class ProjectionType
 	{

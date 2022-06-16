@@ -5,7 +5,7 @@
 #include "Core/UUID.h"
 #include "Core/Core.h"
 
-namespace Nightly
+namespace NL
 {
 	class Entity;
 

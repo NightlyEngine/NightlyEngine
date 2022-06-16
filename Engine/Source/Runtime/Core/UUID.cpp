@@ -2,7 +2,7 @@
 
 #include <random>
 
-namespace Nightly
+namespace NL
 {
 	static std::random_device m_Device;
 	static std::mt19937_64 m_Engine(m_Device());

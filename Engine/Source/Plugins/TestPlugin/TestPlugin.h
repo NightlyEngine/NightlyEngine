@@ -2,7 +2,7 @@
 
 #include "Runtime/Core/Plugin.h"
 
-namespace Nightly
+namespace NL
 {
 	class NL_PLUGIN_API TestPlugin : public Plugin
 	{

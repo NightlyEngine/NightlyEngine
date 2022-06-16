@@ -8,7 +8,7 @@
 #include "Components/Component.h"
 #include "Components/TransformComponent.h"
 
-namespace Nightly
+namespace NL
 {
 	class World;
 

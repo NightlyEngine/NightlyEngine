@@ -7,7 +7,7 @@
 
 struct GLFWwindow;
 
-namespace Nightly
+namespace NL
 {
 	typedef std::function<void()> InputCallback;
 

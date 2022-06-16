@@ -3,7 +3,7 @@
 #include "Core/EngineAPI.h"
 #include "Core/Math.h"
 
-namespace Nightly
+namespace NL
 {
 	// An OpenGL shader object.
 	class NL_API Shader

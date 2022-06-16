@@ -4,7 +4,7 @@
 
 #include "Shader.h"
 
-namespace Nightly
+namespace NL
 {
 	void ScreenPlane::Initialize()
 	{

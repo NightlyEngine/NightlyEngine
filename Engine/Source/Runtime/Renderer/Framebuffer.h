@@ -3,7 +3,7 @@
 #include "Core/EngineAPI.h"
 #include "Core/Core.h"
 
-namespace Nightly
+namespace NL
 {
 	struct NL_API FramebufferProps
 	{

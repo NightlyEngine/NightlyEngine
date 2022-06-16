@@ -5,7 +5,7 @@
 #define NL_MEGABYTES 1000000
 #define NL_KILOBYTES 1000
 
-namespace Nightly
+namespace NL
 {
 	void MemoryManager::LogUsage()
 	{

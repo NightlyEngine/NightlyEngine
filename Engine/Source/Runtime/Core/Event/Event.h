@@ -7,7 +7,7 @@
 #define NL_DEFINE_EVENT(ClassName) NL_NODISCARD virtual std::string GetName() const override { return #ClassName; } \
 static const inline std::string EventType = #ClassName
 
-namespace Nightly
+namespace NL
 {
 	struct NL_API Event
 	{
