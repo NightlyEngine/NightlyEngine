@@ -32,7 +32,7 @@ def generate_project(generator, config, build_path):
     log_info("Building project...")
     
     # Build project
-    if os.system(f"cmake --build {build_path}") != 0:
+    if os.system(f"cmake --build {build_path} --config {config}") != 0:
         log_fail("Failed to build project.")
         exit()
     
