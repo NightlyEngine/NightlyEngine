@@ -20,7 +20,7 @@ add_executable(NightlyEditor
 if (NOT MSVC)
     set_target_properties(NightlyEditor PROPERTIES LINK_FLAGS "-Wl,-rpath,./")
 else ()
-    set_target_properties(NightlyEditor VS_DEBUGGER_WORKING_DIRECTORY "${CMAKE_SOURCE_DIR}/Engine/Binaries/Debug")
+    set_target_properties(NightlyEditor PROPERTIES VS_DEBUGGER_WORKING_DIRECTORY "${CMAKE_SOURCE_DIR}/Engine/Binaries/Debug")
 endif ()
 
 # Precompiled headers
