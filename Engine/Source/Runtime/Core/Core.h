@@ -9,14 +9,14 @@ using Ref = std::shared_ptr<T>;
 #define NL_TEXT(string) std::stringstream("") << string
 
 // Assert
-#ifndef NDEBUG
+#ifdef NDEBUG
 
 #include "Log.h"
 
 #define NL_ASSERT(condition, message, source)           \
 do                                                      \
 {                                                       \
-    if(!(condition)) NL_CORE_FATAL(message, source);    \
+	if(!(condition)) NL_CORE_FATAL(message, source);    \
 }                                                       \
 while(0)
 #else
