@@ -45,6 +45,9 @@ namespace NL
 		std::cout << color << currentTime << " " << LogSeverityToStr(severity) << " @" << LogSourceToStr(source) << ": "
 		          << message.str() << clearColor << "\n";
 
+		ConsoleMessageMetadata metadata(message.str(), currentTime, severity, source);
+		m_LogBuffer.push_back(metadata);
+
 		// Clear color after logging on Windows
 		#ifdef NL_PLATFORM_WINDOWS
 		WindowsPlatform::ClearConsoleColor();

@@ -39,6 +39,18 @@ namespace NL
 		// Logs a fatal error message to the console.
 		static void Fatal(const std::stringstream& message, const LogSource& source = LogSource::PLAYER);
 
+		// Returns all messages that have been printed to the standard output by this class.
+		static const std::vector<ConsoleMessageMetadata>& GetLogBuffer()
+		{
+			return m_LogBuffer;
+		}
+
+		static void ClearLogBuffer()
+		{
+			m_LogBuffer.clear();
+		}
+
+		// Converts LogSeverity enum into string.
 	private:
 		// Contains colors that can be used when printing messages to the console.
 		struct ConsoleColors
@@ -60,6 +72,7 @@ namespace NL
 
 		// Converts LogSource enum into string.
 		static std::string LogSourceToStr(const LogSource& source);
+		static inline std::vector<ConsoleMessageMetadata> m_LogBuffer;
 	};
 
 	// Base macro for logging messages to the console.
