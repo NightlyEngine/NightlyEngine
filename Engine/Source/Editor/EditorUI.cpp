@@ -7,10 +7,14 @@
 
 #include "Platform/PlatformDetection.h"
 
-#include "Windows/EditorWindow.h"
+#include "Core/Log.h"
+
 #include "Windows/DockspaceWindow.h"
 #include "Windows/WorldWindow.h"
 #include "Windows/ViewportWindow.h"
+#include "Windows/ConsoleOutputWindow.h"
+
+using namespace NL;
 
 namespace NLE
 {
@@ -27,20 +31,18 @@ namespace NLE
 		io.ConfigMacOSXBehaviors = true;
 		#endif
 
-		io.Fonts->AddFontFromFileTTF("../../Source/ThirdParty/imgui-cmake/misc/fonts/Roboto-Medium.ttf", 16.0f);
+		m_EditorFont = RegisterFont("OpenSauce/TTF/OpenSauceOne-Medium.ttf", 15.0f);
+		m_FiraCodeFont = RegisterFont("FiraCode/TTF/FiraCode-Medium.ttf", 16.0f);
 
 		ConfigureStyle();
 
 		ImGui_ImplGlfw_InitForOpenGL(window, true);
 		ImGui_ImplOpenGL3_Init("#version 150");
 
-		auto dockspaceWindow = std::make_shared<DockspaceWindow>();
-		auto worldWindow = std::make_shared<WorldWindow>();
-		auto viewportWindow = std::make_shared<ViewportWindow>();
-
-		AddEditorWindow(dockspaceWindow);
-		AddEditorWindow(worldWindow);
-		AddEditorWindow(viewportWindow);
+		RegisterWindow<DockspaceWindow>();
+		RegisterWindow<ViewportWindow>();
+		RegisterWindow<WorldWindow>();
+		RegisterWindow<ConsoleOutputWindow>();
 	}
 
 	void EditorUI::Draw()
@@ -67,9 +69,16 @@ namespace NLE
 		ImGui::DestroyContext();
 	}
 
-	void EditorUI::AddEditorWindow(const Ref<EditorWindow>& window)
+	ImFont* EditorUI::RegisterFont(const std::string& path, float size)
 	{
-		m_WindowRegistry.push_back(window);
+		std::string fullPath = "../../../Resources/Fonts/" + path;
+		if (!std::filesystem::exists(fullPath))
+		{
+			NL_CORE_ERROR("Font file was not found!", EDITOR);
+			return nullptr;
+		}
+
+		return ImGui::GetIO().Fonts->AddFontFromFileTTF(fullPath.c_str(), size);
 	}
 
 	void EditorUI::ConfigureStyle()
