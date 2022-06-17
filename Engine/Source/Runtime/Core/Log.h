@@ -1,12 +1,13 @@
 #pragma once
 
 #include "EngineAPI.h"
+#include "Core.h"
 
 namespace NL
 {
 	// Specifies the source from which the message comes from.
 	// Standalone games should always use LogSource::PLAYER.
-	enum class LogSource
+	enum LogSource : uint8_t
 	{
 		ENGINE,
 		EDITOR,
@@ -15,12 +16,46 @@ namespace NL
 	};
 
 	// Specifies the severity of a log message.
-	enum class LogSeverity
+	enum LogSeverity : uint8_t
 	{
 		INFO,
 		WARNING,
 		ERROR,
 		FATAL
+	};
+
+	struct ConsoleMessageMetadata
+	{
+		ConsoleMessageMetadata(std::string content, std::string timestamp, const LogSeverity& severity, const LogSource& source)
+				: m_Content(std::move(content)), m_Timestamp(std::move(timestamp)), m_Severity(severity), m_Source(source)
+		{
+		}
+
+		NL_NODISCARD const std::string& GetContent() const
+		{
+			return m_Content;
+		}
+
+		NL_NODISCARD const std::string& GetTimestamp() const
+		{
+			return m_Timestamp;
+		}
+
+		NL_NODISCARD const LogSeverity& GetSeverity() const
+		{
+			return m_Severity;
+		}
+
+		NL_NODISCARD const LogSource& GetSource() const
+		{
+			return m_Source;
+		}
+
+	private:
+		const std::string m_Content;
+		const std::string m_Timestamp;
+		const LogSeverity m_Severity;
+		const LogSource m_Source;
 	};
 
 	// This class is responsible for logging messages to the console.
@@ -51,6 +86,11 @@ namespace NL
 		}
 
 		// Converts LogSeverity enum into string.
+		static std::string LogSeverityToStr(const LogSeverity& severity);
+
+		// Converts LogSource enum into string.
+		static std::string LogSourceToStr(const LogSource& source);
+
 	private:
 		// Contains colors that can be used when printing messages to the console.
 		struct ConsoleColors
@@ -67,11 +107,6 @@ namespace NL
 		// Returns a console color based on the severity.
 		static std::string GetSeverityColor(const LogSeverity& severity);
 
-		// Converts LogSeverity enum into string.
-		static std::string LogSeverityToStr(const LogSeverity& severity);
-
-		// Converts LogSource enum into string.
-		static std::string LogSourceToStr(const LogSource& source);
 		static inline std::vector<ConsoleMessageMetadata> m_LogBuffer;
 	};
 
@@ -107,7 +142,13 @@ namespace NL
 	// Same as NL_FATAL, but with the option to specify a source.
 	#define NL_CORE_FATAL(message, source) NL_LOG(message, NL::LogSource::source, Fatal)
 
+	// Converts Vec2 into text.
+	#define NL_VEC2_TEXT(vector) "( " << (vector).x << " | " << (vector).y << " )"
+
 	// Converts Vec3 into text.
 	#define NL_VEC3_TEXT(vector) "( " << (vector).x << " | " << (vector).y << " | " << (vector).z << " )"
+
+	// Converts Vec4 into text.
+	#define NL_VEC4_TEXT(vector) "( " << (vector).x << " | " << (vector).y << " | " << (vector).z << " | " << (vector).w << " )"
 }
 
