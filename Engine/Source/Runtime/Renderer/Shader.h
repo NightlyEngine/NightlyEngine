@@ -11,7 +11,7 @@ namespace NL
 	public:
 		Shader() = default;
 
-		Shader(uint32_t type, std::string_view path)
+		Shader(uint32_t type, const std::string& path)
 				: m_Type(type), m_Shader()
 		{
 			Compile(type, path);
@@ -28,7 +28,7 @@ namespace NL
 		}
 
 	private:
-		void Compile(uint32_t type, std::string_view path);
+		void Compile(uint32_t type, const std::string& path);
 
 		uint32_t m_Type;
 		uint32_t m_Shader;
@@ -36,7 +36,11 @@ namespace NL
 
 	struct ShaderProgram
 	{
-		ShaderProgram() = default;
+		ShaderProgram()
+				: m_Program(), m_IsInitialized(false)
+		{
+		}
+
 		~ShaderProgram() = default;
 
 		void Initialize();
@@ -51,6 +55,6 @@ namespace NL
 
 	private:
 		uint32_t m_Program;
-		bool m_IsInitialized = false;
+		bool m_IsInitialized;
 	};
 }

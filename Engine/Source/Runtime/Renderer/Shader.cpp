@@ -10,7 +10,7 @@
 
 namespace NL
 {
-	void Shader::Compile(uint32_t type, std::string_view path)
+	void Shader::Compile(uint32_t type, const std::string& path)
 	{
 		std::ifstream file(std::string(path).c_str());
 
