@@ -15,8 +15,10 @@ namespace NL
 		std::ifstream file(std::string(path).c_str());
 
 		// Check if file exists
-		auto error = NL_TEXT("Shader file was not found: " << path);
-		NL_ASSERT(std::filesystem::exists(path), error.str().c_str(), ENGINE);
+		if (!std::filesystem::exists(path))
+		{
+			NL_CORE_FATAL("Shader file was not found: " << path, ENGINE);
+		}
 
 		// Read file
 		std::string shaderStr((std::istreambuf_iterator<char>(file)), std::istreambuf_iterator<char>());
