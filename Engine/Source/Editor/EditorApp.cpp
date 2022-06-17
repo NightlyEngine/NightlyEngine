@@ -45,8 +45,8 @@ namespace NLE
 			// Create editor window
 			WindowProps props;
 			props.title = "Nightly Editor - Pre Alpha";
-			props.width = 1280;
-			props.height = 720;
+			props.width = 1920;
+			props.height = 1080;
 
 			m_EditorWindow = WindowManager::Create(props);
 
