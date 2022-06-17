@@ -26,8 +26,11 @@ jobs:
       - name: Install submodules
         run: git submodule update --init
       
+      - name: Update packages
+        run: sudo apt update
+      
       - name: Install deps
-        run: sudo apt-get install libx11-dev libxrandr-dev libxinerama-dev libxcursor-dev libxi-dev libglfw3-dev libgl1-mesa-dev libglu1-mesa-dev
+        run: sudo apt-get install libx11-dev libxrandr-dev libxinerama-dev libxcursor-dev libxi-dev libglfw3-dev libgl1-mesa-dev libglu1-mesa-dev build-essential
       
       # Use ninja generator
       - uses: seanmiddleditch/gha-setup-ninja@master
@@ -38,7 +41,7 @@ jobs:
             cd Engine/Build
             cmake -G Ninja ../..
         
-      - name: Build CMake
+      - name: Build using CMake
         run: cmake --build Engine/Build
       
   build-on-macos:
@@ -61,7 +64,7 @@ jobs:
             cd Engine/Build
             cmake -G Ninja ../..
         
-      - name: Build CMake
+      - name: Build using CMake
         run: cmake --build Engine/Build
         
   build-on-windows:
@@ -87,5 +90,5 @@ jobs:
             cd Engine/Build
             cmake -G Ninja ../..
         
-      - name: Build CMake
+      - name: Build using CMake
         run: cmake --build Engine/Build
