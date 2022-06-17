@@ -1,8 +1,10 @@
 #pragma once
 
+#include "EngineAPI.h"
+
 namespace NL
 {
-	class Utils
+	class NL_API Utils
 	{
 	public:
 		static std::string ToUppercase(std::string text);
