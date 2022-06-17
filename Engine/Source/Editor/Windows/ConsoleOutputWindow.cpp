@@ -104,9 +104,9 @@ namespace NLE
 			ImGui::Indent(10);
 
 			// Console message
-			auto text = NL_TEXT("[" << message.GetTimestamp() << "] " << message.GetContent());
+			auto text = NL_TEXT("[", message.GetTimestamp(), "]", message.GetContent());
 			static int selected = -1;
-			if (ImGui::Selectable(text.str().c_str(), selected == i, 0))
+			if (ImGui::Selectable(text.c_str(), selected == i, 0))
 			{
 				selected = i;
 			}
