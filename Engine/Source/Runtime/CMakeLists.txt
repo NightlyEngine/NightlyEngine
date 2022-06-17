@@ -37,6 +37,8 @@ add_library(NightlyEngine SHARED
         Core/Math.cpp
         Core/UUID.h
         Core/UUID.cpp
+        Core/Utils.h
+        Core/Utils.cpp
         Platform/PlatformDetection.h
         Platform/WindowsPlatform.h
         Platform/WindowsPlatform.cpp
@@ -61,8 +63,7 @@ add_library(NightlyEngine SHARED
         World/Components/MeshComponent.h
         World/Components/MeshComponent.cpp
         World/Components/CameraComponent.h
-        World/Components/CameraComponent.cpp
-        )
+        World/Components/CameraComponent.cpp)
 
 target_precompile_headers(NightlyEngine PUBLIC Core/PCH.h)
 
