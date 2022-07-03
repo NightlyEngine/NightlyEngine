@@ -14,11 +14,11 @@ namespace NL
 
 		if (uuid == 0)
 		{
-			entity = std::make_shared<Entity>(name, tag);
+			entity = Entity::Create(name, tag);
 		}
 		else
 		{
-			entity = std::make_shared<Entity>(name, tag, uuid);
+			entity = Entity::Create(name, tag, uuid);
 		}
 
 		m_EntityRegistry.push_back(entity);

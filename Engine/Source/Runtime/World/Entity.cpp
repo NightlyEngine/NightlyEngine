@@ -13,7 +13,7 @@ namespace NL
 
 		m_AttachedWorld = attachedWorld;
 
-		auto component = std::make_shared<TransformComponent>();
+		auto component = Component::Create<TransformComponent>();
 		component->m_AttachedEntity = GetPointer();
 		m_ComponentRegistry.push_back(component);
 	}
