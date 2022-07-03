@@ -7,22 +7,19 @@
 #include "Core/Log.h"
 #include "Core/WindowManager.h"
 #include "Core/Window.h"
-#include "Shader.h"
-#include "ScreenPlane.h"
-
-#include "World/Components/MeshComponent.h"
-#include "World/Entity.h"
-#include "World/World.h"
-#include "World/WorldManager.h"
-#include "World/Components/CameraComponent.h"
-
 #include "Core/Event/EventSystem.h"
 #include "Core/Event/WindowEvents.h"
 
+#include "Shader.h"
+#include "ScreenPlane.h"
+
+#include "World/Entity.h"
+#include "World/World.h"
+#include "World/Components/CameraComponent.h"
+
 namespace NL
 {
-	std::unique_ptr<Entity> Renderer::m_FallbackCamera;
-	Framebuffer Renderer::m_Framebuffer;
+	Scope<Entity> Renderer::m_FallbackCamera;
 
 	Renderer::~Renderer() = default;
 
@@ -43,26 +40,14 @@ namespace NL
 
 		// Create viewport camera
 		{
-			m_FallbackCamera = std::make_unique<Entity>("Fallback Camera");
+			m_FallbackCamera = MakeScope<Entity>("Fallback Camera");
 			m_FallbackCamera->Initialize(nullptr);
 
 			float aspect = WindowManager::GetCurrentWindow()->GetAspectRatio();
-			auto camera = std::make_shared<CameraComponent>(60.0f, aspect, 0.1f, 1000.0f);
+			CameraSpecification specification(60.0f, aspect, 0.1f, 1000.0f);
+
+			auto camera = Component::Create<CameraComponent>(specification);
 			m_FallbackCamera->AddComponent<CameraComponent>(camera);
-		}
-
-		// Create framebuffer
-		{
-			int width = WindowManager::GetCurrentWindow()->GetWidth();
-			int height = WindowManager::GetCurrentWindow()->GetHeight();
-
-			FramebufferProps props(width, height, false);
-			m_Framebuffer = Framebuffer(props);
-
-			if (!m_DrawFramebufferToScreen)
-			{
-				Framebuffer::Unbind();
-			}
 		}
 
 		ScreenPlane::Initialize();
@@ -72,64 +57,26 @@ namespace NL
 
 	void Renderer::Update()
 	{
-		BeginFrame();
+		m_FallbackCamera->GetComponent<CameraComponent>()->OnDraw(m_ShaderProgram);
 
-		m_ShaderProgram.Use();
-		m_ShaderProgram.SetUniformMatrix4fv("uView", m_FallbackCamera->GetComponent<CameraComponent>()->GetView());
-		m_ShaderProgram.SetUniformMatrix4fv("uProjection", m_FallbackCamera->GetComponent<CameraComponent>()->GetProjection());
-
-		// TODO: Move mesh components into separate registry to increase performance
-		for (const auto& entity : WorldManager::GetActiveWorld()->m_EntityRegistry)
+		// Draw to screen if enabled
+		if (m_FallbackCamera->GetComponent<CameraComponent>()->m_ScreenTarget)
 		{
-			auto mesh = entity->GetComponent<MeshComponent>();
-			if (mesh)
-			{
-				mesh->Draw();
-			}
-		}
-
-		EndFrame();
-
-		if (m_DrawFramebufferToScreen)
-		{
-			ScreenPlane::Update(m_Framebuffer.GetColorBuffer());
+			ScreenPlane::Update(GetActiveFramebuffer().GetColorBuffer());
 		}
 	}
 
 	void Renderer::Cleanup()
 	{
 		ScreenPlane::Cleanup();
-		m_Framebuffer.Cleanup();
+
+		// TODO: Clean up ALL framebuffers, not just the active one
+		GetActiveFramebuffer().Cleanup();
 	}
 
-	void Renderer::BeginFrame()
+	Framebuffer Renderer::GetActiveFramebuffer()
 	{
-		ClearColor();
-
-		if (m_DrawFramebufferToScreen)
-		{
-			m_Framebuffer.Bind();
-		}
-
-		glEnable(GL_DEPTH_TEST);
-		ClearColor();
-	}
-
-	void Renderer::EndFrame()
-	{
-		glDisable(GL_DEPTH_TEST);
-
-		if (m_DrawFramebufferToScreen)
-		{
-			Framebuffer::Unbind();
-			ClearColor();
-		}
-	}
-
-	void Renderer::ClearColor()
-	{
-		glClearColor(27 / 255.f, 25 / 255.f, 50 / 255.f, 1);
-		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+		return m_FallbackCamera->GetComponent<CameraComponent>()->GetFramebuffer();
 	}
 
 	void Renderer::InvalidateViewport()
@@ -155,7 +102,7 @@ namespace NL
 
 			// Recreate framebuffer
 			FramebufferProps props(event->GetWidth(), event->GetHeight(), false);
-			m_Framebuffer.Invalidate(props);
+			GetActiveFramebuffer().Invalidate(props);
 		}
 	}
 }
