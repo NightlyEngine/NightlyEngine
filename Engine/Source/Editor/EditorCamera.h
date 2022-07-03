@@ -16,15 +16,20 @@ namespace NLE
 		~EditorCamera() override = default;
 
 		void OnDraw(const ShaderProgram& shader) override;
+		void OnUpdate(float deltaTime);
 
-		void Update(float deltaTime);
+		// Returns the calculated movement speed of the camera.
+		NL_NODISCARD inline float GetFlySpeed() const
+		{
+			return m_MovementSpeed * m_SpeedMultiplier;
+		}
 
 	private:
 		Vec3 m_Position = Vec3(0.0f);
 		Vec3 m_TargetPosition;
 
 		float m_MovementSpeed = 3.0f;
-		float m_SpeedMultiplier = 2.0f;
+		float m_SpeedMultiplier = 0.5f;
 
 		Vec3 m_Up = Vec3(0.0f, 1.0f, 0.0f);
 		Vec3 m_Front = Vec3(0.0f, 0.0f, -1.0f);
