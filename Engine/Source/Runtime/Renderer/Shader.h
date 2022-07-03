@@ -5,56 +5,41 @@
 
 namespace NL
 {
-	// An OpenGL shader object.
-	class NL_API Shader
+	enum class ShaderType
 	{
-	public:
-		Shader() = default;
-
-		Shader(uint32_t type, const std::string& path)
-				: m_Type(type), m_Shader()
-		{
-			Compile(type, path);
-		}
-
-		~Shader() = default;
-
-		// Calls glDeleteShader on this object.
-		void Delete() const;
-
-		explicit operator uint32_t() const
-		{
-			return m_Shader;
-		}
-
-	private:
-		void Compile(uint32_t type, const std::string& path);
-
-		uint32_t m_Type;
-		uint32_t m_Shader;
+		VERTEX,
+		FRAGMENT
 	};
 
 	struct ShaderProgram
 	{
-		ShaderProgram()
-				: m_Program(), m_IsInitialized(false)
-		{
-		}
+		ShaderProgram() = default;
+		ShaderProgram(const std::string& vertexPath, const std::string& fragmentPath);
 
 		~ShaderProgram() = default;
 
-		void Initialize();
-		void Attach(const Shader& shader) const;
-		void Link() const;
 		void Use() const;
 		void Delete() const;
 
-		void SetUniform3fv(const char* name, const Vec3& value) const;
-		void SetUniform4fv(const char* name, const Vec3& value) const;
-		void SetUniformMatrix4fv(const char* name, const Mat4& value) const;
+		void SetUniformInt(const char* name, int value) const;
+		void SetUniformFloat(const char* name, float value) const;
+		void SetUniformVec3(const char* name, const Vec3& value) const;
+		void SetUniformVec4(const char* name, const Vec3& value) const;
+		void SetUniformMat4(const char* name, const Mat4& value) const;
+
+		explicit operator uint32_t() const
+		{
+			return m_Program;
+		}
 
 	private:
-		uint32_t m_Program;
-		bool m_IsInitialized;
+		static uint32_t Compile(const ShaderType& type, const std::string& path);
+
+		void Link() const;
+
+		static int GetOpenGLShaderType(const ShaderType& type);
+
+		uint32_t m_Program = 0;
+		bool m_IsInitialized = false;
 	};
 }
