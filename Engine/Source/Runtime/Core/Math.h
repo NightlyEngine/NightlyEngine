@@ -30,5 +30,20 @@ namespace NL
 		// Returns a randomly generated double between
 		// min (inclusive) and max (inclusive).
 		static double Random(double min, double max);
+
+		// Returns whether an int is between
+		// min (inclusive) and max (inclusive).
+		static bool IsInRange(int i, int min, int max)
+		{
+			return i >= min && i <= max;
+		}
+
+		// Returns whether a float is between
+		// min (inclusive) and max (inclusive).
+		static bool IsInRange(float f, float min, float max)
+		{
+			return f >= min && f <= max;
+		}
+	};
 	};
 }
