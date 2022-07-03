@@ -55,5 +55,47 @@ namespace NL
 			return f >= min && f <= max;
 		}
 	};
+
+	class Bounds2D
+	{
+	public:
+		Bounds2D() : m_Bounds(0.0f)
+		{
+		}
+
+		Bounds2D(float left, float right, float bottom, float top)
+				: m_Bounds(left, right, bottom, top)
+		{
+		}
+
+		NL_NODISCARD inline float GetLeft() const
+		{
+			return m_Bounds.x;
+		}
+
+		NL_NODISCARD inline float GetRight() const
+		{
+			return m_Bounds.y;
+		}
+
+		NL_NODISCARD inline float GetBottom() const
+		{
+			return m_Bounds.z;
+		}
+
+		NL_NODISCARD inline float GetTop() const
+		{
+			return m_Bounds.w;
+		}
+
+		NL_NODISCARD inline Vec4 GetBounds() const
+		{
+			return m_Bounds;
+		}
+
+	private:
+		Vec4 m_Bounds;
+	};
+
 	};
 }
