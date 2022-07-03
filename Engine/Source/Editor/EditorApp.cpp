@@ -7,15 +7,17 @@
 #include "Core/WindowManager.h"
 #include "Core/Window.h"
 #include "Core/Event/InputSystem.h"
-#include "Core/Event/EventSystem.h"
 #include "Core/Event/InputEvents.h"
+
 #include "World/World.h"
 #include "World/Entity.h"
 #include "World/WorldManager.h"
 #include "World/Components/MeshComponent.h"
+
 #include "Renderer/Renderer.h"
 
 #include "EditorUI.h"
+#include "EditorCamera.h"
 
 using namespace NL;
 
@@ -35,7 +37,7 @@ namespace NLE
 
 			// Create engine app
 			// FIXME: Do we even need this?
-			m_EngineInstance = std::make_unique<Engine>();
+			m_EngineInstance = MakeScope<Engine>();
 			m_EngineInstance->Start();
 
 			NL_CORE_INFO("Initializing Nightly Editor...", EDITOR);
@@ -62,7 +64,7 @@ namespace NLE
 
 			auto parent = world->CreateEntity("Parent Entity");
 			parent->Transform()->Translate(Vec3(0, 0, -1));
-			parent->AddComponent<MeshComponent>(std::make_shared<MeshComponent>());
+			parent->AddComponent<MeshComponent>(Component::Create<MeshComponent>());
 
 			// Quit when ESC is pressed
 			InputSystem::BindKey(NL_KEY_ESCAPE, NL_PRESS, [this]
@@ -114,8 +116,9 @@ namespace NLE
 		}
 
 	private:
-		std::unique_ptr<Engine> m_EngineInstance;
+		Scope<Engine> m_EngineInstance;
 		Ref<Window> m_EditorWindow;
+		Scope<EditorCamera> m_EditorCamera;
 	};
 }
 
@@ -124,6 +127,6 @@ int main(int argc, char** argv)
 	std::cout << "\n\n" << "Nightly Engine Copyright (C) 2022 Futureblur\n"
 	          << "Welcome to Nightly Engine! Enjoy your time and happy coding :)\n\n";
 
-	auto editor = std::make_unique<NLE::EditorApp>();
+	auto editor = MakeScope<NLE::EditorApp>();
 	editor->Start();
 }
