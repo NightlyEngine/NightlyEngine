@@ -39,7 +39,7 @@ namespace NL
 
 		static int GetOpenGLShaderType(const ShaderType& type);
 
-		uint32_t m_Program = 0;
+		uint32_t m_Program { };
 		bool m_IsInitialized = false;
 	};
 }
