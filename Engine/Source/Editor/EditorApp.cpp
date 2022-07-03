@@ -93,6 +93,9 @@ namespace NLE
 			m_EngineInstance->Update();
 
 			InputSystem::Update();
+
+			// TODO: Use delta time
+			m_EditorCamera->OnUpdate(1.0f);
 			Renderer::Update();
 			EditorUI::Draw();
 			PluginManager::UpdatePlugins();
