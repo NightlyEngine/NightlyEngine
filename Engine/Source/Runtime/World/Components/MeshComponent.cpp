@@ -42,7 +42,7 @@ namespace NL
 
 	void MeshComponent::Draw()
 	{
-		Renderer::GetShaderProgram().SetUniformMatrix4fv("uModel", GetEntity()->Transform()->GetTransform());
+		Renderer::GetShaderProgram().SetUniformMat4("u_Model", GetEntity()->Transform()->GetTransform());
 
 		glBindVertexArray(m_VAO);
 		glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, nullptr);
