@@ -42,6 +42,8 @@ add_library(NightlyEngine SHARED
         Platform/PlatformDetection.h
         Platform/WindowsPlatform.h
         Platform/WindowsPlatform.cpp
+        Renderer/Camera.cpp
+        Renderer/Camera.h
         Renderer/Renderer.h
         Renderer/Renderer.cpp
         Renderer/Shader.h
@@ -50,6 +52,8 @@ add_library(NightlyEngine SHARED
         Renderer/Framebuffer.cpp
         Renderer/ScreenPlane.h
         Renderer/ScreenPlane.cpp
+        Renderer/RenderCommand.cpp
+        Renderer/RenderCommand.h
         World/Entity.h
         World/Entity.cpp
         World/World.h

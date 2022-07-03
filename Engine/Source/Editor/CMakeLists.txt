@@ -16,7 +16,9 @@ add_executable(NightlyEditor
         Windows/ViewportWindow.cpp
         Windows/ViewportWindow.h
         Windows/ConsoleOutputWindow.cpp
-        Windows/ConsoleOutputWindow.h)
+        Windows/ConsoleOutputWindow.h
+        EditorCamera.cpp
+        EditorCamera.h)
 
 # Set rpath relative to editor app
 if (NOT MSVC)
