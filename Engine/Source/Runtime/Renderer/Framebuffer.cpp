@@ -6,8 +6,10 @@
 
 namespace NL
 {
-	void Framebuffer::Invalidate(const FramebufferProps& props)
+	void Framebuffer::Invalidate(const FramebufferProps& props) const
 	{
+		NL_ASSERT(m_IsComplete, "Framebuffer has not been initialized!", ENGINE);
+
 		if (props.IsHDR())
 		{
 			glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA16F, props.GetWidth(), props.GetHeight(), 0, GL_RGBA, GL_FLOAT, nullptr);
@@ -71,5 +73,6 @@ namespace NL
 		NL_ASSERT(glCheckFramebufferStatus(GL_FRAMEBUFFER) == GL_FRAMEBUFFER_COMPLETE, "Failed to create framebuffer!", ENGINE);
 
 		m_Props = props;
+		m_IsComplete = true;
 	}
 }

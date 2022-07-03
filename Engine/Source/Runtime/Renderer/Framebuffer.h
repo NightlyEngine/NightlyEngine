@@ -54,7 +54,7 @@ namespace NL
 		~Framebuffer() = default;
 
 		// Recreates the framebuffer using the new properties.
-		void Invalidate(const FramebufferProps& props);
+		void Invalidate(const FramebufferProps& props) const;
 
 		void Bind() const;
 		static void Unbind();
@@ -77,6 +77,8 @@ namespace NL
 		uint32_t m_Framebuffer;
 		uint32_t m_ColorBuffer;
 		uint32_t m_RenderBuffer;
+
+		bool m_IsComplete = false;
 
 		FramebufferProps m_Props;
 	};
