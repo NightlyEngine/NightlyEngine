@@ -19,7 +19,7 @@
 
 namespace NL
 {
-	Scope<Entity> Renderer::m_FallbackCamera;
+	Ref<Camera> Renderer::m_FallbackCamera;
 
 	Renderer::~Renderer() = default;
 
@@ -33,21 +33,17 @@ namespace NL
 			// FIXME: Shader file paths are invalid when engine gets shipped
 			std::string vertexPath = "../../Source/Shaders/UnlitVertexShader.glsl";
 			std::string fragmentPath = "../../Source/Shaders/UnlitFragmentShader.glsl";
-			
+
 			m_ShaderProgram = ShaderProgram(vertexPath, fragmentPath);
 			m_ShaderProgram.Use();
 		}
 
-		// Create viewport camera
+		// Create default viewport camera
 		{
-			m_FallbackCamera = MakeScope<Entity>("Fallback Camera");
-			m_FallbackCamera->Initialize(nullptr);
-
 			float aspect = WindowManager::GetCurrentWindow()->GetAspectRatio();
 			CameraSpecification specification(60.0f, aspect, 0.1f, 1000.0f);
 
-			auto camera = Component::Create<CameraComponent>(specification);
-			m_FallbackCamera->AddComponent<CameraComponent>(camera);
+			m_FallbackCamera = Component::Create<CameraComponent>(specification);
 		}
 
 		ScreenPlane::Initialize();
@@ -57,10 +53,12 @@ namespace NL
 
 	void Renderer::Update()
 	{
-		m_FallbackCamera->GetComponent<CameraComponent>()->OnDraw(m_ShaderProgram);
+		if (!m_FallbackCamera) return;
+
+		m_FallbackCamera->OnDraw(m_ShaderProgram);
 
 		// Draw to screen if enabled
-		if (m_FallbackCamera->GetComponent<CameraComponent>()->m_ScreenTarget)
+		if (m_FallbackCamera->m_ScreenTarget)
 		{
 			ScreenPlane::Update(GetActiveFramebuffer().GetColorBuffer());
 		}
@@ -76,14 +74,14 @@ namespace NL
 
 	Framebuffer Renderer::GetActiveFramebuffer()
 	{
-		return m_FallbackCamera->GetComponent<CameraComponent>()->GetFramebuffer();
+		return m_FallbackCamera->GetFramebuffer();
 	}
 
 	void Renderer::InvalidateViewport()
 	{
 		// Update viewport camera's aspect ratio
 		float ratio = m_ViewportSize.x / m_ViewportSize.y;
-		m_FallbackCamera->GetComponent<CameraComponent>()->SetAspectRatio(ratio);
+		m_FallbackCamera->SetAspectRatio(ratio);
 	}
 
 	void Renderer::InvalidateFramebuffer(EventFun fun)
@@ -98,7 +96,7 @@ namespace NL
 
 			// Update viewport camera's aspect ratio
 			float ratio = (float) event->GetWidth() / (float) event->GetHeight();
-			m_FallbackCamera->GetComponent<CameraComponent>()->SetAspectRatio(ratio);
+			m_FallbackCamera->SetAspectRatio(ratio);
 
 			// Recreate framebuffer
 			FramebufferProps props(event->GetWidth(), event->GetHeight(), false);

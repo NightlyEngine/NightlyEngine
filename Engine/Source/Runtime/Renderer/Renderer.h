@@ -49,9 +49,8 @@ namespace NL
 		static void InvalidateViewport();
 		static void InvalidateFramebuffer(EventFun fun);
 
-	private:
 		static inline ShaderProgram m_ShaderProgram;
-		static Scope<Entity> m_FallbackCamera;
+		static Ref<Camera> m_FallbackCamera;
 
 		static inline Vec2 m_ViewportSize;
 	};
