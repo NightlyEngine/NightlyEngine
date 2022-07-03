@@ -11,7 +11,7 @@ namespace NL
 		// FIXME: Shader file paths are invalid when engine gets shipped, see Renderer.cpp
 		std::string vertexPath = "../../Source/Shaders/ScreenVertexShader.glsl";
 		std::string fragmentPath = "../../Source/Shaders/ScreenFragmentShader.glsl";
-		
+
 		m_ScreenShader = ShaderProgram(vertexPath, fragmentPath);
 		m_ScreenShader.Use();
 
@@ -51,6 +51,7 @@ namespace NL
 
 		m_ScreenShader.Use();
 		glBindVertexArray(m_VAO);
+
 		glBindTexture(GL_TEXTURE_2D, renderTexture);
 		glDrawArrays(GL_TRIANGLES, 0, 6);
 	}
