@@ -9,13 +9,10 @@ namespace NL
 	void ScreenPlane::Initialize()
 	{
 		// FIXME: Shader file paths are invalid when engine gets shipped, see Renderer.cpp
-		auto vertexShader = Shader(GL_VERTEX_SHADER, "../../Source/Shaders/ScreenVertexShader.glsl");
-		auto fragmentShader = Shader(GL_FRAGMENT_SHADER, "../../Source/Shaders/ScreenFragmentShader.glsl");
-
-		m_ScreenShader.Initialize();
-		m_ScreenShader.Attach(vertexShader);
-		m_ScreenShader.Attach(fragmentShader);
-		m_ScreenShader.Link();
+		std::string vertexPath = "../../Source/Shaders/ScreenVertexShader.glsl";
+		std::string fragmentPath = "../../Source/Shaders/ScreenFragmentShader.glsl";
+		
+		m_ScreenShader = ShaderProgram(vertexPath, fragmentPath);
 		m_ScreenShader.Use();
 
 		// Plane vertices

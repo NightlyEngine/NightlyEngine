@@ -34,13 +34,10 @@ namespace NL
 		// Setup shaders
 		{
 			// FIXME: Shader file paths are invalid when engine gets shipped
-			m_VertexShader = Shader(GL_VERTEX_SHADER, "../../Source/Shaders/UnlitVertexShader.glsl");
-			m_FragmentShader = Shader(GL_FRAGMENT_SHADER, "../../Source/Shaders/UnlitFragmentShader.glsl");
-
-			m_ShaderProgram.Initialize();
-			m_ShaderProgram.Attach(m_VertexShader);
-			m_ShaderProgram.Attach(m_FragmentShader);
-			m_ShaderProgram.Link();
+			std::string vertexPath = "../../Source/Shaders/UnlitVertexShader.glsl";
+			std::string fragmentPath = "../../Source/Shaders/UnlitFragmentShader.glsl";
+			
+			m_ShaderProgram = ShaderProgram(vertexPath, fragmentPath);
 			m_ShaderProgram.Use();
 		}
 
