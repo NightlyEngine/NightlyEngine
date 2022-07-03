@@ -15,11 +15,11 @@
 namespace NL
 {
 	ShaderProgram::ShaderProgram(const std::string& vertexPath, const std::string& fragmentPath)
+			: m_Program(glCreateProgram())
 	{
 		auto vert = Compile(ShaderType::VERTEX, vertexPath);
 		auto frag = Compile(ShaderType::FRAGMENT, fragmentPath);
 
-		m_Program = glCreateProgram();
 		m_IsInitialized = true;
 
 		glAttachShader(m_Program, (GLuint) vert);
