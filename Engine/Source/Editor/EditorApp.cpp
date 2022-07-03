@@ -51,9 +51,11 @@ namespace NLE
 			props.height = 1080;
 
 			m_EditorWindow = WindowManager::Create(props);
+			m_EditorCamera = MakeRef<EditorCamera>();
 
 			Renderer::m_DrawFramebufferToScreen = true;
 			Renderer::Initialize();
+			Renderer::SetFallbackCamera(m_EditorCamera);
 
 			EditorUI::Initialize(m_EditorWindow->GetNativeWindow());
 
@@ -117,8 +119,9 @@ namespace NLE
 
 	private:
 		Scope<Engine> m_EngineInstance;
+
 		Ref<Window> m_EditorWindow;
-		Scope<EditorCamera> m_EditorCamera;
+		Ref<EditorCamera> m_EditorCamera;
 	};
 }
 
