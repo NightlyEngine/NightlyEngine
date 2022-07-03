@@ -2,12 +2,26 @@
 
 #include <GLFW/glfw3.h>
 
-#include "Core/Log.h"
 #include "EventSystem.h"
 #include "InputEvents.h"
 
+#include "Core/Log.h"
+#include "Core/Window.h"
+#include "Core/WindowManager.h"
+
 namespace NL
 {
+	void InputSystem::Update()
+	{
+		for (const auto& binding : m_InputHoldBinds)
+		{
+			if (binding.IsHeldDown())
+			{
+				FireCallback(binding);
+			}
+		}
+	}
+
 	InputAction InputSystem::BindKey(int key, int action, const InputCallback& trigger)
 	{
 		return BindInput(InputAction(key, action, InputType::KEYBOARD, trigger));
@@ -78,15 +92,24 @@ namespace NL
 		return successful;
 	}
 
-	void InputSystem::Update()
+	bool InputSystem::IsKeyPressed(int key)
 	{
-		for (const auto& binding : m_InputHoldBinds)
-		{
-			if (binding.IsHeldDown())
-			{
-				FireCallback(binding);
-			}
-		}
+		int state = glfwGetKey(WindowManager::GetCurrentWindow()->GetNativeWindow(), key);
+		return state == NL_PRESS;
+	}
+
+	bool InputSystem::IsMouseButtonPressed(int button)
+	{
+		int state = glfwGetMouseButton(WindowManager::GetCurrentWindow()->GetNativeWindow(), button);
+		return state == NL_PRESS;
+	}
+
+	Vec2 InputSystem::GetMousePosition()
+	{
+		double x, y;
+		glfwGetCursorPos(WindowManager::GetCurrentWindow()->GetNativeWindow(), &x, &y);
+
+		return { x, y };
 	}
 
 	void InputSystem::FireCallback(const InputAction& inputAction)

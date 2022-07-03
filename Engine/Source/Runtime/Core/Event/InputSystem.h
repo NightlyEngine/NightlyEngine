@@ -3,6 +3,8 @@
 #include "Core/EngineAPI.h"
 #include "Core/Core.h"
 #include "Core/UUID.h"
+#include "Core/Math.h"
+
 #include "InputDefinitions.h"
 
 struct GLFWwindow;
@@ -122,6 +124,11 @@ namespace NL
 		// The id can be obtained using InputAction.GetId().
 		// Returns whether the operation was successful.
 		static bool RemoveBinding(uint64_t id);
+
+		static bool IsKeyPressed(int key);
+		static bool IsMouseButtonPressed(int button);
+
+		static Vec2 GetMousePosition();
 
 	private:
 		// Returns true when an action is either NL_PRESS, NL_RELEASE or NL_HOLD.
