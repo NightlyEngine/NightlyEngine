@@ -59,7 +59,7 @@ namespace NLE
 		RenderCommand::Clear(OpenGLBufferBit::COLOR | OpenGLBufferBit::DEPTH);
 	}
 
-	void EditorCamera::Update(float deltaTime)
+	void EditorCamera::OnUpdate(float deltaTime)
 	{
 		Vec3 direction(0.0f);
 
@@ -93,11 +93,13 @@ namespace NLE
 			direction += m_Up;
 		}
 
+		// Have we moved?
 		if (direction != Vec3(0.0f))
 		{
-			m_TargetPosition += glm::normalize(direction) * m_MovementSpeed * 0.01f;
+			m_TargetPosition += glm::normalize(direction) * GetFlySpeed() * 0.01f;
 		}
-
+		
+		m_Position = glm::mix(m_Position, m_TargetPosition, deltaTime * GetFlySpeed());
 		m_View = glm::lookAt(m_Position, m_Position + m_Front, m_Up);
 	}
 }
