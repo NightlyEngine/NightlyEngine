@@ -31,6 +31,12 @@ namespace NL
 
 		NL_DEFINE_TRACKABLE(Entity);
 
+		template <typename ... Args>
+		static Ref<Entity> Create(Args&& ... args)
+		{
+			return MakeRef<Entity>(std::forward<Args>(args)...);
+		}
+
 		// Creates transform component and sets the attached world.
 		void Initialize(const Ref<World>& attachedWorld);
 
