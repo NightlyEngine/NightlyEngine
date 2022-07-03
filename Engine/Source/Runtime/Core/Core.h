@@ -2,10 +2,9 @@
 
 #define NL_NODISCARD [[nodiscard]]
 
-template <typename T>
-using Ref = std::shared_ptr<T>;
+#define NL_BIT(x) (1 << x)
 
-// Assert
+// --------------- Assert --------------- //
 #ifdef NDEBUG
 
 #include "Log.h"
