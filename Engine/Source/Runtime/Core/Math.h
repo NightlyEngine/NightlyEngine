@@ -97,5 +97,131 @@ namespace NL
 		Vec4 m_Bounds;
 	};
 
+	// A color represents the RGBA channels from 0 to 1.
+	class Color
+	{
+	public:
+		explicit Color(float r = 0.0f, float g = 0.0f, float b = 0.0f, float a = 0.0f)
+				: m_Color(r, g, b, a)
+		{
+		}
+
+		static Color Black()
+		{
+			return Color(0, 0, 0, 1);
+		}
+
+		static Color White()
+		{
+			return Color(1, 1, 1, 1);
+		}
+
+		static Color Red()
+		{
+			return Color(1, 0, 0, 1);
+		}
+
+		static Color Green()
+		{
+			return Color(0, 1, 0, 1);
+		}
+
+		static Color Blue()
+		{
+			return Color(0, 0, 1, 1);
+		}
+
+		static Color Cyan()
+		{
+			return Color(0, 1, 1, 1);
+		}
+
+		static Color Yellow()
+		{
+			return Color(1, 1, 0, 1);
+		}
+
+		static Color Magenta()
+		{
+			return Color(1, 0, 1, 1);
+		}
+
+		NL_NODISCARD const float& GetRed() const
+		{
+			return m_Color.x;
+		}
+
+		NL_NODISCARD const float& GetGreen() const
+		{
+			return m_Color.y;
+		}
+
+		NL_NODISCARD const float& GetBlue() const
+		{
+			return m_Color.z;
+		}
+
+		NL_NODISCARD const float& GetAlpha() const
+		{
+			return m_Color.w;
+		}
+
+		NL_NODISCARD Vec3 GetRGB() const
+		{
+			return { GetRed(), GetGreen(), GetBlue() };
+		}
+
+		void SetRGB(float r, float g, float b)
+		{
+			if (Math::IsInRange(r, 0.0f, 1.0f))
+			{
+				m_Color.x = r;
+			}
+
+			if (Math::IsInRange(g, 0.0f, 1.0f))
+			{
+				m_Color.y = g;
+			}
+
+			if (Math::IsInRange(b, 0.0f, 1.0f))
+			{
+				m_Color.z = b;
+			}
+		}
+
+		NL_NODISCARD const Vec4& GetRGBA() const
+		{
+			return m_Color;
+		}
+
+		void SetRGBA(float r, float g, float b, float a)
+		{
+			SetRGB(r, g, b);
+
+			if (Math::IsInRange(a, 0.0f, 1.0f))
+			{
+				m_Color.w = a;
+			}
+		}
+
+		NL_NODISCARD Vec4 GetRGBA255() const
+		{
+			return m_Color * Vec4(255.0f);
+		}
+
+		NL_NODISCARD std::string ToString() const
+		{
+			std::stringstream stream;
+			stream << "R: " << GetRed() << " G: " << GetGreen() << " B: " << GetBlue() << " A: " << GetAlpha();
+			return stream.str();
+		}
+
+		explicit operator Vec4() const
+		{
+			return m_Color;
+		}
+
+	private:
+		Vec4 m_Color;
 	};
 }
