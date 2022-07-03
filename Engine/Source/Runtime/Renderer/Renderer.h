@@ -8,6 +8,7 @@
 namespace NL
 {
 	class Entity;
+	class Camera;
 
 	class NL_API Renderer
 	{
@@ -41,6 +42,11 @@ namespace NL
 				m_ViewportSize = size;
 				InvalidateViewport();
 			}
+		}
+
+		static inline void SetFallbackCamera(Ref<Camera> camera)
+		{
+			m_FallbackCamera = std::move(camera);
 		}
 
 		static inline bool m_DrawFramebufferToScreen = false;
