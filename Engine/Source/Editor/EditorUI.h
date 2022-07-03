@@ -22,7 +22,7 @@ namespace NLE
 		template <typename T, typename ... Args>
 		static void RegisterWindow(Args&& ... args)
 		{
-			Ref<EditorWindow> window = std::make_shared<T>(std::forward<Args>(args)...);
+			Ref<EditorWindow> window = MakeRef<T>(std::forward<Args>(args)...);
 			m_WindowRegistry.push_back(window);
 		}
 

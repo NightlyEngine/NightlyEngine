@@ -25,7 +25,7 @@ namespace NL
 		}
 
 		// If we're serializing from a file, also specify the UUID
-		auto world = id == 0 ? std::make_shared<World>(name) : std::make_shared<World>(name, id);
+		auto world = id == 0 ? MakeRef<World>(name) : MakeRef<World>(name, id);
 		m_WorldRegistry.push_back(world);
 
 		NL_CORE_INFO("Created new world: " << name, ENGINE);

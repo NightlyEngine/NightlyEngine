@@ -19,7 +19,7 @@ namespace NL
 
 	Ref<Window> WindowManager::Create(const WindowProps& props)
 	{
-		auto window = std::make_shared<Window>(props);
+		auto window = MakeRef<Window>(props);
 		m_WindowRegistry.push_back(window);
 		return window;
 	}
