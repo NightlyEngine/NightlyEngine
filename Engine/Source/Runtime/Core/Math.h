@@ -1,10 +1,20 @@
 #pragma once
 
 #include "EngineAPI.h"
+#include "Core.h"
 
 #include <glm/glm.hpp>
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/gtx/quaternion.hpp>
+
+// Unwraps a Vec2 into its x and y components.
+#define NL_UNWRAP_XY(vec2) vec2.x, vec2.y
+
+// Unwraps a Vec3 into its x y, and z components.
+#define NL_UNWRAP_XYZ(vec3) vec3.x, vec3.y, vec3.z
+
+// Unwraps a Vec4 into its x, y, z and w components.
+#define NL_UNWRAP_XYZW(vec4) vec4.x, vec4.y, vec4.z, vec4.w
 
 namespace NL
 {
