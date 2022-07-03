@@ -22,6 +22,12 @@ namespace NL
 
 		NL_NODISCARD virtual std::string GetName() const = 0;
 
+		template <typename T, typename ... Args>
+		static Ref<T> Create(Args&& ... args)
+		{
+			return MakeRef<T>(std::forward<Args>(args)...);
+		}
+
 		// TODO: Call this function
 		virtual void OnDestroy()
 		{
