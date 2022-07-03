@@ -163,6 +163,9 @@ namespace NL
 			return m_Projection * m_View;
 		}
 
+		// If set to true, this camera's framebuffer will be drawn to the screen.
+		bool m_ScreenTarget = false;
+
 	protected:
 		static Mat4 CreateProjection(const CameraSpecification& specification);
 
