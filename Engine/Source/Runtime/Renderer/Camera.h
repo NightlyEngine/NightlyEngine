@@ -15,7 +15,7 @@ namespace NL
 		Orthographic
 	};
 
-	struct CameraSpecification
+	struct NL_API CameraSpecification
 	{
 		CameraSpecification() = default;
 
