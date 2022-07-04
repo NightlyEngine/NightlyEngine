@@ -60,7 +60,7 @@ namespace NL
 		// Returns the field of view of the camera.
 		inline float GetFOV()
 		{
-			if (ProjectionType() == ProjectionType::Perspective)
+			if (GetProjectionType() == ProjectionType::Perspective)
 			{
 				return m_Specification.m_FOV;
 			}
@@ -72,7 +72,7 @@ namespace NL
 		// FOV must be greater than zero.
 		inline void SetFOV(float fov)
 		{
-			if (ProjectionType() == ProjectionType::Perspective && fov > 0 && fov <= MAX_FOV)
+			if (GetProjectionType() == ProjectionType::Perspective && fov > 0 && fov <= MAX_FOV)
 			{
 				m_Specification.m_FOV = fov;
 				OnProjectionChange();
@@ -81,7 +81,7 @@ namespace NL
 
 		inline float GetAspectRatio()
 		{
-			if (ProjectionType() == ProjectionType::Perspective)
+			if (GetProjectionType() == ProjectionType::Perspective)
 			{
 				return m_Specification.m_AspectRatio;
 			}
@@ -91,7 +91,7 @@ namespace NL
 
 		inline void SetAspectRatio(float aspect)
 		{
-			if (ProjectionType() == ProjectionType::Perspective && aspect != 0)
+			if (GetProjectionType() == ProjectionType::Perspective && aspect != 0)
 			{
 				m_Specification.m_AspectRatio = aspect;
 				OnProjectionChange();
@@ -131,7 +131,7 @@ namespace NL
 			return m_Specification.m_Bounds;
 		}
 
-		inline ProjectionType& ProjectionType()
+		inline ProjectionType& GetProjectionType()
 		{
 			return m_Specification.m_ProjectionType;
 		}
