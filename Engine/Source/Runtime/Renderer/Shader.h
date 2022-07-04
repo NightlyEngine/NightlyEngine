@@ -11,7 +11,7 @@ namespace NL
 		FRAGMENT
 	};
 
-	struct ShaderProgram
+	struct NL_API ShaderProgram
 	{
 		ShaderProgram() = default;
 		ShaderProgram(const std::string& vertexPath, const std::string& fragmentPath);
