@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Runtime/Core/Plugin.h"
+#include "Core/Plugin.h"
 
 namespace NL
 {

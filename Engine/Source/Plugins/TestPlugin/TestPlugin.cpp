@@ -1,6 +1,6 @@
 #include "TestPlugin.h"
 
-#include "Runtime/Core/Log.h"
+#include "Core/Log.h"
 
 namespace NL
 {

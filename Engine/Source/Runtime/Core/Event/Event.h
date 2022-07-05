@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Runtime/Core/EngineAPI.h"
+#include "Core/EngineAPI.h"
 #include "Core/Core.h"
 
 // Implements the GetName() function.

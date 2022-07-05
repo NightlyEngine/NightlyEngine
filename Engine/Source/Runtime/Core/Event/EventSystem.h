@@ -1,7 +1,7 @@
 #pragma once
 
-#include "Runtime/Core/EngineAPI.h"
-#include "Runtime/Core/Event/Event.h"
+#include "Core/EngineAPI.h"
+#include "Core/Event/Event.h"
 
 #define NL_CAST_EVENT(Type, fun) (Events::Type*) &fun
 
