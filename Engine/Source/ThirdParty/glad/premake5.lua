@@ -10,4 +10,4 @@ project "glad"
 		"src/glad.c"
 	}
 
-	sysincludedirs "include/"
+	sysincludedirs "include"
