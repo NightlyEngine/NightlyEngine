@@ -25,4 +25,4 @@ else:
     exit()
 
 install_deps(os_name, deps, install_cmd, update_cmd)
-print("Generate your project files next: python3 ./GenerateNinja.py")
+print("Generate your project files next: python3 ./GeneratePremake.py")

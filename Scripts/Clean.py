@@ -29,6 +29,5 @@ except OSError as e:
 print("Removed " + build_path)
 print("Removed " + binaries_path)
 log_info("Clean successful.")
-print("You can generate your project files using:")
-print("  python3 ./GenerateXcode.py")
-print("  python3 ./GenerateNinja.py")
+print("You can generate your project files using: ")
+print("  python3 ./GeneratePremake.py")
