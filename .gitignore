@@ -66,6 +66,8 @@ cmake-build-debug
 
 # OSX
 .DS_Store
+*.xcodeproj
+*.xcworkspace
 
 # Build folders
 Engine/Build
