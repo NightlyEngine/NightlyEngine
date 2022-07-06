@@ -6,7 +6,7 @@ ThirdParty = {}
 ThirdParty["glad"] = 	(ThirdPartyPath .. "/glad")
 ThirdParty["glfw"] = 	(ThirdPartyPath .. "/glfw")
 ThirdParty["glm"] = 	(ThirdPartyPath .. "/glm")
-ThirdParty["imgui"] = 	(ThirdPartyPath .. "/imgui-cmake")
+ThirdParty["imgui"] = 	(ThirdPartyPath .. "/imgui")
 
 workspace "NightlyEngine"
 	architecture "x64"
@@ -23,7 +23,7 @@ workspace "NightlyEngine"
 group "ThirdParty"
 	include "Engine/Source/ThirdParty/glad"
 	include "Engine/Source/ThirdParty/glfw"
-	include "Engine/Source/ThirdParty/imgui-cmake"
+	include "Engine/Source/ThirdParty/imgui"
 group ""
 
 include "Engine/Source/Runtime"
