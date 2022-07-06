@@ -1,10 +1,6 @@
 [submodule "Engine/Source/ThirdParty/glm"]
 	path = Engine/Source/ThirdParty/glm
 	url = https://github.com/g-truc/glm.git
-[submodule "Engine/Source/ThirdParty/imgui-cmake"]
-	path = Engine/Source/ThirdParty/imgui-cmake
-	url = https://github.com/futureblur/imgui-cmake.git
-	branch = docking
 [submodule "glfw"]
 	path = Engine/Source/ThirdParty/glfw
 	url = https://github.com/futureblur/glfw
