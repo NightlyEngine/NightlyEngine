@@ -14,6 +14,7 @@ project "NightlyEditor"
 
 	includedirs
 	{
+		".",
 		"%{RuntimePath}"
 	}
 
