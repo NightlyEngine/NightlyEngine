@@ -33,7 +33,7 @@ namespace NL
 			case OpenGLFeature::STENCIL_TEST: return GL_STENCIL_TEST;
 		}
 		
-		NL_ASSERT(false, "Unknown OpenGL feature!", ENGINe);
+		NL_ASSERT(false, "Unknown OpenGL feature!", ENGINE);
 		return -1;
 	}
 
