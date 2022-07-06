@@ -32,6 +32,9 @@ namespace NL
 			case OpenGLFeature::DEPTH_TEST: return GL_DEPTH_TEST;
 			case OpenGLFeature::STENCIL_TEST: return GL_STENCIL_TEST;
 		}
+		
+		NL_ASSERT(false, "Unknown OpenGL feature!", ENGINe);
+		return -1;
 	}
 
 	int RenderCommand::GetOpenGLBufferBit(uint8_t bufferBit)
