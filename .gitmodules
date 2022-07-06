@@ -8,3 +8,6 @@
 	path = Engine/Source/ThirdParty/imgui
 	url = https://github.com/futureblur/imgui
 	branch = docking
+[submodule "glad"]
+	path = Engine/Source/ThirdParty/glad
+	url = https://github.com/futureblur/glad.git
