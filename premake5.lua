@@ -3,7 +3,7 @@ RuntimePath = "%{wks.location}/Engine/Source/Runtime"
 BuildPath = "%{wks.location}/Engine/Build/%{wks.buildcfg}"
 
 --Imgui neeeds to include glfw, which is one level above
-GlfwInclude = "../glfw"
+GlfwInclude = "../glfw/include"
 
 ThirdParty = {}
 ThirdParty["glad"] = 	(ThirdPartyPath .. "/glad")
