@@ -143,5 +143,8 @@ namespace NL
 			case ShaderType::VERTEX: return GL_VERTEX_SHADER;
 			case ShaderType::FRAGMENT: return GL_FRAGMENT_SHADER;
 		}
+		
+		NL_ASSERT(false, "Unknown Shader type!", ENGINE);
+		return -1;
 	}
 }
