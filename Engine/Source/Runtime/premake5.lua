@@ -36,6 +36,9 @@ project "NightlyEngine"
 		"glfw"
 	}
 
+	filter "system:linux"
+		pic "on"
+
 	filter "configurations:Debug"
 		defines "DEBUG"
 		symbols "on"
