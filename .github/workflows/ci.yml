@@ -99,4 +99,4 @@ jobs:
         run: premake5 vs2022
         
       - name: Build project
-        run: msbuild NightlyEngine.sln
+        run: msbuild NightlyEngine.sln -m
