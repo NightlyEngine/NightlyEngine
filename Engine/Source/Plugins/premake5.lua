@@ -3,7 +3,7 @@ project "Plugins"
 	language "C++"
 	objdir "%{BuildPath}"
 
-	pchheader "%{RuntimePath}/Core/PCH.h"
+	pchheader "PCH.h"
 	pchsource "%{RuntimePath}/Core/PCH.cpp"
 
 	files

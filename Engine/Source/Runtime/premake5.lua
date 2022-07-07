@@ -3,7 +3,7 @@ project "NightlyEngine"
 	language "C++"
 	objdir "%{BuildPath}"
 
-	pchheader "Core/PCH.h"
+	pchheader "PCH.h"
 	pchsource "Core/PCH.cpp"
 
 	files
@@ -35,9 +35,6 @@ project "NightlyEngine"
 		"glad",
 		"glfw"
 	}
-
-	filter "system:linux"
-		pic "on"
 
 	filter "configurations:Debug"
 		defines "DEBUG"
