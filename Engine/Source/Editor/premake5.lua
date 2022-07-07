@@ -29,5 +29,7 @@ project "NightlyEditor"
 	{
 		"NightlyEngine",
 		"imgui",
-		"glfw"
+		"glfw",
+		"libdl",
+		"pthread"
 	}
