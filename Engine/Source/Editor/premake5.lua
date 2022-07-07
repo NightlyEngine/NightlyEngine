@@ -30,6 +30,6 @@ project "NightlyEditor"
 		"NightlyEngine",
 		"imgui",
 		"glfw",
-		"libdl",
+		"dl",
 		"pthread"
 	}
