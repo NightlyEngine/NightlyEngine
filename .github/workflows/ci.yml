@@ -29,6 +29,12 @@ jobs:
       - name: Install deps
         run: sudo apt-get install libx11-dev libxrandr-dev libxinerama-dev libxcursor-dev libxi-dev libglfw3-dev libgl1-mesa-dev libglu1-mesa-dev
       
+      - name: Install GCC
+        uses: egor-tensin/setup-gcc@v1
+        with:
+          version: 11
+          platform: x64
+      
       - name: Setup premake
         uses: abel0b/setup-premake@v2.1
         with:
@@ -86,11 +92,11 @@ jobs:
         with:
           version: "5.0.0-beta1"
           
-      - name: Add msbuild to PATH
+      - name: Setup msbuild
         uses: microsoft/setup-msbuild@v1.1
           
       - name: Generate Visual Studio 2022 files
         run: premake5 vs2022
         
       - name: Build project
-        run: msbuild NightlyEngine.csproj
+        run: msbuild NightlyEngine.sln
