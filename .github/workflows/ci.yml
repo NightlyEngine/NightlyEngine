@@ -25,27 +25,20 @@ jobs:
       
       - name: Install submodules
         run: git submodule update --init
-        
-      - name: Install GCC
-        uses: egor-tensin/setup-gcc@v1
-        with:
-          version: 11
-          platform: x64
     
       - name: Install deps
         run: sudo apt-get install libx11-dev libxrandr-dev libxinerama-dev libxcursor-dev libxi-dev libglfw3-dev libgl1-mesa-dev libglu1-mesa-dev
       
-      # Use ninja generator
-      - uses: seanmiddleditch/gha-setup-ninja@master
-      
-      - name: Generate ninja files
-        run: |
-            mkdir Engine/Build
-            cd Engine/Build
-            cmake -G Ninja ../..
+      - name: Setup premake
+        uses: abel0b/setup-premake@v2.1
+        with:
+          version: "5.0.0-beta1"
+          
+      - name: Generate gmake2 files
+        run: premake5 gmake2
         
-      - name: Build using CMake
-        run: cmake --build Engine/Build
+      - name: Build project
+        run: make
       
   build-on-macos:
     runs-on: macos-latest
@@ -58,17 +51,21 @@ jobs:
       - name: Install submodules
         run: git submodule update --init
       
-      # Use ninja generator
-      - uses: seanmiddleditch/gha-setup-ninja@master
-      
-      - name: Generate ninja files
-        run: |
-            mkdir Engine/Build
-            cd Engine/Build
-            cmake -G Ninja ../..
+      - name: Setup premake
+        uses: abel0b/setup-premake@v2.1
+        with:
+          version: "5.0.0-beta1"
+          
+      - name: Generate Xcode4 files
+        run: premake5 xcode4
         
-      - name: Build using CMake
-        run: cmake --build Engine/Build
+      - name: Build project
+        uses: sersoft-gmbh/xcodebuild-action@v2
+        with:
+          workspace: NightlyEngine.xcworkspace
+          scheme: NightlyEditor
+          destination: platform=macOS
+          action: build
         
   build-on-windows:
     runs-on: windows-latest
@@ -84,14 +81,16 @@ jobs:
       - name: Install submodules
         run: git submodule update --init
       
-      # Use ninja generator
-      - uses: seanmiddleditch/gha-setup-ninja@master
-      
-      - name: Generate ninja files
-        run: |
-            mkdir Engine/Build
-            cd Engine/Build
-            cmake -G Ninja ../..
+      - name: Setup premake
+        uses: abel0b/setup-premake@v2.1
+        with:
+          version: "5.0.0-beta1"
+          
+      - name: Add msbuild to PATH
+        uses: microsoft/setup-msbuild@v1.1
+          
+      - name: Generate Visual Studio 2022 files
+        run: premake5 vs2022
         
-      - name: Build using CMake
-        run: cmake --build Engine/Build
+      - name: Build project
+        run: msbuild NightlyEngine.csproj
