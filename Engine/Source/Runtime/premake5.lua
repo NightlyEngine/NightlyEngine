@@ -36,6 +36,12 @@ project "NightlyEngine"
 		"glfw"
 	}
 
+	filter "system:windows"
+		buildoptions
+		{
+			"/YuPCH.h"
+		}
+
 	filter "configurations:Debug"
 		defines "DEBUG"
 		symbols "on"
