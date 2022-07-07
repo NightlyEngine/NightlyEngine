@@ -4,7 +4,7 @@ project "NightlyEngine"
 	objdir "%{BuildPath}"
 
 	pchheader "PCH.h"
-	pchsource "Core/PCH.cpp"
+	pchsource "PCH.cpp"
 
 	files
 	{

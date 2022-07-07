@@ -4,7 +4,7 @@ project "NightlyEditor"
 	objdir "%{BuildPath}"
 
 	pchheader "PCH.h"
-	pchsource "%{RuntimePath}/Core/PCH.cpp"
+	pchsource "%{RuntimePath}/PCH.cpp"
 
 	files
 	{
