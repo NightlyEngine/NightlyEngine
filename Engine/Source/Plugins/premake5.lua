@@ -22,3 +22,9 @@ project "Plugins"
 	{
 		"NightlyEngine"
 	}
+
+	filter "system:windows"
+		buildoptions
+		{
+			"/FI\"PCH.h\""
+		}
