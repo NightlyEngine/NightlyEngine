@@ -38,11 +38,11 @@ project "NightlyEditor"
 			"/FI\"PCH.h\""
 		}
 
-		filter "configurations:Debug"
-			buildoptions "/MDd"
+	filter { "configurations:Debug", "system:windows" }
+		buildoptions "/MDd"
 
-		filter "configurations:Release"
-			buildoptions "/MD"
+	filter { "configurations:Release", "system:windows" }
+		buildoptions "/MD"
 
 	filter "system:linux"
 		links

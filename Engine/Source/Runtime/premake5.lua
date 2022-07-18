@@ -42,11 +42,12 @@ project "NightlyEngine"
 			"/FI\"PCH.h\""
 		}
 
-		filter "configurations:Debug"
-			buildoptions "/MDd"
 
-		filter "configurations:Release"
-			buildoptions "/MD"
+	filter { "configurations:Debug", "system:windows" }
+		buildoptions "/MDd"
+
+	filter { "configurations:Release", "system:windows" }
+		buildoptions "/MD"
 
 	filter "configurations:Debug"
 		defines "DEBUG"
