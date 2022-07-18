@@ -23,6 +23,11 @@ workspace "NightlyEngine"
 		"Release"
 	}
 
+	defines
+	{
+		"_GLFW_BUILD_DLL"
+	}
+
 group "ThirdParty"
 	include "Engine/Source/ThirdParty/glad"
 	include "Engine/Source/ThirdParty/glfw"
