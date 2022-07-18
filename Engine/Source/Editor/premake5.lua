@@ -38,10 +38,10 @@ project "NightlyEditor"
 			"/FI\"PCH.h\""
 		}
 
-		filter "configuraitons:Debug"
+		filter "configurations:Debug"
 			buildoptions "/MDd"
 
-		filter "configuraitons:Release"
+		filter "configurations:Release"
 			buildoptions "/MD"
 
 	filter "system:linux"
