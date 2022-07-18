@@ -4,10 +4,11 @@ project "Plugins"
 	objdir "%{BuildPath}"
 
 	pchheader "PCH.h"
-	pchsource "%{RuntimePath}/PCH.cpp"
+	pchsource "PCH.cpp"
 
 	files
 	{
+		"PCH.cpp",
 		"TestPlugin/**.h",
 		"TestPlugin/**.cpp"
 	}

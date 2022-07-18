@@ -4,7 +4,7 @@ project "NightlyEditor"
 	objdir "%{BuildPath}"
 
 	pchheader "PCH.h"
-	pchsource "%{RuntimePath}/PCH.cpp"
+	pchsource "PCH.cpp"
 
 	files
 	{
@@ -29,7 +29,24 @@ project "NightlyEditor"
 	{
 		"NightlyEngine",
 		"imgui",
-		"glfw",
-		"dl",
-		"pthread"
+		"glfw"
 	}
+
+	filter "system:windows"
+		buildoptions
+		{
+			"/FI\"PCH.h\""
+		}
+
+		filter "configuraitons:Debug"
+			buildoptions "/MDd"
+
+		filter "configuraitons:Release"
+			buildoptions "/MD"
+
+	filter "system:linux"
+		links
+		{
+			"dl",
+			"pthread"
+		}
