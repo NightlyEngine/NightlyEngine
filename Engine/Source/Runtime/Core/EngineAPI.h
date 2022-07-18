@@ -14,7 +14,7 @@
 #endif
 
 #else
-#if defined(NL_PLATFORM_WINDOWS)
+#if defined(NL_PLATFORM_WINDOWS) && defined(NL_SHARED_LIB)
 #define NL_API __declspec(dllimport)
 #else
 #define NL_API
