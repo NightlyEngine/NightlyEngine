@@ -1,5 +1,5 @@
 project "NightlyEngine"
-	kind "SharedLib"
+	kind "StaticLib"
 	language "C++"
 	objdir "%{BuildPath}"
 
@@ -10,11 +10,6 @@ project "NightlyEngine"
 	{
 		"**.h",
 		"**.cpp"
-	}
-
-	defines
-	{
-		"NL_EXPORT_DLL"
 	}
 
 	includedirs
