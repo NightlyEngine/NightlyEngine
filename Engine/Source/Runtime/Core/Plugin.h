@@ -1,5 +1,13 @@
 #pragma once
 
+// Disable warning: non - DLL-interface class 'class_1'
+// used as base for DLL-interface class 'class_2'
+
+// This is because we are not exporting Plugin class
+// in a DLL since we are building NightlyEngine
+// as a static library.
+#pragma warning(disable:4275)
+
 #include "EngineAPI.h"
 #include "ITrackable.h"
 
