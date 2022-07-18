@@ -3,7 +3,7 @@
 #include "Core/Core.h"
 
 struct GLFWwindow;
-class ImFont;
+struct ImFont;
 
 namespace NLE
 {
