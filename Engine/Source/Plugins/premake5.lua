@@ -28,3 +28,11 @@ project "Plugins"
 		{
 			"/FI\"PCH.h\""
 		}
+
+		staticruntime "off"
+
+	filter { "configurations:Debug", "system:windows" }
+		runtime "Debug"
+
+	filter { "configurations:Release", "system:windows" }
+		runtime "Release"

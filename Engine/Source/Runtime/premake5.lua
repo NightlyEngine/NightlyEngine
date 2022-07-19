@@ -37,12 +37,13 @@ project "NightlyEngine"
 			"/FI\"PCH.h\""
 		}
 
+		staticruntime "off"
 
 	filter { "configurations:Debug", "system:windows" }
-		buildoptions "/MDd"
+		runtime "Debug"
 
 	filter { "configurations:Release", "system:windows" }
-		buildoptions "/MD"
+		runtime "Release"
 
 	filter "configurations:Debug"
 		defines "DEBUG"
