@@ -45,6 +45,9 @@ project "NightlyEngine"
 	filter { "configurations:Release", "system:windows" }
 		runtime "Release"
 
+	filter "system:linux"
+		pic "on"
+
 	filter "configurations:Debug"
 		defines "DEBUG"
 		symbols "on"

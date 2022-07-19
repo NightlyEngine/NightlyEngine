@@ -36,3 +36,6 @@ project "Plugins"
 
 	filter { "configurations:Release", "system:windows" }
 		runtime "Release"
+
+	filter "system:linux"
+		pic "on"

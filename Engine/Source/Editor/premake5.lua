@@ -51,4 +51,6 @@ project "NightlyEditor"
 		{
 			"dl",
 			"pthread"
-		}
+		}		}
+
+		pic "on"
