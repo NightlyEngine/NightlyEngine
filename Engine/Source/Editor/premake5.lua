@@ -29,7 +29,8 @@ project "NightlyEditor"
 	{
 		"NightlyEngine",
 		"imgui",
-		"glfw"
+		"glfw",
+		"glad"
 	}
 
 	filter "system:windows"
@@ -51,6 +52,6 @@ project "NightlyEditor"
 		{
 			"dl",
 			"pthread"
-		}		}
+		}
 
 		pic "on"
