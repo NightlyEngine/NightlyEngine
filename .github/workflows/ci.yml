@@ -18,6 +18,11 @@ jobs:
   build-on-linux:
     runs-on: ubuntu-latest
 
+    strategy:
+      matrix:
+        configuration: [debug, release]
+        platform: [x64, ARM64]
+
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
@@ -41,10 +46,10 @@ jobs:
           version: "5.0.0-beta1"
           
       - name: Generate gmake2 files
-        run: premake5 gmake2
+        run: premake5 gmake2 --platform=${{matrix.platform}}
         
       - name: Build project
-        run: make
+        run: make config=${{matrix.configuration}}
       
   build-on-macos:
     runs-on: macos-latest
