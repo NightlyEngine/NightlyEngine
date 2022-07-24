@@ -50,7 +50,7 @@ jobs:
         
       # Convert configuration string to lowercase when passing the argument
       - name: Build project
-        run: make config=${{matrix.configuration == Debug && debug || release }}
+        run: make config=${{matrix.configuration == 'Debug' && 'debug' || 'release' }}
       
   build-on-macos:
     runs-on: macos-latest
