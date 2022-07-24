@@ -15,8 +15,13 @@ on:
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
-  build-on-linux:
+  Linux:
     runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        configuration: [Debug, Release]
+        platform: [x64]
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
@@ -43,11 +48,17 @@ jobs:
       - name: Generate gmake2 files
         run: premake5 gmake2
         
+      # Convert configuration string to lowercase when passing the argument
       - name: Build project
-        run: make
+        run: make config=${{matrix.configuration == 'Debug' && 'debug' || 'release' }}
       
-  build-on-macos:
+  MacOS:
     runs-on: macos-latest
+    
+    strategy:
+      matrix:
+        configuration: [Debug, Release]
+        platform: [x64]
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
@@ -72,9 +83,15 @@ jobs:
           scheme: NightlyEditor
           destination: platform=macOS
           action: build
+          configuration: ${{matrix.configuration}}
         
-  build-on-windows:
+  Windows:
     runs-on: windows-latest
+    
+    strategy:
+      matrix:
+        configuration: [Debug, Release]
+        platform: [x64]
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
@@ -99,4 +116,4 @@ jobs:
         run: premake5 vs2022
         
       - name: Build project
-        run: msbuild NightlyEngine.sln -m
+        run: msbuild NightlyEngine.sln -m -property:Configuration=${{matrix.configuration}}
