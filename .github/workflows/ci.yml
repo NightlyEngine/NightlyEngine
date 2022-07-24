@@ -15,7 +15,7 @@ on:
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
-  build-on-linux:
+  Linux:
     runs-on: ubuntu-latest
 
     strategy:
@@ -52,7 +52,7 @@ jobs:
       - name: Build project
         run: make config=${{matrix.configuration == 'Debug' && 'debug' || 'release' }}
       
-  build-on-macos:
+  MacOS:
     runs-on: macos-latest
     
     strategy:
@@ -85,7 +85,7 @@ jobs:
           action: build
           configuration: ${{matrix.configuration}}
         
-  build-on-windows:
+  Windows:
     runs-on: windows-latest
     
     strategy:
