@@ -20,7 +20,8 @@ jobs:
 
     strategy:
       matrix:
-        configuration: [debug, release]
+        configuration: [Debug, Release]
+        platform: [x64]
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
@@ -47,13 +48,9 @@ jobs:
       - name: Generate gmake2 files
         run: premake5 gmake2
         
+      # Convert configuration string to lowercase when passing the argument
       - name: Build project
-        if: ${{matrix.configuration}} == "Debug"
-        run: make config=Debug
-        
-      - name: Build project
-        if: ${{matrix.configuration}} == "Release"
-        run: make config=Release
+        run: make config=${{matrix.configuration == "Debug" && "debug" || "release" }}
       
   build-on-macos:
     runs-on: macos-latest
@@ -61,6 +58,7 @@ jobs:
     strategy:
       matrix:
         configuration: [Debug, Release]
+        platform: [x64]
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
@@ -93,6 +91,7 @@ jobs:
     strategy:
       matrix:
         configuration: [Debug, Release]
+        platform: [x64]
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
