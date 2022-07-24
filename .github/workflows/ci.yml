@@ -21,7 +21,6 @@ jobs:
     strategy:
       matrix:
         configuration: [debug, release]
-        platform: [x64, ARM64]
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
@@ -46,13 +45,22 @@ jobs:
           version: "5.0.0-beta1"
           
       - name: Generate gmake2 files
-        run: premake5 gmake2 --platform=${{matrix.platform}}
+        run: premake5 gmake2
         
       - name: Build project
-        run: make config=${{matrix.configuration}}
+        if: ${{matrix.configuration}} == "Debug"
+        run: make config=Debug
+        
+      - name: Build project
+        if: ${{matrix.configuration}} == "Release"
+        run: make config=Release
       
   build-on-macos:
     runs-on: macos-latest
+    
+    strategy:
+      matrix:
+        configuration: [Debug, Release]
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
@@ -77,9 +85,14 @@ jobs:
           scheme: NightlyEditor
           destination: platform=macOS
           action: build
+          configuration: ${{matrix.configuration}}
         
   build-on-windows:
     runs-on: windows-latest
+    
+    strategy:
+      matrix:
+        configuration: [Debug, Release]
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
@@ -104,4 +117,4 @@ jobs:
         run: premake5 vs2022
         
       - name: Build project
-        run: msbuild NightlyEngine.sln -m
+        run: msbuild NightlyEngine.sln -m -property:Configuration=${{matrix.configuration}}
