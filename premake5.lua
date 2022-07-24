@@ -11,8 +11,21 @@ ThirdParty["glfw"] = 	(ThirdPartyPath .. "/glfw")
 ThirdParty["glm"] = 	(ThirdPartyPath .. "/glm")
 ThirdParty["imgui"] = 	(ThirdPartyPath .. "/imgui")
 
+newoption
+{
+	trigger = "platform",
+	value = "platform",
+	description = "Choose an architecture for building the project",
+	allowed = 
+	{
+		{ "x64", "64-bit" },
+		{ "ARM64", "Arm 64-bit" }
+	},
+	default = "x64"
+}
+
 workspace "NightlyEngine"
-	architecture "x64"
+	architecture (_OPTIONS["platform"])
 	cppdialect "C++20"
 
 	targetdir "Engine/Binaries/%{cfg.buildcfg}"
