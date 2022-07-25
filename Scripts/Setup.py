@@ -2,7 +2,7 @@ import os
 import tarfile
 import shutil
 
-from Utils import log_info, log_fail, get_os, install_deps, install_pip_deps
+from Utils import log_info, log_fail, get_os, install_deps
 
 
 def install_premake():
@@ -75,7 +75,6 @@ def install_premake():
 
 def install_dependencies():
 	deps = []
-	pip_deps = ["requests"]
 	macos_deps = ["cmake", "python"]
 	linux_deps = ["clang", "cmake", "ninja-build", "libx11-dev", "libxrandr-dev", "libxinerama-dev", "libxcursor-dev",
 				"libxi-dev", "libglfw3-dev", "libgl1-mesa-dev", "libglu1-mesa-dev"]
@@ -100,7 +99,6 @@ def install_dependencies():
 		return
 	
 	install_deps(os_name, deps, install_cmd, update_cmd)
-	install_pip_deps(pip_deps)
 
 
 import requests
