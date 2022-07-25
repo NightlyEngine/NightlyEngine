@@ -43,21 +43,30 @@ def install_premake():
 		tar = tarfile.open(dl_path, 'r:gz')
 		tar.extractall(extract_path)
 		tar.close()
+		print("Extracted folder.")
 	elif dl_name.endswith('.zip'):
 		shutil.unpack_archive(dl_path, extract_path)
+		print("Extracted folder.")
 
 	# Move premake executable one level up
 	shutil.move(extract_path + "/" + premake_name, premake_path + "/" + premake_name)
+	print("Moved premake executable.")
 	
 	# Delete zip folder
 	log_info("Cleaning up...")
 
 	if os.path.exists(dl_path):
 		os.remove(dl_path)
+		print("Removed folder.")
+	else:
+		log_fail("Failed to remove downloaded folder!")
 
 	# Delete extracted folder
 	if os.path.exists(extract_path):
 		os.rmdir(extract_path)
+		print("Removed folder.")
+	else:
+		log_fail("Failed to remove extracted folder!")
 
 	log_info(f"Successfully installed premake-{version}!")
 
