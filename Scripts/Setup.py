@@ -2,7 +2,7 @@ import os
 import tarfile
 import shutil
 
-from Utils import log_info, log_fail, get_os
+from Utils import log_info, log_fail, get_os, install_deps, install_pip_deps
 
 
 def install_premake():
@@ -73,7 +73,37 @@ def install_premake():
 	log_info(f"Successfully installed premake-{version}!")
 
 
-import InstallDeps
+def install_dependencies():
+	deps = []
+	pip_deps = ["requests"]
+	macos_deps = ["cmake", "python"]
+	linux_deps = ["clang", "cmake", "ninja-build", "libx11-dev", "libxrandr-dev", "libxinerama-dev", "libxcursor-dev",
+				"libxi-dev", "libglfw3-dev", "libgl1-mesa-dev", "libglu1-mesa-dev"]
+	
+	install_cmd = ""
+	update_cmd = ""
+	
+	os_name = get_os()
+	
+	if os_name == "Linux":
+		deps = linux_deps
+		install_cmd = "sudo apt install"
+		update_cmd = "sudo apt update"
+	
+	elif os_name == "Darwin":
+		deps = macos_deps
+		install_cmd = "brew install"
+		update_cmd = "brew update"
+	
+	else:
+		print("No dependencies are needed for this OS!")
+		return
+	
+	install_deps(os_name, deps, install_cmd, update_cmd)
+	install_pip_deps(pip_deps)
+
+
 import requests
 
+install_dependencies()
 install_premake()
