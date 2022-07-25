@@ -33,6 +33,22 @@ project "NightlyEditor"
 		"glad"
 	}
 
+	filter "system:macosx"
+		pchheader "%{RuntimePath}/PCH.h"
+
+		links
+		{
+			"CoreFoundation.framework",
+			"IOKit.framework",
+			"Cocoa.framework"
+		}
+
+		removelinks
+		{
+			"glfw",
+			"glad"
+		}
+
 	filter "system:windows"
 		buildoptions
 		{
