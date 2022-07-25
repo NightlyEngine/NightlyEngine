@@ -9,17 +9,20 @@ from Utils import log_info, log_fail, get_os
 def install_premake():
 	os_name = get_os()
 	dl_name = ""
+	premake_name = ""
 
 	if os_name == "Linux":
 		dl_name = "linux.tar.gz"
+		premake_name = "premake5.app"
 	elif os_name == "Darwin":
 		dl_name = "macosx.tar.gz"
+		premake_name = "premake5"
 	elif os_name == "Windows":
 		dl_name = "windows.zip"
+		premake_name = "premake5.exe"
 
 	version = "5.0.0-beta1"
 	url = f"https://github.com/premake/premake-core/releases/download/v{version}/premake-{version}-{dl_name}"
-	premake_name = "premake5"
 	premake_path = "../Engine/Source/ThirdParty/premake"
 	dl_path = f"{premake_path}/premake-{version}-{dl_name}"
 	extract_path = premake_path + "/premake-" + version
