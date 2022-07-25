@@ -1,4 +1,3 @@
-import requests
 import os
 import tarfile
 import shutil
@@ -74,6 +73,7 @@ def install_premake():
 	log_info(f"Successfully installed premake-{version}!")
 
 
-install_premake()
-
 import InstallDeps
+import requests
+
+install_premake()
