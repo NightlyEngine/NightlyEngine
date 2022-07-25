@@ -23,7 +23,7 @@ elif os_name == "Darwin":
 
 else:
     print("No dependencies are needed for this OS!")
-    exit()
+    return
 
 install_deps(os_name, deps, install_cmd, update_cmd)
 install_pip_deps(pip_deps)
