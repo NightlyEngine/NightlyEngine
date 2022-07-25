@@ -1,6 +1,7 @@
-from Utils import install_deps, get_os
+from Utils import install_deps, install_pip_deps, get_os
 
 deps = []
+pip_deps = ["requests"]
 macos_deps = ["cmake", "python"]
 linux_deps = ["clang", "cmake", "ninja-build", "libx11-dev", "libxrandr-dev", "libxinerama-dev", "libxcursor-dev",
               "libxi-dev", "libglfw3-dev", "libgl1-mesa-dev", "libglu1-mesa-dev"]
@@ -25,4 +26,5 @@ else:
     exit()
 
 install_deps(os_name, deps, install_cmd, update_cmd)
+install_pip_deps(pip_deps)
 print("Generate your project files next: python3 ./GeneratePremake.py")
