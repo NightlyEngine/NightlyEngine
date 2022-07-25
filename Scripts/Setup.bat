@@ -1,3 +1,3 @@
 pip3 install requests
-python .\Setup.py
+python .\Python\Setup.py
 PAUSE
