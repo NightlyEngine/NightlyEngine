@@ -23,6 +23,9 @@ project "Plugins"
 		"NightlyEngine"
 	}
 
+	filter "system:macosx"
+		pchheader "%{RuntimePath}/PCH.h"
+
 	filter "system:windows"
 		buildoptions
 		{
