@@ -73,6 +73,9 @@ cmake-build-debug
 Engine/Build
 Engine/Binaries
 
+# Third Party
+Engine/Source/ThirdParty/premake
+
 # Python
 __pycache__
 
