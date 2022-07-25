@@ -72,32 +72,6 @@ def install_deps(os_name, deps, install_cmd, update_cmd):
 
     log_info("Installation finished.")
 
-
-def install_pip_deps(deps):
-	log_info("Validating pip...")
-	if os.system("pip -V") != 0 and os.system("pip3 -V") != 0:
-		log_fail("Failed to locate pip, make sure it's installed and added to your $PATH.")
-		return
-
-	log_info("Installing pip modules...")
-	
-	failed_modules = []
-	
-	# Loop through all modules and install them
-	for module in deps:
-		log_info(f"Installing {module}...")
-		if os.system(f"pip install {module}") != 0 and os.system(f"pip3 install {module}") != 0:
-			log_failf("Failed to install module: {module}. Check your internet connection or try again later.")
-			failed_modules.append(module)
-				
-	# Print any failed modules
-	if len(failed_modules) != 0:
-		print(f"Failed to install {len(failed_modules)} modules: ")
-		for module in failed_modules:
-			print(module)
-			
-	log_info("Finished installing pip modules.")
-				
 				
 def prompt_configuration():
     config = input("Which configuration? [Debug/Release]: ")
