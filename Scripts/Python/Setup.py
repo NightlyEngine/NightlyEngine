@@ -75,8 +75,8 @@ def install_premake():
 
 def install_dependencies():
 	deps = []
-	macos_deps = ["cmake", "python"]
-	linux_deps = ["clang", "cmake", "ninja-build", "libx11-dev", "libxrandr-dev", "libxinerama-dev", "libxcursor-dev",
+	macos_deps = ["python"]
+	linux_deps = ["g++", "libx11-dev", "libxrandr-dev", "libxinerama-dev", "libxcursor-dev",
 				"libxi-dev", "libglfw3-dev", "libgl1-mesa-dev", "libglu1-mesa-dev"]
 	
 	install_cmd = ""
