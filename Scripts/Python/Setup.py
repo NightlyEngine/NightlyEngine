@@ -12,7 +12,7 @@ def install_premake():
 
 	if os_name == "Linux":
 		dl_name = "linux.tar.gz"
-		premake_name = "premake5.app"
+		premake_name = "premake5"
 	elif os_name == "Darwin":
 		dl_name = "macosx.tar.gz"
 		premake_name = "premake5"
