@@ -85,9 +85,6 @@ After that, follow the specific instructions for your OS down below.
 4. Generate your project files: `./GenerateProjectFiles.sh` and enter `gmake2` when asked
 5. Go up one directory and build the project: `cd .. && make`
 
-Your project files will be written to `Engine/Build/{Configuration}/Engine/Source`, while the binaries will be stored
-in `Engine/Binaries`. You can now open the project using an IDE like CLion.
-
 ### Windows
 
 1. Download and install python3 [here](https://www.python.org/downloads/) and add it to your PATH.
@@ -95,9 +92,6 @@ in `Engine/Binaries`. You can now open the project using an IDE like CLion.
 3. Navigate to the `Scripts` folder and double-click `Setup.bat`
 4. Double-click `GenerateProjectFiles.bat` and enter `vs2022` or `vs2019` when asked
 5. Open `NightlyEngine.sln` in the root folder and press Ctrl + Shift + B to build the entire solution
-
-Your project files will be written to `Engine/Build/{Configuration}/Engine/Source`, while the binaries will be stored
-in `Engine/Binaries`. You can now open the project using an IDE like Visual Studio.
 
 ## 📝 License
 
